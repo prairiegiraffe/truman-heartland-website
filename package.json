@@ -6,10 +6,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "scrape": "node scripts/scrape.mjs",
+    "scrape:resume": "node scripts/scrape.mjs --resume",
+    "download-images": "node scripts/download-images.mjs",
+    "upload-r2": "node scripts/upload-to-r2.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "fs-extra": "^11.3.3",
+    "playwright": "^1.58.2"
   }
 }
