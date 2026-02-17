@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import allNews from "../../data/news.json";
+---
+
+<Layout title="News" description="Latest news from Truman Heartland Community Foundation.">
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">News</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="card-grid">
+        {allNews.map((article: any) => (
+          <NewsCard
+            title={article.title}
+            slug={article.slug}
+            date={article.date}
+            category={article.category}
+            featuredImage={article.featuredImage}
+            excerpt={article.excerpt}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

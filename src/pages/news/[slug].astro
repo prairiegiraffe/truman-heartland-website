@@ -1,0 +1,23 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import allNews from "../../data/news.json";
+
+export function getStaticPaths() {
+  return allNews.map((article: any) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+---
+
+<ArticleLayout
+  title={article.title}
+  date={article.date}
+  category={article.category}
+  featuredImage={article.featuredImage}
+  description={article.excerpt}
+>
+  <Fragment set:html={article.body} />
+</ArticleLayout>

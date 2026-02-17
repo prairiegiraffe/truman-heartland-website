@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  date?: string;
+  category?: string;
+  featuredImage?: string;
+  excerpt?: string;
+}
+
+const { title, slug, date, category, featuredImage, excerpt } = Astro.props;
+
+/**
+ * Format a date string to a human-readable format.
+ */
+function formatDate(dateStr: string): string {
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+---
+
+<article class="card">
+  {featuredImage && (
+    <a href={`/news/${slug}`} class="card__image" aria-hidden="true" tabindex="-1">
+      <img src={featuredImage} alt="" loading="lazy" />
+    </a>
+  )}
+  <div class="card__body">
+    {category && (
+      <span class="card__category">{category}</span>
+    )}
+    <h3 class="card__title">
+      <a href={`/news/${slug}`}>{title}</a>
+    </h3>
+    {excerpt && (
+      <p class="card__excerpt">{excerpt}</p>
+    )}
+    {date && (
+      <time class="card__date" datetime={date}>
+        {formatDate(date)}
+      </time>
+    )}
+  </div>
+</article>

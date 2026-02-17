@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # scraped site data (large, temporary)
 scraped-data/
+
+# wrangler local state
+.wrangler/

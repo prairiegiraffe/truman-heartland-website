@@ -1,6 +1,6 @@
 {
 	"main": "dist/_worker.js/index.js",
-	"name": "truman-astro-temp",
+	"name": "truman-heartland-website",
   "compatibility_date": "2026-02-16",
   "compatibility_flags": [
     "nodejs_compat",
@@ -12,5 +12,11 @@
 	},
 	"observability": {
     "enabled": true
-  }
+  },
+	"r2_buckets": [
+		{
+			"bucket_name": "thcf-assets",
+			"binding": "ASSETS_BUCKET"
+		}
+	]
 }

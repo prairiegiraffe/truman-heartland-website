@@ -1,0 +1,177 @@
+---
+import navData from "../data/nav.json";
+
+interface NavChild {
+  label: string;
+  href: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  children?: NavChild[];
+}
+
+/**
+ * Convert absolute thcf.org URLs to relative paths.
+ * If the href is already relative, return as-is.
+ */
+function toRelativePath(href: string): string {
+  if (!href) return "/";
+  return href
+    .replace("https://www.thcf.org", "")
+    .replace("http://www.thcf.org", "")
+    || "/";
+}
+
+// Filter out the "Search" nav item (handled separately) and ensure relative paths
+const nav: NavItem[] = (navData as NavItem[])
+  .filter((item) => item.label !== "Search")
+  .map((item) => ({
+    ...item,
+    href: toRelativePath(item.href),
+    children: item.children?.map((child) => ({
+      ...child,
+      href: toRelativePath(child.href),
+    })),
+  }));
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <!-- Logo -->
+    <div class="site-header__logo">
+      <a href="/">
+        <span class="site-header__logo-text">THCF</span>
+        <span class="sr-only">Truman Heartland Community Foundation</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul class="site-nav__list">
+        {nav.map((item) => (
+          <li class="site-nav__item">
+            <a
+              href={item.href}
+              class:list={[
+                "site-nav__link",
+                { "site-nav__link--has-children": item.children && item.children.length > 0 },
+              ]}
+            >
+              {item.label}
+            </a>
+            {item.children && item.children.length > 0 && (
+              <div class="site-nav__dropdown">
+                {item.children.map((child) => (
+                  <a href={child.href}>{child.label}</a>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Desktop actions -->
+    <div class="site-header__actions">
+      <a href="https://www.grantinterface.com/Home/Logon?urlkey=thcf" class="site-header__portal-link" target="_blank" rel="noopener noreferrer">
+        Fund Portal
+      </a>
+      <a href="/donors/make-a-gift" class="btn btn-primary btn-sm">Give Now</a>
+    </div>
+
+    <!-- Mobile menu toggle -->
+    <button
+      class="mobile-menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Toggle navigation menu"
+    >
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <ul class="mobile-nav__list">
+      {nav.map((item, index) => (
+        <li class="mobile-nav__item">
+          <div style="display: flex; align-items: center;">
+            <a href={item.href} class="mobile-nav__link" style="flex: 1;">
+              {item.label}
+            </a>
+            {item.children && item.children.length > 0 && (
+              <button
+                class="mobile-nav__toggle"
+                aria-expanded="false"
+                aria-controls={`mobile-dropdown-${index}`}
+                aria-label={`Toggle ${item.label} submenu`}
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            )}
+          </div>
+          {item.children && item.children.length > 0 && (
+            <div id={`mobile-dropdown-${index}`} class="mobile-nav__dropdown">
+              {item.children.map((child) => (
+                <a href={child.href}>{child.label}</a>
+              ))}
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+    <div class="mobile-nav__actions">
+      <a href="/donors/make-a-gift" class="btn btn-primary">Give Now</a>
+      <a href="https://www.grantinterface.com/Home/Logon?urlkey=thcf" target="_blank" rel="noopener noreferrer">
+        Fund Portal
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileNav.classList.toggle('is-open');
+
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+  }
+
+  // Mobile dropdown toggles
+  const dropdownToggles = document.querySelectorAll('.mobile-nav__toggle');
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+
+      const targetId = toggle.getAttribute('aria-controls');
+      if (targetId) {
+        const dropdown = document.getElementById(targetId);
+        if (dropdown) {
+          dropdown.classList.toggle('is-open');
+        }
+      }
+    });
+  });
+
+  // Close mobile menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('is-open')) {
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>

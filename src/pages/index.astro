@@ -1,11 +1,30 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import allPages from "../data/pages.json";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const homepage = allPages.find((p: any) => p.path === "/");
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Home" description="Truman Heartland Community Foundation inspires generosity and advances community well-being through the power of charitable giving.">
+  {homepage ? (
+    <div class="page-content">
+      <div class="article-body prose">
+        <Fragment set:html={homepage.body} />
+      </div>
+    </div>
+  ) : (
+    <section class="hero hero--home">
+      <div class="container hero__content">
+        <h1 class="hero__title">Connecting People Who Care<br />with Causes That Matter</h1>
+        <p class="hero__subtitle">
+          Truman Heartland Community Foundation builds community by connecting donors with needs
+          in Eastern Jackson County and Western Missouri.
+        </p>
+        <div class="hero__actions">
+          <a href="/donors/make-a-gift" class="btn btn-primary btn-lg">Give Now</a>
+          <a href="/about" class="btn btn-outline-white btn-lg">Learn More</a>
+        </div>
+      </div>
+    </section>
+  )}
 </Layout>

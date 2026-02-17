@@ -1,0 +1,168 @@
+[
+  {
+    "label": "Donors",
+    "href": "/donors",
+    "children": [
+      {
+        "label": "SNAP and Community Relief",
+        "href": "/donors/snap-resources"
+      },
+      {
+        "label": "Make a Gift",
+        "href": "/donors/make-a-gift"
+      },
+      {
+        "label": "Join the Fan Club",
+        "href": "/donors/fan-club"
+      },
+      {
+        "label": "Planned Giving",
+        "href": "/donors/planned-giving"
+      },
+      {
+        "label": "Heartland Legacy Society",
+        "href": "/donors/heartland-legacy-society"
+      }
+    ]
+  },
+  {
+    "label": "Fundholders",
+    "href": "/fundholder-resources",
+    "children": [
+      {
+        "label": "Helpful Documents",
+        "href": "/fundholder-resources/helpful-docs"
+      },
+      {
+        "label": "Fundholder FAQs",
+        "href": "/fundholder-resources/fundholder-faqs"
+      }
+    ]
+  },
+  {
+    "label": "Professional Advisors",
+    "href": "/professional-advisors",
+    "children": [
+      {
+        "label": "Advisor Resources",
+        "href": "/professional-advisors/advisor-resourses"
+      },
+      {
+        "label": "Continuing Education Seminars",
+        "href": "/professional-advisors/continuing-education"
+      }
+    ]
+  },
+  {
+    "label": "Grant Seekers",
+    "href": "/grant-seekers",
+    "children": [
+      {
+        "label": "Community Grants Program",
+        "href": "/grant-seekers/community-grants-program"
+      },
+      {
+        "label": "Jelley Family Foundation Grants",
+        "href": "/grant-seekers/jelley-family-foundation-for-childrens-education"
+      },
+      {
+        "label": "Grants Workshop and Resources",
+        "href": "/grant-seekers/resources"
+      },
+      {
+        "label": "Past Recipients",
+        "href": "/grant-seekers/past-recipients"
+      },
+      {
+        "label": "Annual Grants Luncheon",
+        "href": "/grant-seekers/gallery-photos"
+      }
+    ]
+  },
+  {
+    "label": "Students",
+    "href": "/students",
+    "children": [
+      {
+        "label": "Scholarships",
+        "href": "/students/scholarships"
+      },
+      {
+        "label": "Youth Advisory Council",
+        "href": "/students/youth-advisory-council"
+      }
+    ]
+  },
+  {
+    "label": "Annual Gala",
+    "href": "/gala",
+    "children": [
+      {
+        "label": "Sponsorship Opportunities",
+        "href": "/gala/sponsorship"
+      },
+      {
+        "label": "Heartland Award Honorees",
+        "href": "/gala/heartland-awards"
+      },
+      {
+        "label": "Citizens of the Year",
+        "href": "/gala/citizens-of-the-year"
+      },
+      {
+        "label": "Past Gala Honorees",
+        "href": "/gala/gala-honorees"
+      },
+      {
+        "label": "Nominate a Humanitarian of the Year",
+        "href": "/gala/humanitarian"
+      },
+      {
+        "label": "Nominate a Corporate Citizen of the Year",
+        "href": "/gala/corporate-citizen"
+      },
+      {
+        "label": "Nominate a Heartland Service Award",
+        "href": "/gala/heartland-service-award"
+      }
+    ]
+  },
+  {
+    "label": "About Us",
+    "href": "/about",
+    "children": [
+      {
+        "label": "Strategic Initiatives",
+        "href": "/about/strategic-initiatives"
+      },
+      {
+        "label": "Annual Reports & 990s",
+        "href": "/about/annual-reports"
+      },
+      {
+        "label": "2025 Board",
+        "href": "/about/board"
+      },
+      {
+        "label": "News",
+        "href": "/about/news"
+      },
+      {
+        "label": "Events Calendar",
+        "href": "/about/events-calendar"
+      },
+      {
+        "label": "Staff",
+        "href": "/about/staff"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/about/contact-us"
+      }
+    ]
+  },
+  {
+    "label": "Search",
+    "href": "/search"
+  }
+]

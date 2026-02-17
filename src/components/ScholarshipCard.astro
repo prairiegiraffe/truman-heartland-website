@@ -1,0 +1,29 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  amount?: string;
+  deadline?: string;
+}
+
+const { name, slug, amount, deadline } = Astro.props;
+---
+
+<article class="card">
+  <div class="card__body">
+    <h3 class="card__title">
+      <a href={`/scholarships/${slug}`}>{name}</a>
+    </h3>
+    <div class="card__meta">
+      {amount && (
+        <p><strong>Award Amount:</strong> {amount}</p>
+      )}
+      {deadline && (
+        <p><strong>Deadline:</strong> {deadline}</p>
+      )}
+    </div>
+    <div class="card__actions">
+      <a href={`/scholarships/${slug}`} class="btn btn-outline btn-sm">Learn More</a>
+    </div>
+  </div>
+</article>

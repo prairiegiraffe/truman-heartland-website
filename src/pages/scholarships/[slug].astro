@@ -1,0 +1,81 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import allScholarships from "../../data/scholarships.json";
+
+export function getStaticPaths() {
+  return allScholarships.map((s: any) => ({
+    params: { slug: s.slug },
+    props: { scholarship: s },
+  }));
+}
+
+const { scholarship } = Astro.props;
+---
+
+<Layout title={scholarship.name} description={`Learn about the ${scholarship.name} scholarship from Truman Heartland Community Foundation.`}>
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">{scholarship.name}</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container container--narrow">
+      <div class="article-body prose">
+        {scholarship.description && (
+          <div class="scholarship-description">
+            <Fragment set:html={scholarship.description} />
+          </div>
+        )}
+
+        {scholarship.eligibility && scholarship.eligibility.length > 0 && (
+          <div class="scholarship-section">
+            <h2>Eligibility</h2>
+            <ul>
+              {scholarship.eligibility.map((item: string) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {scholarship.amount && (
+          <div class="scholarship-section">
+            <h2>Award Amount</h2>
+            <p>{scholarship.amount}</p>
+          </div>
+        )}
+
+        {scholarship.renewable && (
+          <div class="scholarship-section">
+            <h2>Renewable</h2>
+            <p>{scholarship.renewable.details || (scholarship.renewable.isRenewable ? "Yes" : "No")}</p>
+          </div>
+        )}
+
+        {scholarship.deadline && (
+          <div class="scholarship-section">
+            <h2>Deadline</h2>
+            <p>{scholarship.deadline}</p>
+          </div>
+        )}
+
+        {scholarship.requirements && scholarship.requirements.length > 0 && (
+          <div class="scholarship-section">
+            <h2>Requirements</h2>
+            <ul>
+              {scholarship.requirements.map((item: string) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div class="scholarship-cta" style="margin-top: 2rem; padding: 1.5rem; background: var(--color-gray-100); border-radius: 8px; text-align: center;">
+          <p style="margin-bottom: 1rem;"><strong>Ready to apply?</strong></p>
+          <a href="/students/scholarships" class="btn btn-primary">View All Scholarships</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

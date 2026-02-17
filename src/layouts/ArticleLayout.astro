@@ -1,0 +1,62 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: string;
+  category?: string;
+  featuredImage?: string;
+}
+
+const { title, description, date, category, featuredImage } = Astro.props;
+
+/**
+ * Format a date string to a human-readable format.
+ */
+function formatDate(dateStr: string): string {
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch {
+    return dateStr;
+  }
+}
+---
+
+<Layout title={title} description={description}>
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">{title}</h1>
+      {(category || date) && (
+        <div class="page-banner__meta">
+          {category && (
+            <span class="page-banner__category">{category}</span>
+          )}
+          {date && (
+            <time datetime={date}>{formatDate(date)}</time>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <div class="page-content">
+    <div class="container">
+      {featuredImage && (
+        <div class="article-featured-image">
+          <img src={featuredImage} alt="" />
+        </div>
+      )}
+      <div class="article-body prose">
+        <slot />
+      </div>
+    </div>
+  </div>
+</Layout>

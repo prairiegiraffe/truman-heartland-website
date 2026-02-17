@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ScholarshipCard from "../../components/ScholarshipCard.astro";
+import allScholarships from "../../data/scholarships.json";
+---
+
+<Layout title="Scholarship Directory" description="Browse scholarships available through Truman Heartland Community Foundation.">
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">Scholarship Directory</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <p class="text-center" style="margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Truman Heartland Community Foundation holds over 250 scholarship funds to help students
+        follow their dreams and work toward a brighter future. Browse our available scholarships below.
+      </p>
+      <div class="card-grid card-grid--2col">
+        {allScholarships.map((scholarship: any) => (
+          <ScholarshipCard
+            name={scholarship.name}
+            slug={scholarship.slug}
+            amount={scholarship.amount}
+            deadline={scholarship.deadline}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

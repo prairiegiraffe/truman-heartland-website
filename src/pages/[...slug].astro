@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import allPages from "../data/pages.json";
+
+export function getStaticPaths() {
+  // Paths handled by other routes or that should be skipped
+  const skipPaths = new Set([
+    "/",           // handled by index.astro
+    "/news",       // redirect to /about/news (the news listing page)
+  ]);
+
+  // Skip admin/junk paths
+  const skipPrefixes = ["/cpadmin"];
+
+  return allPages
+    .filter((page: any) => {
+      if (skipPaths.has(page.path)) return false;
+      if (skipPrefixes.some((prefix) => page.path.startsWith(prefix))) return false;
+      return true;
+    })
+    .map((page: any) => {
+      // Convert path like "/about/board" to slug segments ["about", "board"]
+      const slug = page.path.replace(/^\//, "").split("/");
+      return {
+        params: { slug: slug.join("/") || undefined },
+        props: { page },
+      };
+    });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={page.title}>
+  <div class="page-banner">
+    <div class="container">
+      <h1 class="page-banner__title">{page.title}</h1>
+    </div>
+  </div>
+
+  <div class="page-content">
+    <div class="container">
+      <div class="article-body prose">
+        <Fragment set:html={page.body} />
+      </div>
+    </div>
+  </div>
+</Layout>
