@@ -1457,17 +1457,13 @@ blockquote {
   position: relative;
   z-index: 1;
   padding: var(--space-3xl) 0;
-  max-width: none;
 }
 @media (min-width: 768px) {
   .home-hero__content {
-    max-width: 55%;
     padding: var(--space-4xl) 0;
   }
 }
-@media (min-width: 1024px) {
-  .home-hero__content { max-width: 50%; }
-}
+
 
 .home-hero__eyebrow {
   font-size: var(--text-xs);
@@ -1496,7 +1492,6 @@ blockquote {
   font-size: var(--text-lg);
   color: rgba(255, 255, 255, 0.85);
   margin-bottom: var(--space-xl);
-  max-width: 560px;
   line-height: var(--leading-normal);
 }
 
