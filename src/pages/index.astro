@@ -8,7 +8,7 @@ const homepage = allPages.find((p: any) => p.path === "/");
 <Layout title="Home" description="Truman Heartland Community Foundation inspires generosity and advances community well-being through the power of charitable giving.">
   {homepage ? (
     <div class="page-content">
-      <div class="article-body prose">
+      <div class="homepage-content prose">
         <Fragment set:html={homepage.body} />
       </div>
     </div>

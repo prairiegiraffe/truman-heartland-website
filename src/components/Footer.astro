@@ -3,59 +3,70 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="container">
-    <div class="site-footer__main">
-      <!-- Contact Info -->
-      <div class="site-footer__contact">
-        <h3 class="site-footer__heading">Truman Heartland Community Foundation</h3>
-        <p>4200 Little Blue Parkway, Suite 340<br />Independence, MO 64057</p>
-        <p>
-          <a href="tel:+18168368189">(816) 836-8189</a>
-        </p>
-        <p>
-          <a href="mailto:info@thcf.org">info@thcf.org</a>
-        </p>
-      </div>
+  <div class="site-footer__main">
+    <div class="container">
+      <div class="site-footer__grid">
+        <!-- Brand column -->
+        <div class="site-footer__col">
+          <a href="/" class="site-footer__logo">THCF</a>
+          <p class="site-footer__tagline">
+            Connecting people who care with causes that matter in Eastern Jackson County and Western Missouri.
+          </p>
+        </div>
 
-      <!-- Quick Links -->
-      <div class="site-footer__links">
-        <h3 class="site-footer__heading">Quick Links</h3>
-        <ul>
-          <li><a href="/donors/make-a-gift">Make a Gift</a></li>
-          <li><a href="/students/scholarships">Scholarships</a></li>
-          <li><a href="/grant-seekers">Grant Seekers</a></li>
-          <li><a href="/about/news">News</a></li>
-          <li><a href="/about/events-calendar">Events Calendar</a></li>
-          <li><a href="/about/contact-us">Contact Us</a></li>
-        </ul>
-      </div>
+        <!-- Get Involved -->
+        <div class="site-footer__col">
+          <h3 class="site-footer__heading">Get Involved</h3>
+          <ul>
+            <li><a href="/donors/make-a-gift">Make a Gift</a></li>
+            <li><a href="/donors/fan-club">Join the Fan Club</a></li>
+            <li><a href="/students/scholarships">Scholarships</a></li>
+            <li><a href="/grant-seekers">Grant Seekers</a></li>
+            <li><a href="/gala">Annual Gala</a></li>
+          </ul>
+        </div>
 
-      <!-- Portals & Legal -->
-      <div class="site-footer__links">
-        <h3 class="site-footer__heading">Resources</h3>
-        <ul>
-          <li>
+        <!-- About -->
+        <div class="site-footer__col">
+          <h3 class="site-footer__heading">About</h3>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/about/board">Board</a></li>
+            <li><a href="/about/staff">Staff</a></li>
+            <li><a href="/about/news">News</a></li>
+            <li><a href="/about/annual-reports">Annual Reports</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="site-footer__col">
+          <h3 class="site-footer__heading">Contact</h3>
+          <p>4200 Little Blue Parkway, Suite 340<br />Independence, MO 64057</p>
+          <p><a href="tel:+18168368189">(816) 836-8189</a></p>
+          <p><a href="mailto:info@thcf.org">info@thcf.org</a></p>
+          <p style="margin-top: var(--space-md);">
             <a href="https://www.grantinterface.com/Home/Logon?urlkey=thcf" target="_blank" rel="noopener noreferrer">
-              Fund Portal
+              Fund Portal &rarr;
             </a>
-          </li>
-          <li>
-            <a href="https://www.grantinterface.com/Home/Logon?urlkey=thcf" target="_blank" rel="noopener noreferrer">
-              Grants Portal
-            </a>
-          </li>
-          <li><a href="/privacy-policy">Privacy Policy</a></li>
-          <li><a href="/about/annual-reports">Annual Reports &amp; 990s</a></li>
-        </ul>
+          </p>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Bottom bar -->
-    <div class="site-footer__bottom">
-      <p>&copy; {currentYear} Truman Heartland Community Foundation. All rights reserved.</p>
-      <p>
-        Site designed by <a href="https://www.prairiegiraffe.com" target="_blank" rel="noopener noreferrer">Prairie Giraffe</a>
-      </p>
+  <!-- Bottom bar -->
+  <div class="site-footer__bottom">
+    <div class="container">
+      <div class="site-footer__bottom-inner">
+        <p>&copy; {currentYear} Truman Heartland Community Foundation. All rights reserved.</p>
+        <div class="site-footer__legal">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/about/contact-us">Contact</a>
+          <span>
+            Site by <a href="https://www.prairiegiraffe.com" target="_blank" rel="noopener noreferrer">Prairie Giraffe</a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
