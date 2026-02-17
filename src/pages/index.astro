@@ -1,30 +1,160 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import allPages from "../data/pages.json";
+import NewsCard from "../components/NewsCard.astro";
+import allNews from "../data/news.json";
 
-const homepage = allPages.find((p: any) => p.path === "/");
+const featuredNews = allNews.slice(0, 3);
 ---
 
 <Layout title="Home" description="Truman Heartland Community Foundation inspires generosity and advances community well-being through the power of charitable giving.">
-  {homepage ? (
-    <div class="page-content">
-      <div class="homepage-content prose">
-        <Fragment set:html={homepage.body} />
+
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="home-hero__bg"></div>
+    <div class="container home-hero__content">
+      <p class="home-hero__eyebrow">Founded in 1982</p>
+      <h1 class="home-hero__title">Connecting People Who Care<br />with Causes That Matter</h1>
+      <p class="home-hero__subtitle">
+        We inspire generosity and advance community well-being through the power of charitable giving in Eastern Jackson County and beyond.
+      </p>
+      <div class="home-hero__actions">
+        <a href="/donors/make-a-gift" class="btn btn-primary btn-lg">Give Now</a>
+        <a href="/about" class="btn btn-outline-white btn-lg">Learn More</a>
       </div>
     </div>
-  ) : (
-    <section class="hero hero--home">
-      <div class="container hero__content">
-        <h1 class="hero__title">Connecting People Who Care<br />with Causes That Matter</h1>
-        <p class="hero__subtitle">
-          Truman Heartland Community Foundation builds community by connecting donors with needs
-          in Eastern Jackson County and Western Missouri.
-        </p>
-        <div class="hero__actions">
-          <a href="/donors/make-a-gift" class="btn btn-primary btn-lg">Give Now</a>
-          <a href="/about" class="btn btn-outline-white btn-lg">Learn More</a>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="home-stats">
+    <div class="container">
+      <div class="home-stats__grid">
+        <div class="home-stats__item">
+          <span class="home-stats__number">250+</span>
+          <span class="home-stats__label">Scholarship Funds</span>
+        </div>
+        <div class="home-stats__item">
+          <span class="home-stats__number">$100M+</span>
+          <span class="home-stats__label">In Assets Under Management</span>
+        </div>
+        <div class="home-stats__item">
+          <span class="home-stats__number">40+</span>
+          <span class="home-stats__label">Years Serving Our Community</span>
+        </div>
+        <div class="home-stats__item">
+          <span class="home-stats__number">500+</span>
+          <span class="home-stats__label">Funds Established</span>
         </div>
       </div>
-    </section>
-  )}
+    </div>
+  </section>
+
+  <!-- Feature: Grow Your Giving -->
+  <section class="home-feature home-feature--navy">
+    <div class="container">
+      <div class="home-feature__grid">
+        <div class="home-feature__image">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="Community members" loading="lazy" />
+        </div>
+        <div class="home-feature__text">
+          <p class="home-feature__eyebrow">Experts in Local Philanthropy</p>
+          <h2>We Help You Grow Your Giving</h2>
+          <p>At Truman Heartland Community Foundation, we help donors give smarter and leave a legacy. The power of pooling community funds means your financial investment grows, and the benefit to the community grows with it.</p>
+          <a href="/donors" class="btn btn-outline-white">Explore Donor Options</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opportunities Grid -->
+  <section class="home-opportunities">
+    <div class="container">
+      <div class="home-section-header">
+        <p class="home-section-header__eyebrow">Get Involved</p>
+        <h2 class="home-section-header__title">Current Opportunities</h2>
+      </div>
+      <div class="home-opps__grid">
+        <a href="/students/scholarships" class="home-opp-card">
+          <div class="home-opp-card__image">
+            <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="Scholarship Program" loading="lazy" />
+          </div>
+          <div class="home-opp-card__body">
+            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <h3 class="home-opp-card__title">Scholarship Applications</h3>
+            <p>Over 250 scholarship funds to help students follow their dreams and work toward a brighter future.</p>
+          </div>
+        </a>
+        <a href="/grant-seekers/community-grants-program" class="home-opp-card">
+          <div class="home-opp-card__image">
+            <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="Community Grants" loading="lazy" />
+          </div>
+          <div class="home-opp-card__body">
+            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <h3 class="home-opp-card__title">Community Grants Program</h3>
+            <p>Funding for nonprofits addressing arts, education, health, and community betterment.</p>
+          </div>
+        </a>
+        <a href="/grant-seekers/jelley-family-foundation-for-childrens-education" class="home-opp-card">
+          <div class="home-opp-card__image">
+            <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Jelley-Family-Foundation.png" alt="Jelley Family Foundation" loading="lazy" />
+          </div>
+          <div class="home-opp-card__body">
+            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <h3 class="home-opp-card__title">Jelley Family Foundation Grants</h3>
+            <p>Educational initiatives for children, from early childhood through post-secondary education.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="home-cta-band">
+    <div class="container">
+      <div class="home-cta-band__inner">
+        <div class="home-cta-band__text">
+          <h2>Support Your Local Food Pantries</h2>
+          <p>Communities across Eastern Jackson County need your help. Your gift provides immediate access to food during times of need.</p>
+        </div>
+        <a href="/donors/snap-resources" class="btn btn-primary btn-lg">Learn How to Help</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News -->
+  <section class="home-news">
+    <div class="container">
+      <div class="home-section-header">
+        <p class="home-section-header__eyebrow">Stay Connected</p>
+        <h2 class="home-section-header__title">Latest News</h2>
+      </div>
+      <div class="card-grid">
+        {featuredNews.map((article: any) => (
+          <NewsCard
+            title={article.title}
+            slug={article.slug}
+            date={article.date}
+            category={article.category}
+            featuredImage={article.featuredImage}
+            excerpt={article.excerpt}
+          />
+        ))}
+      </div>
+      <div class="home-news__more">
+        <a href="/about/news" class="btn btn-outline">View All News</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Tagline -->
+  <section class="home-tagline">
+    <div class="container">
+      <h2 class="home-tagline__text">
+        Inspiring generosity.<br />
+        Strengthening community.<br />
+        Every day.
+      </h2>
+      <a href="/donors/make-a-gift" class="btn btn-outline-white btn-lg">Start Giving Today</a>
+    </div>
+  </section>
+
 </Layout>
