@@ -1,8 +1,8 @@
 {
   "utility": [
-    { "label": "Fund Portal", "href": "https://www.grantinterface.com/Home/Logon?urlkey=thcf", "external": true },
-    { "label": "GrantSeeker Portal", "href": "/grant-seekers", "external": false },
-    { "label": "Scholarship Portal", "href": "/students/scholarships", "external": false },
+    { "label": "Fund Portal", "href": "https://thcf.fcsuite.com/erp/portal", "external": true },
+    { "label": "GrantSeeker Portal", "href": "https://www.grantinterface.com/Home/Logon?urlkey=trumancf", "external": true },
+    { "label": "Scholarship Portal", "href": "https://www.thcf.org/students/scholarships/apply-now", "external": true },
     { "label": "Open a Fund", "href": "/donors/make-a-gift", "external": false }
   ],
   "audiences": [
@@ -130,7 +130,7 @@
         {
           "heading": "Quick Links",
           "links": [
-            { "label": "Fund Portal", "href": "https://www.grantinterface.com/Home/Logon?urlkey=thcf", "external": true },
+            { "label": "Fund Portal", "href": "https://thcf.fcsuite.com/erp/portal", "external": true },
             { "label": "Helpful Documents", "href": "/fundholder-resources/helpful-docs" },
             { "label": "Bequest Language", "href": "/donors/planned-giving" },
             { "label": "Contribute to Your Fund", "href": "/fundholder-resources" }
