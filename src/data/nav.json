@@ -228,21 +228,44 @@
     {
       "label": "Initiatives",
       "href": "/about/strategic-initiatives",
-      "groups": [
+      "layout": "cards",
+      "cards": [
         {
-          "heading": "Current Initiatives",
-          "links": [
-            { "label": "Affordable Housing", "href": "/about/strategic-initiatives" },
-            { "label": "Sustainability Fund", "href": "/about/strategic-initiatives" },
-            { "label": "Event Calendar", "href": "/about/events-calendar" },
-            { "label": "In the News", "href": "/about/news", "badge": "Blog" }
-          ]
+          "label": "Affordable Housing",
+          "description": "Supporting safe, stable housing solutions across our communities.",
+          "href": "/about/strategic-initiatives",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Logos/_smallBodyImage/Hope-House_40th-Anniversary-Logo.png"
         },
+        {
+          "label": "Grants Program",
+          "description": "Funding nonprofits making a measurable difference in the heartland.",
+          "href": "/grant-seekers/community-grants-program",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/Grants-Luncheons/_largeBodyImage/Caring-for-Youth.jpg"
+        },
+        {
+          "label": "Scholarship Program",
+          "description": "Investing in the next generation through scholarships and mentorship.",
+          "href": "/students/scholarships",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/_largeBodyImage/3H2A9261.jpg"
+        },
+        {
+          "label": "Youth Advisory Council",
+          "description": "Empowering young leaders to drive philanthropic impact in their communities.",
+          "href": "/students/youth-advisory-council",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/YAC/_largeBodyImage/YAC-Volunteer-Day-1.jpg"
+        }
+      ],
+      "cta": {
+        "label": "Contribute to the Community First Loan Fund",
+        "href": "/about/strategic-initiatives"
+      },
+      "groups": [
         {
           "heading": "Past Initiatives",
           "links": [
             { "label": "Job Skills", "href": "/about/strategic-initiatives" },
-            { "label": "Eastern Giving Circle", "href": "/about/strategic-initiatives" }
+            { "label": "Jackson County Health(sic)", "href": "/about/strategic-initiatives" },
+            { "label": "Community for all ages (sic)", "href": "/about/strategic-initiatives" }
           ]
         }
       ]
