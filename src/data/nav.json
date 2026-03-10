@@ -108,23 +108,39 @@
     {
       "label": "For Financial Advisors",
       "href": "/professional-advisors",
+      "layout": "cards",
+      "cards": [
+        {
+          "label": "Professional Advisor Program",
+          "description": "Partner with THCF to help your clients achieve their philanthropic goals.",
+          "href": "/professional-advisors/advisor-resourses",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Advisors/_largeBodyImage/DAF.jpg"
+        },
+        {
+          "label": "Continuing Education",
+          "description": "Earn CE credits through our professional development seminars.",
+          "href": "/professional-advisors/continuing-education",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Professional-Advisors/_largeBodyImage/PA-Seminar-Spring-20240509_091520.jpg"
+        },
+        {
+          "label": "Bequest Language",
+          "description": "Sample language and resources for planned giving documents.",
+          "href": "/donors/planned-giving",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Advisors/_largeBodyImage/Last-will-and-testement.jpg"
+        }
+      ],
+      "cta": {
+        "label": "Become a Partner",
+        "href": "/professional-advisors"
+      },
       "groups": [
         {
           "heading": "Resources",
           "links": [
-            { "label": "Financial Advisor Program", "href": "/professional-advisors/advisor-resourses" },
-            { "label": "How to Give", "href": "/donors/make-a-gift" },
-            { "label": "What to Give", "href": "/donors/make-a-gift" },
-            { "label": "Calculators", "href": "/professional-advisors/advisor-resourses" }
-          ]
-        },
-        {
-          "heading": "Education & News",
-          "links": [
-            { "label": "Continuing Education", "href": "/professional-advisors/continuing-education" },
-            { "label": "GiftLaw Pro", "href": "/professional-advisors/advisor-resourses" },
-            { "label": "Advisor News", "href": "/about/news" },
-            { "label": "Advisory Stories", "href": "/about/news", "badge": "Blog" }
+            { "label": "Professional Advisor Resources", "href": "/professional-advisors/advisor-resourses", "highlight": true },
+            { "label": "Calculators", "href": "/professional-advisors/advisor-resourses" },
+            { "label": "Gift Law Pro", "href": "/professional-advisors/advisor-resourses" },
+            { "label": "Advisor News", "href": "/about/news" }
           ]
         }
       ]

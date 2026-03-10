@@ -294,6 +294,56 @@ const main: NavItem[] = (navData as any).main;
               </div>
             )}
           </div>
+        ) : item.layout === 'cards' && item.cards ? (
+          /* Card-based layout */
+          <div class="mega-panel__cards-layout">
+            <div class="mega-panel__cards-left">
+              {item.cardsHeading && (
+                <h3 class="mega-panel__cards-heading">{item.cardsHeading}</h3>
+              )}
+              <div class="mega-panel__cards-grid">
+                {item.cards.map((card) => (
+                  <a href={card.href} class="mega-panel__card">
+                    <div class="mega-panel__card-image">
+                      <img src={card.image} alt="" loading="lazy" />
+                    </div>
+                    <h4 class="mega-panel__card-title">{card.label}</h4>
+                    <p class="mega-panel__card-desc">{card.description}</p>
+                  </a>
+                ))}
+              </div>
+              {item.cta && (
+                <div class="mega-panel__cards-cta">
+                  <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
+                </div>
+              )}
+            </div>
+            {item.groups && item.groups.length > 0 && (
+              <div class="mega-panel__cards-right">
+                {item.groups.map((group) => (
+                  <div class="mega-panel__group">
+                    <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                    <div class="mega-panel__group-links">
+                      {group.links.map((link) => (
+                        <a
+                          href={link.href}
+                          class:list={[
+                            'mega-panel__group-link',
+                            link.highlight && 'mega-panel__group-link--highlight',
+                            link.external && 'mega-panel__group-link--external',
+                          ]}
+                          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        >
+                          {link.label}
+                          {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         ) : item.groups && item.groups.length > 0 ? (
           /* Standard grouped layout */
           <div class="mega-panel__grid--grouped no-featured">
