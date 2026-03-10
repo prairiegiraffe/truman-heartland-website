@@ -14,9 +14,24 @@ interface NavGroup {
   links: NavLink[];
 }
 
+interface NavCard {
+  label: string;
+  description: string;
+  href: string;
+  image: string;
+}
+
+interface NavCTA {
+  label: string;
+  href: string;
+}
+
 interface NavItem {
   label: string;
   href: string;
+  layout?: string;
+  cards?: NavCard[];
+  cta?: NavCTA;
   groups?: NavGroup[];
   featured?: {
     image: string;
@@ -176,7 +191,7 @@ const main: NavItem[] = (navData as any).main;
 
   <!-- Main Nav Mega Panels -->
   {main.map((item, index) => (
-    item.groups && item.groups.length > 0 && (
+    (item.groups && item.groups.length > 0) || item.cards ? (
       <div
         id={`mega-panel-${index}`}
         class="mega-panel"
@@ -184,42 +199,92 @@ const main: NavItem[] = (navData as any).main;
         data-mega-panel
       >
         <div class="container">
-          <div class:list={['mega-panel__grid--grouped', !item.featured && 'no-featured']}>
-            {item.groups.map((group) => (
-              <div class="mega-panel__group">
-                <h4 class="mega-panel__group-heading">{group.heading}</h4>
-                <div class="mega-panel__group-links">
-                  {group.links.map((link) => (
-                    <a
-                      href={link.href}
-                      class:list={[
-                        'mega-panel__group-link',
-                        link.highlight && 'mega-panel__group-link--highlight',
-                        link.external && 'mega-panel__group-link--external',
-                      ]}
-                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    >
-                      {link.label}
-                      {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+          {/* Card-based layout (Charitable Giving) */}
+          {item.layout === 'cards' && item.cards ? (
+            <div class="mega-panel__cards-layout">
+              <div class="mega-panel__cards-left">
+                <div class="mega-panel__cards-grid">
+                  {item.cards.map((card) => (
+                    <a href={card.href} class="mega-panel__card">
+                      <div class="mega-panel__card-image">
+                        <img src={card.image} alt="" loading="lazy" />
+                      </div>
+                      <h4 class="mega-panel__card-title">{card.label}</h4>
+                      <p class="mega-panel__card-desc">{card.description}</p>
                     </a>
                   ))}
                 </div>
+                {item.cta && (
+                  <div class="mega-panel__cards-cta">
+                    <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
+                  </div>
+                )}
               </div>
-            ))}
-
-            {item.featured && (
-              <a href={item.featured.href} class="mega-panel__featured" style="text-decoration: none;">
-                <div class="mega-panel__featured-image">
-                  <img src={item.featured.image} alt="" loading="lazy" />
+              {item.groups && item.groups.length > 0 && (
+                <div class="mega-panel__cards-right">
+                  {item.groups.map((group) => (
+                    <div class="mega-panel__group">
+                      <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                      <div class="mega-panel__group-links">
+                        {group.links.map((link) => (
+                          <a
+                            href={link.href}
+                            class:list={[
+                              'mega-panel__group-link',
+                              link.highlight && 'mega-panel__group-link--highlight',
+                              link.external && 'mega-panel__group-link--external',
+                            ]}
+                            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          >
+                            {link.label}
+                            {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p class="mega-panel__featured-title">{item.featured.title}</p>
-                <span class="mega-panel__featured-link">Read more &rarr;</span>
-              </a>
-            )}
-          </div>
+              )}
+            </div>
+          ) : (
+            /* Standard grouped layout */
+            <div class:list={['mega-panel__grid--grouped', !item.featured && 'no-featured']}>
+              {item.groups && item.groups.map((group) => (
+                <div class="mega-panel__group">
+                  <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                  <div class="mega-panel__group-links">
+                    {group.links.map((link) => (
+                      <a
+                        href={link.href}
+                        class:list={[
+                          'mega-panel__group-link',
+                          link.highlight && 'mega-panel__group-link--highlight',
+                          link.external && 'mega-panel__group-link--external',
+                        ]}
+                        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {link.label}
+                        {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              {item.featured && (
+                <a href={item.featured.href} class="mega-panel__featured" style="text-decoration: none;">
+                  <div class="mega-panel__featured-image">
+                    <img src={item.featured.image} alt="" loading="lazy" />
+                  </div>
+                  <p class="mega-panel__featured-title">{item.featured.title}</p>
+                  <span class="mega-panel__featured-link">Read more &rarr;</span>
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
-    )
+    ) : null
   ))}
 
   <!-- Mobile Navigation -->
