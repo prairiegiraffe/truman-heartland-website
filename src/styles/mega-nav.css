@@ -422,7 +422,7 @@
 }
 @media (min-width: 768px) {
   .mega-panel__two-boxes {
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -465,7 +465,7 @@
 }
 @media (min-width: 480px) {
   .mega-panel__box-img-link {
-    width: 140px;
+    width: 200px;
   }
 }
 
