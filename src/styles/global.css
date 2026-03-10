@@ -1414,7 +1414,7 @@ blockquote {
 }
 
 .article-body {
-  max-width: var(--container-narrow);
+  max-width: var(--container-max);
   margin: 0 auto;
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
