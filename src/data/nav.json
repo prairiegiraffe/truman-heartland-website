@@ -131,25 +131,48 @@
     {
       "label": "Fundholder Services",
       "href": "/fundholder-resources",
-      "groups": [
+      "layout": "cards",
+      "cardsHeading": "Welcome",
+      "cards": [
         {
-          "heading": "Welcome & FAQs",
-          "links": [
-            { "label": "Welcome DAF Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
-            { "label": "Welcome Scholarship Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
-            { "label": "Welcome Agency Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
-            { "label": "Heartland Legacy Society", "href": "/donors/heartland-legacy-society" },
-            { "label": "Private Events", "href": "/about/events-calendar" },
-            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
-          ]
+          "label": "DAF Fundholders",
+          "description": "Resources and guidance for Donor Advised Fund holders.",
+          "href": "/fundholder-resources/fundholder-faqs",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Advisors/_largeBodyImage/DAF.jpg"
         },
         {
-          "heading": "Quick Links",
+          "label": "Scholarship Fundholders",
+          "description": "Manage your scholarship fund and support student success.",
+          "href": "/fundholder-resources/fundholder-faqs",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/_largeBodyImage/3H2A9261.jpg"
+        },
+        {
+          "label": "Agency Fundholders",
+          "description": "Tools and support for nonprofit agency fund management.",
+          "href": "/fundholder-resources/fundholder-faqs",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/Grants-Workshops/_largeBodyImage/2024-Grants-Workshop-Cropped-WEB.png"
+        },
+        {
+          "label": "Legacy Society",
+          "description": "Join the Heartland Legacy Society and plan your lasting impact.",
+          "href": "/donors/heartland-legacy-society",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Events/_largeBodyImage/Untitled-design-3.png"
+        }
+      ],
+      "cta": {
+        "label": "Contribute to Your Fund",
+        "href": "/fundholder-resources"
+      },
+      "groups": [
+        {
+          "heading": "Quick Reference",
           "links": [
-            { "label": "Fund Portal", "href": "https://thcf.fcsuite.com/erp/portal", "external": true },
-            { "label": "Helpful Documents", "href": "/fundholder-resources/helpful-docs" },
+            { "label": "Fund Portal Guide", "href": "https://thcf.fcsuite.com/erp/portal", "external": true },
+            { "label": "Writing Instructions for Stock", "href": "/fundholder-resources/helpful-docs" },
             { "label": "Bequest Language", "href": "/donors/planned-giving" },
-            { "label": "Contribute to Your Fund", "href": "/fundholder-resources" }
+            { "label": "NonProfit Agency Lookup", "href": "/fundholder-resources" },
+            { "label": "Fund Directory", "href": "/fundholder-resources" },
+            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
           ]
         }
       ]

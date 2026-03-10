@@ -234,6 +234,17 @@
   gap: var(--space-lg);
 }
 
+.mega-panel__cards-heading {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-green);
+  margin: 0;
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
 .mega-panel__cards-grid {
   display: grid;
   grid-template-columns: 1fr;

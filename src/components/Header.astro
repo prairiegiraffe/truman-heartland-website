@@ -30,6 +30,7 @@ interface NavItem {
   label: string;
   href: string;
   layout?: string;
+  cardsHeading?: string;
   cards?: NavCard[];
   cta?: NavCTA;
   groups?: NavGroup[];
@@ -203,6 +204,9 @@ const main: NavItem[] = (navData as any).main;
           {item.layout === 'cards' && item.cards ? (
             <div class="mega-panel__cards-layout">
               <div class="mega-panel__cards-left">
+                {item.cardsHeading && (
+                  <h3 class="mega-panel__cards-heading">{item.cardsHeading}</h3>
+                )}
                 <div class="mega-panel__cards-grid">
                   {item.cards.map((card) => (
                     <a href={card.href} class="mega-panel__card">
