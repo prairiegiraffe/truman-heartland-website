@@ -158,14 +158,84 @@ const main: NavItem[] = (navData as any).main;
 
   <!-- Audience Mega Panels -->
   {audiences.map((item, index) => (
-    item.groups && item.groups.length > 0 && (
-      <div
-        id={`audience-panel-${index}`}
-        class="mega-panel"
-        aria-hidden="true"
-        data-mega-panel
-      >
-        <div class="container">
+    <div
+      id={`audience-panel-${index}`}
+      class="mega-panel"
+      aria-hidden="true"
+      data-mega-panel
+    >
+      <div class="container">
+        {item.layout === 'featured-events' && item.featuredEvent ? (
+          /* Featured box + cards layout */
+          <div class="mega-panel__events-layout">
+            <div class="mega-panel__events-columns">
+              <div class="mega-panel__event-box">
+                <a href={item.featuredEvent.href} class="mega-panel__event-box-img-link">
+                  <div class="mega-panel__event-box-img">
+                    <img src={item.featuredEvent.image} alt="" loading="lazy" />
+                  </div>
+                </a>
+                <h4 class="mega-panel__event-featured-title">
+                  <a href={item.featuredEvent.href}>{item.featuredEvent.title}</a>
+                </h4>
+                <div class="mega-panel__event-featured-links">
+                  {item.featuredEvent.links.map((link) => (
+                    <a
+                      href={link.href}
+                      class:list={[
+                        'mega-panel__group-link',
+                        link.highlight && 'mega-panel__group-link--highlight',
+                      ]}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+                <p class="mega-panel__card-desc">{item.featuredEvent.description}</p>
+              </div>
+              {item.cards && item.cards.map((card) => (
+                <a href={card.href} class="mega-panel__card">
+                  <div class="mega-panel__card-image">
+                    <img src={card.image} alt="" loading="lazy" />
+                  </div>
+                  <h4 class="mega-panel__card-title">{card.label}</h4>
+                  <p class="mega-panel__card-desc">{card.description}</p>
+                </a>
+              ))}
+            </div>
+            {item.groups && item.groups.length > 0 && (
+              <div class="mega-panel__cards-right">
+                {item.groups.map((group) => (
+                  <div class="mega-panel__group">
+                    <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                    <div class="mega-panel__group-links">
+                      {group.links.map((link) => (
+                        <a
+                          href={link.href}
+                          class:list={[
+                            'mega-panel__group-link',
+                            link.highlight && 'mega-panel__group-link--highlight',
+                            link.external && 'mega-panel__group-link--external',
+                          ]}
+                          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        >
+                          {link.label}
+                          {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                {item.cta && (
+                  <div class="mega-panel__cards-cta" style="margin-top: var(--space-lg);">
+                    <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : item.groups && item.groups.length > 0 ? (
+          /* Standard grouped layout */
           <div class="mega-panel__grid--grouped no-featured">
             {item.groups.map((group) => (
               <div class="mega-panel__group">
@@ -189,14 +259,9 @@ const main: NavItem[] = (navData as any).main;
               </div>
             ))}
           </div>
-          <div style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--color-gray-200);">
-            <a href={item.href} style="color: var(--color-green); font-weight: 600; font-size: var(--text-sm); text-decoration: none;">
-              View all {item.label.replace('For ', '').toLowerCase()} resources &rarr;
-            </a>
-          </div>
-        </div>
+        ) : null}
       </div>
-    )
+    </div>
   ))}
 
   <!-- Main Nav Mega Panels -->

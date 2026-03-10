@@ -9,22 +9,43 @@
     {
       "label": "For Nonprofits",
       "href": "/grant-seekers",
-      "groups": [
+      "layout": "featured-events",
+      "featuredEvent": {
+        "title": "Grantseekers",
+        "description": "Resources and funding opportunities for nonprofits serving our communities.",
+        "href": "/grant-seekers",
+        "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/2025-Grant-designs/_largeBodyImage/GrantsProgram.png",
+        "links": [
+          { "label": "Competitive Grants Program", "href": "/grant-seekers/community-grants-program", "highlight": true },
+          { "label": "Community Grants", "href": "/grant-seekers/community-grants-program" },
+          { "label": "Jelley Family Foundation", "href": "/grant-seekers/jelley-family-foundation-for-childrens-education" },
+          { "label": "Grants Luncheon", "href": "/grant-seekers/gallery-photos" },
+          { "label": "Grant Resources", "href": "/grant-seekers/resources" }
+        ]
+      },
+      "cards": [
         {
-          "heading": "Grants & Funding",
-          "links": [
-            { "label": "Community Grants Program", "href": "/grant-seekers/community-grants-program" },
-            { "label": "Jelley Family Foundation Grant", "href": "/grant-seekers/jelley-family-foundation-for-childrens-education" },
-            { "label": "Grantwriting Workshop & Resources", "href": "/grant-seekers/resources" },
-            { "label": "Apply Now", "href": "/grant-seekers", "highlight": true }
-          ]
+          "label": "Nonprofit Directory",
+          "description": "Find and connect with nonprofits making a difference across the heartland.",
+          "href": "/fundholder-resources",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/Grants-Luncheons/_largeBodyImage/Caring-for-Youth.jpg"
         },
+        {
+          "label": "Open an Agency Fund",
+          "description": "Establish an agency fund to strengthen your nonprofit's financial future.",
+          "href": "/donors/make-a-gift",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/Grants-Workshops/_largeBodyImage/2024-Grants-Workshop-Cropped-WEB.png"
+        }
+      ],
+      "cta": {
+        "label": "Contact Us",
+        "href": "/about/contact-us"
+      },
+      "groups": [
         {
           "heading": "Nonprofit Support",
           "links": [
-            { "label": "Open an Agency Fund", "href": "/donors/make-a-gift" },
             { "label": "How to Engage with DAF Fundholders", "href": "/fundholder-resources" },
-            { "label": "Annual Grants Luncheon", "href": "/grant-seekers/gallery-photos" },
             { "label": "Nonprofit Stories", "href": "/about/news", "badge": "Blog" }
           ]
         }
