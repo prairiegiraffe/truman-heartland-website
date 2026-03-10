@@ -54,26 +54,56 @@
     {
       "label": "For Students",
       "href": "/students",
-      "groups": [
+      "layout": "two-boxes",
+      "boxes": [
         {
-          "heading": "Programs",
-          "links": [
-            { "label": "Youth Advisory Council", "href": "/students/youth-advisory-council" },
-            { "label": "School of Philanthropy", "href": "/students/youth-advisory-council" },
-            { "label": "YAC Special Events", "href": "/students/youth-advisory-council/annual-fundraiser" }
+          "title": "Youth Advisory Council",
+          "href": "/students/youth-advisory-council",
+          "description": "Empowering young leaders to drive philanthropic impact in their communities.",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/YAC/_largeBodyImage/YAC-Volunteer-Day-1.jpg",
+          "linkColumns": [
+            {
+              "heading": "About YAC",
+              "links": [
+                { "label": "About YAC", "href": "/students/youth-advisory-council", "highlight": true },
+                { "label": "YAC Scholarships", "href": "/students/scholarships" },
+                { "label": "YAC Endowment", "href": "/students/youth-advisory-council" },
+                { "label": "Member Applications", "href": "/students/youth-advisory-council" },
+                { "label": "Perks Points", "href": "/students/youth-advisory-council" }
+              ]
+            },
+            {
+              "heading": "YAC Events",
+              "links": [
+                { "label": "Fill Those Trucks", "href": "/students/youth-advisory-council/food-drive" },
+                { "label": "Strike in the Night", "href": "/students/youth-advisory-council/annual-fundraiser" },
+                { "label": "Holiday Service Project", "href": "/students/youth-advisory-council" }
+              ]
+            }
           ]
         },
         {
-          "heading": "Scholarships",
-          "links": [
-            { "label": "Scholarship Directory", "href": "/students/scholarships" },
-            { "label": "Application Process & FAQs", "href": "/students/scholarships/scholarship-faqs" },
-            { "label": "Scholarship Awards Luncheon", "href": "/students/scholarships/scholarship-recipients" },
-            { "label": "Scholarship Stories", "href": "/about/news", "badge": "Blog" },
-            { "label": "Apply Now", "href": "/students/scholarships", "highlight": true }
+          "title": "Scholarships",
+          "href": "/students/scholarships",
+          "description": "Investing in the next generation through scholarships and mentorship.",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/_largeBodyImage/3H2A9261.jpg",
+          "linkColumns": [
+            {
+              "links": [
+                { "label": "Scholarship Directory", "href": "/students/scholarships" },
+                { "label": "Application Process", "href": "/students/scholarships/scholarship-faqs" },
+                { "label": "FAFSA", "href": "/students/scholarships/scholarship-faqs" },
+                { "label": "Awards Reception", "href": "/students/scholarships/scholarship-recipients" },
+                { "label": "Renewal Instructions", "href": "/students/scholarships/scholarship-faqs" }
+              ]
+            }
           ]
         }
-      ]
+      ],
+      "cta": {
+        "label": "Contact Us",
+        "href": "/about/contact-us"
+      }
     },
     {
       "label": "For Financial Advisors",

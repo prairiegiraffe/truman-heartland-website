@@ -34,6 +34,19 @@ interface FeaturedEvent {
   links: NavLink[];
 }
 
+interface BoxLinkColumn {
+  heading?: string;
+  links: NavLink[];
+}
+
+interface BoxItem {
+  title: string;
+  href: string;
+  description: string;
+  image: string;
+  linkColumns: BoxLinkColumn[];
+}
+
 interface NavItem {
   label: string;
   href: string;
@@ -42,6 +55,7 @@ interface NavItem {
   cards?: NavCard[];
   cta?: NavCTA;
   featuredEvent?: FeaturedEvent;
+  boxes?: BoxItem[];
   groups?: NavGroup[];
   featured?: {
     image: string;
@@ -231,6 +245,52 @@ const main: NavItem[] = (navData as any).main;
                     <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
                   </div>
                 )}
+              </div>
+            )}
+          </div>
+        ) : item.layout === 'two-boxes' && item.boxes ? (
+          /* Two-box layout (e.g., For Students) */
+          <div class="mega-panel__two-boxes-wrapper">
+            <div class="mega-panel__two-boxes">
+              {item.boxes.map((box) => (
+                <div class="mega-panel__box">
+                  <h4 class="mega-panel__box-title">
+                    <a href={box.href}>{box.title}</a>
+                  </h4>
+                  <div class="mega-panel__box-body">
+                    <a href={box.href} class="mega-panel__box-img-link">
+                      <div class="mega-panel__box-img">
+                        <img src={box.image} alt="" loading="lazy" />
+                      </div>
+                    </a>
+                    <div class="mega-panel__box-links-area">
+                      {box.linkColumns.map((col) => (
+                        <div class="mega-panel__box-link-col">
+                          {col.heading && <h5 class="mega-panel__box-col-heading">{col.heading}</h5>}
+                          <div class="mega-panel__group-links">
+                            {col.links.map((link) => (
+                              <a
+                                href={link.href}
+                                class:list={[
+                                  'mega-panel__group-link',
+                                  link.highlight && 'mega-panel__group-link--highlight',
+                                ]}
+                              >
+                                {link.label}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <p class="mega-panel__card-desc">{box.description}</p>
+                </div>
+              ))}
+            </div>
+            {item.cta && (
+              <div class="mega-panel__cards-cta" style="margin-top: var(--space-lg); text-align: center;">
+                <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
               </div>
             )}
           </div>
