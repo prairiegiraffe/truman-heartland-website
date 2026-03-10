@@ -310,6 +310,52 @@
           ]
         }
       ]
+    },
+    {
+      "label": "Get Involved",
+      "href": "/donors/make-a-gift",
+      "layout": "cards",
+      "cards": [
+        {
+          "label": "Open a Fund",
+          "description": "Start your philanthropic journey by opening a fund with THCF.",
+          "href": "/donors/make-a-gift",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_BannerImages/_square/Dec-Newsletter-Thompsons.png"
+        },
+        {
+          "label": "Join the Fan Club",
+          "description": "Become part of a community of givers making a difference together.",
+          "href": "/donors/fan-club",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Fan-Club/_wide/Fan-Club-group.png"
+        },
+        {
+          "label": "Sustainability Fund",
+          "description": "Help ensure the long-term strength of our community foundation.",
+          "href": "/donors/make-a-gift",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/Growth.png"
+        },
+        {
+          "label": "Community First Loan Fund",
+          "description": "Support affordable housing and community development in the heartland.",
+          "href": "/about/strategic-initiatives",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Logos/_smallBodyImage/Hope-House_40th-Anniversary-Logo.png"
+        }
+      ],
+      "cta": {
+        "label": "Contact Us",
+        "href": "/about/contact-us"
+      },
+      "groups": [
+        {
+          "heading": "Quick Links",
+          "links": [
+            { "label": "Give to a Fund", "href": "/donors/give-now" },
+            { "label": "Join the Eastland Giving Circle", "href": "/donors/make-a-gift" },
+            { "label": "Events Calendar", "href": "/about/events-calendar" },
+            { "label": "News", "href": "/about/news" }
+          ]
+        }
+      ]
     }
   ]
 }
