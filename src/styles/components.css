@@ -252,10 +252,11 @@
   font-size: var(--text-xl);
   font-style: italic;
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-lg);
+  margin: 0 0 var(--space-lg) 0;
   color: var(--color-white);
+  background: transparent;
   border-left: 3px solid var(--color-green-light);
-  padding-left: var(--space-lg);
+  padding: 0 0 0 var(--space-lg);
 }
 @media (min-width: 768px) {
   .story-spotlight__quote { font-size: var(--text-2xl); }
