@@ -1,0 +1,180 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import StatCounter from "../../components/StatCounter.astro";
+---
+
+<Layout title="Template: Pillar Page" description="A content-rich page showing how to break up long content with alternating sections, callouts, stats, and CTAs.">
+
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <p class="page-banner__category">Template Example</p>
+      <h1 class="page-banner__title">Charitable Giving at THCF</h1>
+    </div>
+  </div>
+
+  <!-- Intro Section — white with accent -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__split">
+        <div class="section__split-text">
+          <p class="section__eyebrow">Why Give Through THCF?</p>
+          <h2 class="section__title" style="color: var(--color-navy);">Your Gift Does More When We Work Together</h2>
+          <div class="section__body">
+            <p>When you give through Truman Heartland Community Foundation, your generosity is amplified by the collective power of our community. We provide the expertise, local knowledge, and financial stewardship to ensure every dollar makes the greatest possible impact.</p>
+            <p style="margin-top: var(--space-md);">Whether you're an individual donor, a family creating a legacy, or a business investing in your community — we have giving options designed for you.</p>
+          </div>
+          <div style="margin-top: var(--space-xl);">
+            <a href="/give-now" class="btn btn-primary">Open a Fund</a>
+            <a href="/donors/planned-giving" class="btn btn-outline" style="margin-left: var(--space-sm);">Planned Giving</a>
+          </div>
+        </div>
+        <div class="section__split-image reveal--right">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="Community members gathering" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section — navy -->
+  <section class="section section--navy">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Our Impact"
+        title="Making a Difference Since 1982"
+        center={true}
+        accent={true}
+      />
+      <div class="home-stats__grid reveal-stagger">
+        <StatCounter target={250} suffix="+" label="Scholarship Funds" />
+        <StatCounter target={100} prefix="$" suffix="M+" label="Assets Under Management" />
+        <StatCounter target={40} suffix="+" label="Years of Service" />
+        <StatCounter target={500} suffix="+" label="Funds Established" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Three-Column Feature Cards — light background -->
+  <section class="section section--light">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Ways to Give"
+        title="Choose the Approach That's Right for You"
+        body="Every donor is unique. We offer flexible giving options that match your goals, timeline, and financial situation."
+        accent={true}
+      />
+      <div class="home-opps__grid reveal-stagger">
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="audience-card__title">Donor Advised Fund</h3>
+          <p class="audience-card__body">The most flexible way to give. Contribute cash, stock, or other assets, receive an immediate tax benefit, and recommend grants to your favorite causes over time.</p>
+          <a href="/donors" class="btn btn-outline btn-sm">Learn More</a>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 12 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="audience-card__title">Scholarship Fund</h3>
+          <p class="audience-card__body">Create a lasting impact on education. Establish a named scholarship fund that awards students for generations to come, guided by criteria you choose.</p>
+          <a href="/students/scholarships" class="btn btn-outline btn-sm">Learn More</a>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3 class="audience-card__title">Planned Giving</h3>
+          <p class="audience-card__body">Build a legacy that lasts. Include THCF in your estate plans through a bequest, charitable trust, or beneficiary designation — and secure your community's future.</p>
+          <a href="/donors/planned-giving" class="btn btn-outline btn-sm">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Feature — image left, text right -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section__split">
+        <div class="section__split-image reveal--left">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="Community grants program" loading="lazy" />
+        </div>
+        <div class="section__split-text reveal--right">
+          <p class="section__eyebrow">Community Grantmaking</p>
+          <h2 class="section__title" style="color: var(--color-navy);">Funding What Matters Most</h2>
+          <p class="section__body">Our community grantmaking funds address the most pressing needs in Eastern Jackson County — from arts and education to health and human services. When you contribute, a team of local volunteers reviews applications and awards grants where they'll have the greatest impact.</p>
+          <div style="margin-top: var(--space-xl);">
+            <a href="/grant-seekers/community-grants-program" class="btn btn-outline">Explore Grants</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Callout / Quote Block — navy dark -->
+  <section class="section section--navy-dark">
+    <div class="container">
+      <div class="story-spotlight reveal">
+        <div class="story-spotlight__image">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="Scholarship recipients" loading="lazy" />
+        </div>
+        <div class="story-spotlight__content">
+          <p class="section__eyebrow" style="color: var(--color-green-light);">Donor Spotlight</p>
+          <blockquote class="story-spotlight__quote">
+            "Establishing a scholarship fund through THCF was the most rewarding decision our family has made. Watching students achieve their dreams — that's our legacy."
+          </blockquote>
+          <p class="story-spotlight__attribution">— The Johnson Family, Independence, MO</p>
+          <div style="margin-top: var(--space-xl);">
+            <a href="/about/news" class="btn btn-outline-white btn-sm">Read Donor Stories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two-Column Content — blue light -->
+  <section class="section section--blue-light">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Types of Funds"
+        title="Find the Fund That Fits Your Vision"
+        accent={true}
+      />
+      <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl);" class="reveal-stagger">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl);">
+          <div style="background: var(--color-white); padding: var(--space-xl); border-left: 4px solid var(--color-green);">
+            <h3 style="color: var(--color-navy); font-size: var(--text-lg); margin-bottom: var(--space-sm);">Donor Advised Fund</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-light); line-height: var(--leading-relaxed);">Maximum flexibility for your giving. You advise, we handle the administration. Contribute once or over time, and recommend grants whenever you're ready.</p>
+          </div>
+          <div style="background: var(--color-white); padding: var(--space-xl); border-left: 4px solid var(--color-green);">
+            <h3 style="color: var(--color-navy); font-size: var(--text-lg); margin-bottom: var(--space-sm);">Field of Interest Fund</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-light); line-height: var(--leading-relaxed);">Support a cause area you care about — arts, education, health — and let our team direct grants to the most effective organizations working in that space.</p>
+          </div>
+          <div style="background: var(--color-white); padding: var(--space-xl); border-left: 4px solid var(--color-green);">
+            <h3 style="color: var(--color-navy); font-size: var(--text-lg); margin-bottom: var(--space-sm);">Designated Fund</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-light); line-height: var(--leading-relaxed);">Direct your giving to a specific nonprofit organization. Your fund grows over time and provides reliable, ongoing support to the organization you love.</p>
+          </div>
+          <div style="background: var(--color-white); padding: var(--space-xl); border-left: 4px solid var(--color-green);">
+            <h3 style="color: var(--color-navy); font-size: var(--text-lg); margin-bottom: var(--space-sm);">Nonprofit Agency Fund</h3>
+            <p style="font-size: var(--text-sm); color: var(--color-text-light); line-height: var(--leading-relaxed);">Nonprofits can establish an endowment with THCF to build long-term financial stability. We manage the investments while you focus on your mission.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band — green -->
+  <section class="home-cta-band">
+    <div class="container">
+      <div class="home-cta-band__inner reveal">
+        <div class="home-cta-band__text">
+          <h2>Ready to Make a Difference?</h2>
+          <p>Our team is here to help you find the perfect giving strategy. Schedule a conversation today.</p>
+        </div>
+        <a href="/about/contact-us" class="btn btn-primary btn-lg">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
