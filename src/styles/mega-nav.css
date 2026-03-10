@@ -255,13 +255,6 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  border-radius: 6px;
-  overflow: hidden;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-.mega-panel__card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .mega-panel__card-image {
@@ -285,6 +278,10 @@
   font-weight: 700;
   color: var(--color-navy);
   margin: var(--space-sm) 0 var(--space-2xs);
+  transition: color var(--transition-fast);
+}
+.mega-panel__card:hover .mega-panel__card-title {
+  color: var(--color-green);
 }
 
 .mega-panel__card-desc {
