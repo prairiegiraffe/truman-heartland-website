@@ -24,7 +24,7 @@ import StatCounter from "../../components/StatCounter.astro";
   <!-- ===== PATTERN 1: Full-bleed hero with dark overlay ===== -->
   <section class="img-section img-section--full reveal">
     <div class="img-section__bg">
-      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="" loading="lazy" />
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2024/2024-Gala-Dinner/_wide/IMG_3961.jpg" alt="" loading="lazy" />
     </div>
     <div class="img-section__overlay img-section__overlay--dark"></div>
     <div class="container img-section__content img-section__content--center">
@@ -55,7 +55,7 @@ import StatCounter from "../../components/StatCounter.astro";
       <p class="img-section__eyebrow" style="color: rgba(255,255,255,0.8);">Pattern 2</p>
       <h2 class="img-section__title">Parallax-Style with Brand Overlay</h2>
       <p class="img-section__body" style="max-width: 600px; margin-left: auto; margin-right: auto;">Use the brand green as an overlay color for a cohesive, energetic feel. Combine with stat counters for a powerful impact section.</p>
-      <div class="home-stats__grid reveal-stagger" style="margin-top: var(--space-2xl);">
+      <div class="home-stats__grid reveal-stagger img-stats" style="margin-top: var(--space-2xl);">
         <StatCounter target={42} suffix="+" label="Years Serving EJC" />
         <StatCounter target={15} prefix="$" suffix="M" label="Granted to Date" />
         <StatCounter target={300} suffix="+" label="Scholarships Awarded" />
@@ -107,7 +107,7 @@ import StatCounter from "../../components/StatCounter.astro";
   <!-- ===== PATTERN 5: Cards floating over image background ===== -->
   <section class="img-section img-section--tall reveal">
     <div class="img-section__bg">
-      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="" loading="lazy" />
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2024/2024-Gala-Dinner/_wide/IMG_3961.jpg" alt="" loading="lazy" />
     </div>
     <div class="img-section__overlay img-section__overlay--dark-heavy"></div>
     <div class="container img-section__content">
@@ -208,7 +208,7 @@ import StatCounter from "../../components/StatCounter.astro";
       />
       <div class="img-mosaic reveal-stagger">
         <div class="img-mosaic__item img-mosaic__item--wide">
-          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="Community event" loading="lazy" />
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2024/2024-Gala-Dinner/_wide/IMG_3961.jpg" alt="Community event" loading="lazy" />
           <div class="img-mosaic__overlay">
             <h3>Toast to Our Towns Gala</h3>
             <p>Our signature annual event celebrating community leaders.</p>
@@ -229,14 +229,14 @@ import StatCounter from "../../components/StatCounter.astro";
           </div>
         </div>
         <div class="img-mosaic__item">
-          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="Youth programs" loading="lazy" />
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/YAC/Fill-the-trucks/_wide/YAC-Group-5.jpg" alt="Youth programs" loading="lazy" />
           <div class="img-mosaic__overlay">
             <h3>Youth Programs</h3>
             <p>Empowering the next generation.</p>
           </div>
         </div>
         <div class="img-mosaic__item img-mosaic__item--wide">
-          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="Annual grants luncheon" loading="lazy" />
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2024/2024-Gala-Dinner/_wide/IMG_3961.jpg" alt="Annual grants luncheon" loading="lazy" />
           <div class="img-mosaic__overlay">
             <h3>Grants Luncheon</h3>
             <p>Celebrating our nonprofit partners and grantees.</p>
@@ -370,6 +370,15 @@ import StatCounter from "../../components/StatCounter.astro";
     margin-bottom: var(--space-lg);
   }
 
+  /* Override stat counter colors on image overlays */
+  .img-stats :global(.stat-card__number) {
+    color: white;
+  }
+
+  .img-stats :global(.stat-card__label) {
+    color: rgba(255,255,255,0.7);
+  }
+
   .img-section__actions {
     display: flex;
     flex-wrap: wrap;
@@ -457,6 +466,7 @@ import StatCounter from "../../components/StatCounter.astro";
     font-style: italic;
     line-height: var(--leading-relaxed);
     color: white;
+    background: transparent;
     margin: 0 0 var(--space-lg) 0;
     padding: 0;
     border: none;
