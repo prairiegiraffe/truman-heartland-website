@@ -180,22 +180,47 @@
     {
       "label": "Special Events",
       "href": "/gala",
-      "groups": [
+      "layout": "featured-events",
+      "featuredEvent": {
+        "title": "Toast to our Towns Gala",
+        "description": "Our signature annual fundraiser celebrating community impact across the heartland.",
+        "href": "/gala",
+        "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2025-Gala/_wide/de9a538d-dc70-4bd2-a41c-5d7cbd3af814.jpg",
+        "links": [
+          { "label": "Heartland Award Honorees", "href": "/gala/heartland-awards" },
+          { "label": "Citizens of the Year", "href": "/gala/heartland-awards" },
+          { "label": "Sponsorship Opportunities", "href": "/gala" },
+          { "label": "Photo Gallery", "href": "/gala" }
+        ]
+      },
+      "cards": [
         {
-          "heading": "Events",
-          "links": [
-            { "label": "Toast to our Towns Gala", "href": "/gala" },
-            { "label": "Scholarship Luncheon", "href": "/students/scholarships/scholarship-recipients" },
-            { "label": "Annual Grants Luncheon", "href": "/grant-seekers/gallery-photos" },
-            { "label": "Awards Ceremonies", "href": "/gala/heartland-awards" }
-          ]
+          "label": "Scholarship Luncheon",
+          "description": "Celebrating scholarship recipients and the donors who make it possible.",
+          "href": "/students/scholarships/scholarship-recipients",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/Impact-Stats/_largeBodyImage/Impact-Stats_2025.png"
         },
         {
-          "heading": "Educational",
+          "label": "Grants Luncheon",
+          "description": "Honoring grant recipients and their community impact.",
+          "href": "/grant-seekers/gallery-photos",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Grants/Grants-Luncheons/_largeBodyImage/78429/Yoga-2.jpg"
+        }
+      ],
+      "cta": {
+        "label": "Events Calendar",
+        "href": "/about/events-calendar"
+      },
+      "groups": [
+        {
+          "heading": "Other Events",
           "links": [
             { "label": "Professional Advisor Seminars", "href": "/professional-advisors/continuing-education" },
-            { "label": "Grantwriting Workshop", "href": "/grant-seekers/resources" },
-            { "label": "YAC Special Events", "href": "/students/youth-advisory-council/annual-fundraiser" }
+            { "label": "Grants Workshop", "href": "/grant-seekers/resources" },
+            { "label": "YAC - Strike in the Night", "href": "/students/youth-advisory-council/annual-fundraiser" },
+            { "label": "YAC - Fill Those Trucks", "href": "/students/youth-advisory-council/food-drive" },
+            { "label": "Fund Directory", "href": "/fundholder-resources" },
+            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
           ]
         }
       ]

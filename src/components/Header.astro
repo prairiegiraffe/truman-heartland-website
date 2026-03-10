@@ -26,6 +26,14 @@ interface NavCTA {
   href: string;
 }
 
+interface FeaturedEvent {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  links: NavLink[];
+}
+
 interface NavItem {
   label: string;
   href: string;
@@ -33,6 +41,7 @@ interface NavItem {
   cardsHeading?: string;
   cards?: NavCard[];
   cta?: NavCTA;
+  featuredEvent?: FeaturedEvent;
   groups?: NavGroup[];
   featured?: {
     image: string;
@@ -200,7 +209,7 @@ const main: NavItem[] = (navData as any).main;
         data-mega-panel
       >
         <div class="container">
-          {/* Card-based layout (Charitable Giving) */}
+          {/* Card-based layout (Charitable Giving, Fundholder Services) */}
           {item.layout === 'cards' && item.cards ? (
             <div class="mega-panel__cards-layout">
               <div class="mega-panel__cards-left">
@@ -209,6 +218,73 @@ const main: NavItem[] = (navData as any).main;
                 )}
                 <div class="mega-panel__cards-grid">
                   {item.cards.map((card) => (
+                    <a href={card.href} class="mega-panel__card">
+                      <div class="mega-panel__card-image">
+                        <img src={card.image} alt="" loading="lazy" />
+                      </div>
+                      <h4 class="mega-panel__card-title">{card.label}</h4>
+                      <p class="mega-panel__card-desc">{card.description}</p>
+                    </a>
+                  ))}
+                </div>
+                {item.cta && (
+                  <div class="mega-panel__cards-cta">
+                    <a href={item.cta.href} class="btn btn-primary">{item.cta.label}</a>
+                  </div>
+                )}
+              </div>
+              {item.groups && item.groups.length > 0 && (
+                <div class="mega-panel__cards-right">
+                  {item.groups.map((group) => (
+                    <div class="mega-panel__group">
+                      <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                      <div class="mega-panel__group-links">
+                        {group.links.map((link) => (
+                          <a
+                            href={link.href}
+                            class:list={[
+                              'mega-panel__group-link',
+                              link.highlight && 'mega-panel__group-link--highlight',
+                              link.external && 'mega-panel__group-link--external',
+                            ]}
+                            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          >
+                            {link.label}
+                            {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : item.layout === 'featured-events' && item.featuredEvent ? (
+            /* Featured events layout (Special Events) */
+            <div class="mega-panel__events-layout">
+              <div class="mega-panel__events-left">
+                <div class="mega-panel__events-grid">
+                  {/* Featured event - large card with sub-links */}
+                  <div class="mega-panel__event-featured">
+                    <a href={item.featuredEvent.href} class="mega-panel__event-featured-link">
+                      <div class="mega-panel__event-featured-img">
+                        <img src={item.featuredEvent.image} alt="" loading="lazy" />
+                      </div>
+                    </a>
+                    <div class="mega-panel__event-featured-body">
+                      <h4 class="mega-panel__event-featured-title">
+                        <a href={item.featuredEvent.href}>{item.featuredEvent.title}</a>
+                      </h4>
+                      <div class="mega-panel__event-featured-links">
+                        {item.featuredEvent.links.map((link) => (
+                          <a href={link.href} class="mega-panel__group-link">{link.label}</a>
+                        ))}
+                      </div>
+                    </div>
+                    <p class="mega-panel__card-desc">{item.featuredEvent.description}</p>
+                  </div>
+                  {/* Smaller event cards */}
+                  {item.cards && item.cards.map((card) => (
                     <a href={card.href} class="mega-panel__card">
                       <div class="mega-panel__card-image">
                         <img src={card.image} alt="" loading="lazy" />
