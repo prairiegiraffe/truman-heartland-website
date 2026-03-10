@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import allScholarships from "../../data/scholarships.json";
 
 export function getStaticPaths() {
@@ -18,6 +19,8 @@ const { scholarship } = Astro.props;
       <h1 class="page-banner__title">{scholarship.name}</h1>
     </div>
   </div>
+
+  <Breadcrumb />
 
   <div class="page-content">
     <div class="container">

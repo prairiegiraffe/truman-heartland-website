@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import NewsCard from "../../components/NewsCard.astro";
 import allNews from "../../data/news.json";
 ---
@@ -10,6 +11,8 @@ import allNews from "../../data/news.json";
       <h1 class="page-banner__title">News</h1>
     </div>
   </div>
+
+  <Breadcrumb />
 
   <div class="page-content">
     <div class="container">

@@ -1,0 +1,89 @@
+---
+import allPages from "../data/pages.json";
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHome = pathname === "/";
+
+// Build a lookup map: path → title
+const titleMap = new Map<string, string>();
+for (const page of allPages as any[]) {
+  titleMap.set(page.path.replace(/\/$/, ""), page.title);
+}
+
+// Friendly fallback names for top-level sections
+const sectionNames: Record<string, string> = {
+  about: "About Us",
+  donors: "Charitable Giving",
+  students: "Students",
+  gala: "Special Events",
+  news: "News",
+  scholarships: "Scholarships",
+  templates: "Page Templates",
+  "grant-seekers": "Grant Seekers",
+  "professional-advisors": "Financial Advisors",
+  "fundholder-resources": "Fundholder Services",
+  story: "Stories",
+  events: "Events",
+};
+
+interface Crumb {
+  label: string;
+  href: string;
+}
+
+const crumbs: Crumb[] = [];
+
+if (!isHome) {
+  crumbs.push({ label: "Home", href: "/" });
+
+  const segments = pathname.replace(/^\//, "").split("/");
+  let currentPath = "";
+
+  for (let i = 0; i < segments.length; i++) {
+    currentPath += "/" + segments[i];
+    const isLast = i === segments.length - 1;
+
+    // Try to find a title from pages.json
+    let label = titleMap.get(currentPath);
+
+    // Fallback: use section names map or humanize the slug
+    if (!label) {
+      label =
+        sectionNames[segments[i]] ||
+        segments[i]
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase());
+    }
+
+    // Truncate long labels for breadcrumbs
+    if (label.length > 40) {
+      label = label.substring(0, 37) + "...";
+    }
+
+    crumbs.push({ label, href: isLast ? "" : currentPath });
+  }
+}
+---
+
+{!isHome && crumbs.length > 1 && (
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb__list">
+        {crumbs.map((crumb, i) => (
+          <li class="breadcrumb__item">
+            {crumb.href ? (
+              <a href={crumb.href} class="breadcrumb__link">{crumb.label}</a>
+            ) : (
+              <span class="breadcrumb__current" aria-current="page">{crumb.label}</span>
+            )}
+            {i < crumbs.length - 1 && (
+              <svg class="breadcrumb__sep" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+)}
