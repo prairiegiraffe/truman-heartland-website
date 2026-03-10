@@ -1,0 +1,723 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import StatCounter from "../../components/StatCounter.astro";
+---
+
+<Layout title="Template: Image Background Sections" description="Showcasing different ways to use full-bleed image backgrounds for dramatic, modern sections.">
+
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <p class="page-banner__category">Template Example</p>
+      <h1 class="page-banner__title">Image Background Sections</h1>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <section class="section section--white">
+    <div class="container" style="max-width: 800px; text-align: center;">
+      <p style="font-size: var(--text-lg); color: var(--color-text-light); line-height: var(--leading-relaxed);">Image backgrounds add drama and visual interest to long pages. Below are several patterns — each can be mixed and matched with other section styles for maximum impact.</p>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 1: Full-bleed hero with dark overlay ===== -->
+  <section class="img-section img-section--full reveal">
+    <div class="img-section__bg">
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="" loading="lazy" />
+    </div>
+    <div class="img-section__overlay img-section__overlay--dark"></div>
+    <div class="container img-section__content img-section__content--center">
+      <p class="img-section__eyebrow">Pattern 1</p>
+      <h2 class="img-section__title">Full-Bleed with Dark Overlay</h2>
+      <p class="img-section__body">A full-width image behind a dark gradient overlay. Great for mission statements, impact sections, or dramatic calls to action. The overlay ensures text is always readable regardless of the image.</p>
+      <div class="img-section__actions">
+        <a href="/about" class="btn btn-primary btn-lg">Primary Action</a>
+        <a href="/about" class="btn btn-outline-white btn-lg">Secondary Action</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacer note -->
+  <section class="section section--light">
+    <div class="container" style="max-width: 800px; text-align: center;">
+      <p style="font-size: var(--text-sm); color: var(--color-text-light);"><strong>Tip:</strong> Alternate image background sections with solid-color sections to create rhythm and give the eye a rest.</p>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 2: Parallax-style with green overlay + stats ===== -->
+  <section class="img-section img-section--tall img-section--fixed reveal">
+    <div class="img-section__bg img-section__bg--fixed">
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="" loading="lazy" />
+    </div>
+    <div class="img-section__overlay img-section__overlay--green"></div>
+    <div class="container img-section__content img-section__content--center">
+      <p class="img-section__eyebrow" style="color: rgba(255,255,255,0.8);">Pattern 2</p>
+      <h2 class="img-section__title">Parallax-Style with Brand Overlay</h2>
+      <p class="img-section__body" style="max-width: 600px; margin-left: auto; margin-right: auto;">Use the brand green as an overlay color for a cohesive, energetic feel. Combine with stat counters for a powerful impact section.</p>
+      <div class="home-stats__grid reveal-stagger" style="margin-top: var(--space-2xl);">
+        <StatCounter target={42} suffix="+" label="Years Serving EJC" />
+        <StatCounter target={15} prefix="$" suffix="M" label="Granted to Date" />
+        <StatCounter target={300} suffix="+" label="Scholarships Awarded" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 3: Split — image bg left, content right ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="img-split reveal">
+        <div class="img-split__image">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="Students celebrating" loading="lazy" />
+          <div class="img-split__image-overlay"></div>
+          <div class="img-split__image-content">
+            <span class="img-split__image-stat">250+</span>
+            <span class="img-split__image-label">Scholarships Available</span>
+          </div>
+        </div>
+        <div class="img-split__text">
+          <p class="section__eyebrow">Pattern 3</p>
+          <h2 style="color: var(--color-navy); font-size: var(--text-3xl); margin-bottom: var(--space-md);">Split Layout with Image Overlay Text</h2>
+          <p style="color: var(--color-text); line-height: var(--leading-relaxed); margin-bottom: var(--space-md);">The image side can include overlaid statistics or text for added visual impact. The content side keeps things readable and scannable.</p>
+          <p style="color: var(--color-text-light); line-height: var(--leading-relaxed); margin-bottom: var(--space-xl);">This works especially well for program highlights, fund spotlights, or donor stories where you want to pair a strong visual with detailed information.</p>
+          <a href="/students/scholarships" class="btn btn-primary">Explore Scholarships</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 4: Navy overlay with centered quote ===== -->
+  <section class="img-section reveal">
+    <div class="img-section__bg">
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="" loading="lazy" />
+    </div>
+    <div class="img-section__overlay img-section__overlay--navy"></div>
+    <div class="container img-section__content img-section__content--center">
+      <p class="img-section__eyebrow">Pattern 4</p>
+      <div class="img-quote">
+        <svg class="img-quote__mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M11.3 2.6C6.1 4.3 2.7 8.3 2.7 13.2c0 3.6 2.3 5.8 4.8 5.8 2.4 0 4.2-1.8 4.2-4.1 0-2.2-1.6-3.8-3.5-4.1.4-2.6 2.4-5 5.1-6.2l-2-2zm10 0C16 4.3 12.7 8.3 12.7 13.2c0 3.6 2.3 5.8 4.8 5.8 2.4 0 4.2-1.8 4.2-4.1 0-2.2-1.6-3.8-3.5-4.1.4-2.6 2.4-5 5.1-6.2l-2-2z"/></svg>
+        <blockquote class="img-quote__text">
+          When you invest in your community foundation, you're not just writing a check — you're building the future of the place you call home.
+        </blockquote>
+        <p class="img-quote__attribution">— Board Chair, THCF</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 5: Cards floating over image background ===== -->
+  <section class="img-section img-section--tall reveal">
+    <div class="img-section__bg">
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="" loading="lazy" />
+    </div>
+    <div class="img-section__overlay img-section__overlay--dark-heavy"></div>
+    <div class="container img-section__content">
+      <div style="text-align: center; margin-bottom: var(--space-2xl);">
+        <p class="img-section__eyebrow">Pattern 5</p>
+        <h2 class="img-section__title">Cards Over Image Background</h2>
+        <p class="img-section__body" style="max-width: 600px; margin-left: auto; margin-right: auto;">Float semi-transparent or solid cards over an image background for a layered, modern look. Perfect for "Ways to Give" or program highlights.</p>
+      </div>
+      <div class="floating-cards">
+        <div class="floating-card">
+          <div class="floating-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Donor Advised Fund</h3>
+          <p>Maximum flexibility. Contribute, get a tax benefit, and recommend grants to causes you love — on your timeline.</p>
+          <a href="/donors" class="floating-card__link">Learn More &rarr;</a>
+        </div>
+        <div class="floating-card">
+          <div class="floating-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 12 3 12 0v-5"/></svg>
+          </div>
+          <h3>Scholarship Fund</h3>
+          <p>Create a named scholarship that awards students for generations, guided by criteria you choose.</p>
+          <a href="/students/scholarships" class="floating-card__link">Learn More &rarr;</a>
+        </div>
+        <div class="floating-card">
+          <div class="floating-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <h3>Community Fund</h3>
+          <p>Support the most pressing needs in Eastern Jackson County. A team of local volunteers directs the grants.</p>
+          <a href="/grant-seekers" class="floating-card__link">Learn More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacer -->
+  <section class="section section--white">
+    <div class="container" style="max-width: 800px; text-align: center;">
+      <p style="font-size: var(--text-sm); color: var(--color-text-light);"><strong>Tip:</strong> Use a darker overlay (80–90% opacity) when placing cards or text-heavy content over images. Use lighter overlays (50–70%) for simpler hero-style messaging.</p>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 6: Side-by-side image panels ===== -->
+  <section class="dual-panels reveal">
+    <div class="dual-panels__item">
+      <div class="dual-panels__bg">
+        <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="" loading="lazy" />
+      </div>
+      <div class="dual-panels__overlay"></div>
+      <div class="dual-panels__content">
+        <p class="img-section__eyebrow">For Donors</p>
+        <h3>Start Your Giving Journey</h3>
+        <p>Open a fund, make a gift, or create a lasting legacy through planned giving.</p>
+        <a href="/donors" class="btn btn-outline-white">Explore Giving &rarr;</a>
+      </div>
+    </div>
+    <div class="dual-panels__item">
+      <div class="dual-panels__bg">
+        <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="" loading="lazy" />
+      </div>
+      <div class="dual-panels__overlay"></div>
+      <div class="dual-panels__content">
+        <p class="img-section__eyebrow">For Nonprofits</p>
+        <h3>Find Funding for Your Mission</h3>
+        <p>Apply for community grants, attend our grantwriting workshop, or open an agency fund.</p>
+        <a href="/grant-seekers" class="btn btn-outline-white">Explore Grants &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 7: Image background with gradient fade to solid color ===== -->
+  <section class="img-fade-section reveal">
+    <div class="img-fade-section__bg">
+      <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="" loading="lazy" />
+    </div>
+    <div class="img-fade-section__gradient"></div>
+    <div class="container img-fade-section__content">
+      <div class="img-fade-section__text">
+        <p class="img-section__eyebrow" style="color: var(--color-green-light);">Pattern 7</p>
+        <h2 style="color: white; font-size: var(--text-3xl); margin-bottom: var(--space-md);">Image Fading into Solid Color</h2>
+        <p style="color: rgba(255,255,255,0.85); line-height: var(--leading-relaxed); margin-bottom: var(--space-lg); max-width: 500px;">The image fades from one side into a solid navy background, creating a natural transition from visual to text content. Elegant for storytelling sections.</p>
+        <a href="/about/news" class="btn btn-primary">Read Our Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN 8: Mosaic / Image grid with overlays ===== -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeader
+        eyebrow="Pattern 8"
+        title="Image Grid with Hover Overlays"
+        body="A mosaic of images that reveal content on hover. Great for galleries, team pages, or showcasing community events."
+        center={true}
+        accent={true}
+      />
+      <div class="img-mosaic reveal-stagger">
+        <div class="img-mosaic__item img-mosaic__item--wide">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="Community event" loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3>Toast to Our Towns Gala</h3>
+            <p>Our signature annual event celebrating community leaders.</p>
+          </div>
+        </div>
+        <div class="img-mosaic__item">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="Scholarship program" loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3>Scholarships</h3>
+            <p>250+ scholarships for local students.</p>
+          </div>
+        </div>
+        <div class="img-mosaic__item">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="Community grants" loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3>Community Grants</h3>
+            <p>Funding what matters most in EJC.</p>
+          </div>
+        </div>
+        <div class="img-mosaic__item">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="Youth programs" loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3>Youth Programs</h3>
+            <p>Empowering the next generation.</p>
+          </div>
+        </div>
+        <div class="img-mosaic__item img-mosaic__item--wide">
+          <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_wide/Hero-Image.png" alt="Annual grants luncheon" loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3>Grants Luncheon</h3>
+            <p>Celebrating our nonprofit partners and grantees.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="home-cta-band">
+    <div class="container">
+      <div class="home-cta-band__inner reveal">
+        <div class="home-cta-band__text">
+          <h2>Ready to Build Something Beautiful?</h2>
+          <p>These section styles can be combined in any order to create compelling, visually rich pages.</p>
+        </div>
+        <a href="/templates" class="btn btn-primary btn-lg">View All Templates</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ==========================================================================
+     Image Section — full-bleed background with overlay
+     ========================================================================== */
+  .img-section {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .img-section--tall {
+    min-height: 65vh;
+  }
+
+  .img-section--full {
+    min-height: 70vh;
+  }
+
+  .img-section__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .img-section__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-section__bg--fixed img {
+    object-position: center;
+  }
+
+  @media (min-width: 768px) {
+    .img-section__bg--fixed {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .img-section--fixed {
+      background: transparent;
+    }
+  }
+
+  /* Overlay variants */
+  .img-section__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .img-section__overlay--dark {
+    background: linear-gradient(135deg, rgba(0,31,63,0.85) 0%, rgba(0,31,63,0.6) 100%);
+  }
+
+  .img-section__overlay--dark-heavy {
+    background: linear-gradient(180deg, rgba(0,31,63,0.9) 0%, rgba(0,31,63,0.8) 100%);
+  }
+
+  .img-section__overlay--navy {
+    background: linear-gradient(135deg, rgba(27,58,92,0.92) 0%, rgba(20,45,72,0.8) 100%);
+  }
+
+  .img-section__overlay--green {
+    background: linear-gradient(135deg, rgba(106,154,57,0.88) 0%, rgba(123,178,66,0.75) 100%);
+  }
+
+  /* Content */
+  .img-section__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-3xl) 0;
+    color: white;
+  }
+
+  .img-section__content--center {
+    text-align: center;
+  }
+
+  .img-section__eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-green-light);
+    margin-bottom: var(--space-sm);
+  }
+
+  .img-section__title {
+    font-size: clamp(2rem, 5vw, var(--text-5xl));
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+    color: white;
+  }
+
+  .img-section__body {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    opacity: 0.9;
+    color: white;
+    margin-bottom: var(--space-lg);
+  }
+
+  .img-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    margin-top: var(--space-lg);
+  }
+
+  /* ==========================================================================
+     Split with image overlay text
+     ========================================================================== */
+  .img-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .img-split {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .img-split__image {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .img-split__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-split__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,31,63,0.8) 0%, transparent 60%);
+  }
+
+  .img-split__image-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-xl);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .img-split__image-stat {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .img-split__image-label {
+    font-size: var(--text-sm);
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ==========================================================================
+     Quote over image
+     ========================================================================== */
+  .img-quote {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .img-quote__mark {
+    color: var(--color-green-light);
+    opacity: 0.4;
+    margin-bottom: var(--space-md);
+  }
+
+  .img-quote__text {
+    font-size: clamp(1.25rem, 3vw, var(--text-2xl));
+    font-style: italic;
+    line-height: var(--leading-relaxed);
+    color: white;
+    margin: 0 0 var(--space-lg) 0;
+    padding: 0;
+    border: none;
+  }
+
+  .img-quote__attribution {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+
+  /* ==========================================================================
+     Floating cards over image
+     ========================================================================== */
+  .floating-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .floating-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .floating-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: var(--space-xl);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .floating-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .floating-card__icon {
+    color: var(--color-green);
+    margin-bottom: var(--space-md);
+  }
+
+  .floating-card h3 {
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+    margin-bottom: var(--space-sm);
+  }
+
+  .floating-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
+  .floating-card__link {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-green);
+    text-decoration: none;
+  }
+
+  .floating-card__link:hover {
+    color: var(--color-green-dark);
+  }
+
+  /* ==========================================================================
+     Dual panels — side by side image sections
+     ========================================================================== */
+  .dual-panels {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .dual-panels {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .dual-panels__item {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .dual-panels__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dual-panels__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .dual-panels__item:hover .dual-panels__bg img {
+    transform: scale(1.05);
+  }
+
+  .dual-panels__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,31,63,0.7);
+    transition: background 0.3s ease;
+  }
+
+  .dual-panels__item:hover .dual-panels__overlay {
+    background: rgba(0,31,63,0.8);
+  }
+
+  .dual-panels__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: var(--space-2xl);
+    color: white;
+    max-width: 400px;
+  }
+
+  .dual-panels__content h3 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-sm);
+    color: white;
+  }
+
+  .dual-panels__content p {
+    font-size: var(--text-sm);
+    opacity: 0.85;
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-lg);
+    color: white;
+  }
+
+  /* ==========================================================================
+     Image fading to solid color
+     ========================================================================== */
+  .img-fade-section {
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-navy-dark);
+  }
+
+  .img-fade-section__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .img-fade-section__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-fade-section__gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to right, transparent 0%, var(--color-navy-dark) 60%);
+  }
+
+  @media (max-width: 767px) {
+    .img-fade-section__gradient {
+      background: linear-gradient(to bottom, transparent 20%, var(--color-navy-dark) 70%);
+    }
+  }
+
+  .img-fade-section__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-3xl) 0;
+  }
+
+  .img-fade-section__text {
+    margin-left: auto;
+    max-width: 500px;
+  }
+
+  @media (max-width: 767px) {
+    .img-fade-section__text {
+      margin-left: 0;
+      margin-top: 200px;
+    }
+  }
+
+  /* ==========================================================================
+     Image Mosaic Grid
+     ========================================================================== */
+  .img-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  @media (min-width: 768px) {
+    .img-mosaic {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  .img-mosaic__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1;
+    cursor: pointer;
+  }
+
+  .img-mosaic__item--wide {
+    grid-column: span 2;
+    aspect-ratio: 2/1;
+  }
+
+  .img-mosaic__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .img-mosaic__item:hover img {
+    transform: scale(1.08);
+  }
+
+  .img-mosaic__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,31,63,0.9) 0%, rgba(0,31,63,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--space-lg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .img-mosaic__item:hover .img-mosaic__overlay {
+    opacity: 1;
+  }
+
+  .img-mosaic__overlay h3 {
+    font-size: var(--text-lg);
+    color: white;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .img-mosaic__overlay p {
+    font-size: var(--text-sm);
+    color: rgba(255,255,255,0.8);
+    margin: 0;
+  }
+</style>

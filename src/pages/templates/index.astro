@@ -74,6 +74,25 @@ import Layout from "../../layouts/Layout.astro";
           </div>
         </a>
 
+        <a href="/templates/image-sections" class="template-card card-lift">
+          <div class="template-card__preview template-card__preview--images">
+            <div class="template-card__mock">
+              <div class="mock-banner"></div>
+              <div class="mock-img-full"></div>
+              <div class="mock-img-split"><div></div><div></div></div>
+              <div class="mock-img-full mock-img-full--green"></div>
+              <div class="mock-img-dual"><div></div><div></div></div>
+              <div class="mock-img-mosaic"><div></div><div></div><div></div></div>
+            </div>
+          </div>
+          <div class="template-card__content">
+            <span class="chip" style="background: var(--color-green-dark); color: white;">Image Sections</span>
+            <h2 class="template-card__title">Image Background Sections</h2>
+            <p class="template-card__body">8 patterns: dark overlays, brand-colored overlays, parallax, split panels, floating cards, image-to-solid fades, quote blocks, and hover mosaics.</p>
+            <span class="template-card__link">View Template &rarr;</span>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
@@ -87,9 +106,15 @@ import Layout from "../../layouts/Layout.astro";
     gap: var(--space-xl);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .template-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .template-grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
@@ -239,6 +264,91 @@ import Layout from "../../layouts/Layout.astro";
     height: 8px;
     background: var(--color-blue-50);
     border-radius: 2px;
+  }
+
+  .mock-img-full {
+    height: 24px;
+    background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy));
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mock-img-full::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 40%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.15));
+  }
+
+  .mock-img-full--green {
+    background: linear-gradient(135deg, var(--color-green-dark), var(--color-green));
+  }
+
+  .mock-img-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    height: 24px;
+  }
+
+  .mock-img-split > div:first-child {
+    background: var(--color-navy);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mock-img-split > div:first-child::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.2));
+  }
+
+  .mock-img-split > div:last-child {
+    background: var(--color-gray-100);
+    border-radius: 2px;
+  }
+
+  .mock-img-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    height: 20px;
+  }
+
+  .mock-img-dual > div {
+    background: var(--color-navy);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mock-img-dual > div::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .mock-img-mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2px;
+    height: 16px;
+  }
+
+  .mock-img-mosaic > div {
+    background: var(--color-gray-300);
+    border-radius: 2px;
+  }
+
+  .mock-img-mosaic > div:first-child {
+    background: var(--color-navy-light);
   }
 
   .template-card__content {

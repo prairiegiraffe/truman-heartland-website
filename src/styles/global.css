@@ -18,6 +18,7 @@
   /* Neutrals — warm grays */
   --color-white: #ffffff;
   --color-off-white: #FAFAFA;
+  --color-gray-50: #FAFAFA;
   --color-gray-100: #F5F5F5;
   --color-gray-200: #EBEBEB;
   --color-gray-300: #D4D4D4;
@@ -59,6 +60,7 @@
   --leading-relaxed: 1.75;
 
   /* Spacing — generous Unilever-style */
+  --space-2xs: 0.125rem;
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
