@@ -273,25 +273,40 @@
     {
       "label": "About Us",
       "href": "/about",
-      "groups": [
+      "layout": "cards",
+      "cards": [
         {
-          "heading": "Our Organization",
-          "links": [
-            { "label": "Our Leadership", "href": "/about/board" },
-            { "label": "Staff", "href": "/about/staff" },
-            { "label": "History", "href": "/about" },
-            { "label": "What Is a Community Foundation?", "href": "/about" },
-            { "label": "Join the Fan Club", "href": "/donors/fan-club" }
-          ]
+          "label": "Staff",
+          "description": "Meet the dedicated team working to strengthen our communities every day.",
+          "href": "/about/staff",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Gala/2025-Gala/_wide/de9a538d-dc70-4bd2-a41c-5d7cbd3af814.jpg"
         },
         {
-          "heading": "Info & Contact",
+          "label": "Board",
+          "description": "Our board of directors provides strategic leadership and governance.",
+          "href": "/about/board",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/THCF-Downtown-Independence.jpg"
+        },
+        {
+          "label": "Advisory Boards",
+          "description": "Local advisory boards guide community investment across the heartland.",
+          "href": "/about/board/blue-springs-grain-valley-advisory-board",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/THCF-Blue-Springs-Mural.png"
+        }
+      ],
+      "cta": {
+        "label": "Contact Us",
+        "href": "/about/contact-us"
+      },
+      "groups": [
+        {
+          "heading": "Learn More",
           "links": [
             { "label": "Financials & Annual Reports", "href": "/about/annual-reports" },
+            { "label": "Our History", "href": "/about" },
+            { "label": "What Is a Community Foundation?", "href": "/about" },
             { "label": "News", "href": "/about/news" },
-            { "label": "Events Calendar", "href": "/about/events-calendar" },
-            { "label": "Donate to a Fund", "href": "/donors/make-a-gift" },
-            { "label": "Contact Us", "href": "/about/contact-us" }
+            { "label": "Events", "href": "/about/events-calendar" }
           ]
         }
       ]
