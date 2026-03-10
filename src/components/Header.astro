@@ -262,41 +262,35 @@ const main: NavItem[] = (navData as any).main;
           ) : item.layout === 'featured-events' && item.featuredEvent ? (
             /* Featured events layout (Special Events) */
             <div class="mega-panel__events-layout">
-              {/* Left: featured event hero + smaller cards */}
-              <div class="mega-panel__events-left">
-                {/* Featured event — image left, links right */}
-                <div class="mega-panel__event-hero">
-                  <a href={item.featuredEvent.href} class="mega-panel__event-hero-img-link">
-                    <div class="mega-panel__event-hero-img">
+              {/* 3 columns: Gala box | Scholarship card | Grants card */}
+              <div class="mega-panel__events-columns">
+                {/* Gala featured box */}
+                <div class="mega-panel__event-box">
+                  <a href={item.featuredEvent.href} class="mega-panel__event-box-img-link">
+                    <div class="mega-panel__event-box-img">
                       <img src={item.featuredEvent.image} alt="" loading="lazy" />
                     </div>
                   </a>
-                  <div class="mega-panel__event-hero-body">
-                    <h4 class="mega-panel__event-featured-title">
-                      <a href={item.featuredEvent.href}>{item.featuredEvent.title}</a>
-                    </h4>
-                    <div class="mega-panel__event-featured-links">
-                      {item.featuredEvent.links.map((link) => (
-                        <a href={link.href} class="mega-panel__group-link">{link.label}</a>
-                      ))}
-                    </div>
-                    <p class="mega-panel__card-desc">{item.featuredEvent.description}</p>
-                  </div>
-                </div>
-                {/* Smaller event cards row */}
-                {item.cards && item.cards.length > 0 && (
-                  <div class="mega-panel__events-cards">
-                    {item.cards.map((card) => (
-                      <a href={card.href} class="mega-panel__card">
-                        <div class="mega-panel__card-image">
-                          <img src={card.image} alt="" loading="lazy" />
-                        </div>
-                        <h4 class="mega-panel__card-title">{card.label}</h4>
-                        <p class="mega-panel__card-desc">{card.description}</p>
-                      </a>
+                  <h4 class="mega-panel__event-featured-title">
+                    <a href={item.featuredEvent.href}>{item.featuredEvent.title}</a>
+                  </h4>
+                  <div class="mega-panel__event-featured-links">
+                    {item.featuredEvent.links.map((link) => (
+                      <a href={link.href} class="mega-panel__group-link">{link.label}</a>
                     ))}
                   </div>
-                )}
+                  <p class="mega-panel__card-desc">{item.featuredEvent.description}</p>
+                </div>
+                {/* Regular event cards */}
+                {item.cards && item.cards.map((card) => (
+                  <a href={card.href} class="mega-panel__card">
+                    <div class="mega-panel__card-image">
+                      <img src={card.image} alt="" loading="lazy" />
+                    </div>
+                    <h4 class="mega-panel__card-title">{card.label}</h4>
+                    <p class="mega-panel__card-desc">{card.description}</p>
+                  </a>
+                ))}
               </div>
               {/* Right: Other Events links + CTA at bottom */}
               {item.groups && item.groups.length > 0 && (
