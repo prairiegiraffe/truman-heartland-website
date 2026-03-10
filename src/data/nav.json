@@ -1,168 +1,213 @@
-[
-  {
-    "label": "Donors",
-    "href": "/donors",
-    "children": [
-      {
-        "label": "SNAP and Community Relief",
-        "href": "/donors/snap-resources"
-      },
-      {
-        "label": "Make a Gift",
-        "href": "/donors/make-a-gift"
-      },
-      {
-        "label": "Join the Fan Club",
-        "href": "/donors/fan-club"
-      },
-      {
-        "label": "Planned Giving",
-        "href": "/donors/planned-giving"
-      },
-      {
-        "label": "Heartland Legacy Society",
-        "href": "/donors/heartland-legacy-society"
+{
+  "utility": [
+    { "label": "Fund Portal", "href": "https://www.grantinterface.com/Home/Logon?urlkey=thcf", "external": true },
+    { "label": "GrantSeeker Portal", "href": "/grant-seekers", "external": false },
+    { "label": "Scholarship Portal", "href": "/students/scholarships", "external": false },
+    { "label": "Open a Fund", "href": "/donors/make-a-gift", "external": false }
+  ],
+  "audiences": [
+    {
+      "label": "For Nonprofits",
+      "href": "/grant-seekers",
+      "groups": [
+        {
+          "heading": "Grants & Funding",
+          "links": [
+            { "label": "Community Grants Program", "href": "/grant-seekers/community-grants-program" },
+            { "label": "Jelley Family Foundation Grant", "href": "/grant-seekers/jelley-family-foundation-for-childrens-education" },
+            { "label": "Grantwriting Workshop & Resources", "href": "/grant-seekers/resources" },
+            { "label": "Apply Now", "href": "/grant-seekers", "highlight": true }
+          ]
+        },
+        {
+          "heading": "Nonprofit Support",
+          "links": [
+            { "label": "Open an Agency Fund", "href": "/donors/make-a-gift" },
+            { "label": "How to Engage with DAF Fundholders", "href": "/fundholder-resources" },
+            { "label": "Annual Grants Luncheon", "href": "/grant-seekers/gallery-photos" },
+            { "label": "Nonprofit Stories", "href": "/about/news", "badge": "Blog" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "For Students",
+      "href": "/students",
+      "groups": [
+        {
+          "heading": "Programs",
+          "links": [
+            { "label": "Youth Advisory Council", "href": "/students/youth-advisory-council" },
+            { "label": "School of Philanthropy", "href": "/students/youth-advisory-council" },
+            { "label": "YAC Special Events", "href": "/students/youth-advisory-council/annual-fundraiser" }
+          ]
+        },
+        {
+          "heading": "Scholarships",
+          "links": [
+            { "label": "Scholarship Directory", "href": "/students/scholarships" },
+            { "label": "Application Process & FAQs", "href": "/students/scholarships/scholarship-faqs" },
+            { "label": "Scholarship Awards Luncheon", "href": "/students/scholarships/scholarship-recipients" },
+            { "label": "Scholarship Stories", "href": "/about/news", "badge": "Blog" },
+            { "label": "Apply Now", "href": "/students/scholarships", "highlight": true }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "For Financial Advisors",
+      "href": "/professional-advisors",
+      "groups": [
+        {
+          "heading": "Resources",
+          "links": [
+            { "label": "Financial Advisor Program", "href": "/professional-advisors/advisor-resourses" },
+            { "label": "How to Give", "href": "/donors/make-a-gift" },
+            { "label": "What to Give", "href": "/donors/make-a-gift" },
+            { "label": "Calculators", "href": "/professional-advisors/advisor-resourses" }
+          ]
+        },
+        {
+          "heading": "Education & News",
+          "links": [
+            { "label": "Continuing Education", "href": "/professional-advisors/continuing-education" },
+            { "label": "GiftLaw Pro", "href": "/professional-advisors/advisor-resourses" },
+            { "label": "Advisor News", "href": "/about/news" },
+            { "label": "Advisory Stories", "href": "/about/news", "badge": "Blog" }
+          ]
+        }
+      ]
+    }
+  ],
+  "main": [
+    {
+      "label": "Charitable Giving",
+      "href": "/donors",
+      "groups": [
+        {
+          "heading": "Ways to Give",
+          "links": [
+            { "label": "When to Open a Fund", "href": "/donors/make-a-gift" },
+            { "label": "What to Give", "href": "/donors/make-a-gift" },
+            { "label": "Planned Giving", "href": "/donors/planned-giving" },
+            { "label": "Open a Fund", "href": "/donors/make-a-gift" },
+            { "label": "Donor Stories", "href": "/about/news", "badge": "Blog" }
+          ]
+        },
+        {
+          "heading": "Types of Funds",
+          "links": [
+            { "label": "Donor Advised Fund (DAF)", "href": "/donors" },
+            { "label": "Scholarship Fund", "href": "/students/scholarships" },
+            { "label": "Community Grantmaking Fund", "href": "/grant-seekers/community-grants-program" },
+            { "label": "Field of Interest Fund", "href": "/donors" },
+            { "label": "Designated Fund", "href": "/donors" },
+            { "label": "Nonprofit Agency Fund", "href": "/donors" }
+          ]
+        }
+      ],
+      "featured": {
+        "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png",
+        "title": "Smart Giving: What Is a Donor Advised Fund?",
+        "href": "/donors"
       }
-    ]
-  },
-  {
-    "label": "Fundholders",
-    "href": "/fundholder-resources",
-    "children": [
-      {
-        "label": "Helpful Documents",
-        "href": "/fundholder-resources/helpful-docs"
-      },
-      {
-        "label": "Fundholder FAQs",
-        "href": "/fundholder-resources/fundholder-faqs"
-      }
-    ]
-  },
-  {
-    "label": "Professional Advisors",
-    "href": "/professional-advisors",
-    "children": [
-      {
-        "label": "Advisor Resources",
-        "href": "/professional-advisors/advisor-resourses"
-      },
-      {
-        "label": "Continuing Education Seminars",
-        "href": "/professional-advisors/continuing-education"
-      }
-    ]
-  },
-  {
-    "label": "Grant Seekers",
-    "href": "/grant-seekers",
-    "children": [
-      {
-        "label": "Community Grants Program",
-        "href": "/grant-seekers/community-grants-program"
-      },
-      {
-        "label": "Jelley Family Foundation Grants",
-        "href": "/grant-seekers/jelley-family-foundation-for-childrens-education"
-      },
-      {
-        "label": "Grants Workshop and Resources",
-        "href": "/grant-seekers/resources"
-      },
-      {
-        "label": "Past Recipients",
-        "href": "/grant-seekers/past-recipients"
-      },
-      {
-        "label": "Annual Grants Luncheon",
-        "href": "/grant-seekers/gallery-photos"
-      }
-    ]
-  },
-  {
-    "label": "Students",
-    "href": "/students",
-    "children": [
-      {
-        "label": "Scholarships",
-        "href": "/students/scholarships"
-      },
-      {
-        "label": "Youth Advisory Council",
-        "href": "/students/youth-advisory-council"
-      }
-    ]
-  },
-  {
-    "label": "Annual Gala",
-    "href": "/gala",
-    "children": [
-      {
-        "label": "Sponsorship Opportunities",
-        "href": "/gala/sponsorship"
-      },
-      {
-        "label": "Heartland Award Honorees",
-        "href": "/gala/heartland-awards"
-      },
-      {
-        "label": "Citizens of the Year",
-        "href": "/gala/citizens-of-the-year"
-      },
-      {
-        "label": "Past Gala Honorees",
-        "href": "/gala/gala-honorees"
-      },
-      {
-        "label": "Nominate a Humanitarian of the Year",
-        "href": "/gala/humanitarian"
-      },
-      {
-        "label": "Nominate a Corporate Citizen of the Year",
-        "href": "/gala/corporate-citizen"
-      },
-      {
-        "label": "Nominate a Heartland Service Award",
-        "href": "/gala/heartland-service-award"
-      }
-    ]
-  },
-  {
-    "label": "About Us",
-    "href": "/about",
-    "children": [
-      {
-        "label": "Strategic Initiatives",
-        "href": "/about/strategic-initiatives"
-      },
-      {
-        "label": "Annual Reports & 990s",
-        "href": "/about/annual-reports"
-      },
-      {
-        "label": "2025 Board",
-        "href": "/about/board"
-      },
-      {
-        "label": "News",
-        "href": "/about/news"
-      },
-      {
-        "label": "Events Calendar",
-        "href": "/about/events-calendar"
-      },
-      {
-        "label": "Staff",
-        "href": "/about/staff"
-      },
-      {
-        "label": "Contact Us",
-        "href": "/about/contact-us"
-      }
-    ]
-  },
-  {
-    "label": "Search",
-    "href": "/search"
-  }
-]
+    },
+    {
+      "label": "Fundholder Services",
+      "href": "/fundholder-resources",
+      "groups": [
+        {
+          "heading": "Welcome & FAQs",
+          "links": [
+            { "label": "Welcome DAF Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
+            { "label": "Welcome Scholarship Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
+            { "label": "Welcome Agency Fundholder", "href": "/fundholder-resources/fundholder-faqs" },
+            { "label": "Heartland Legacy Society", "href": "/donors/heartland-legacy-society" },
+            { "label": "Private Events", "href": "/about/events-calendar" },
+            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
+          ]
+        },
+        {
+          "heading": "Quick Links",
+          "links": [
+            { "label": "Fund Portal", "href": "https://www.grantinterface.com/Home/Logon?urlkey=thcf", "external": true },
+            { "label": "Helpful Documents", "href": "/fundholder-resources/helpful-docs" },
+            { "label": "Bequest Language", "href": "/donors/planned-giving" },
+            { "label": "Contribute to Your Fund", "href": "/fundholder-resources" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Special Events",
+      "href": "/gala",
+      "groups": [
+        {
+          "heading": "Events",
+          "links": [
+            { "label": "Toast to our Towns Gala", "href": "/gala" },
+            { "label": "Scholarship Luncheon", "href": "/students/scholarships/scholarship-recipients" },
+            { "label": "Annual Grants Luncheon", "href": "/grant-seekers/gallery-photos" },
+            { "label": "Awards Ceremonies", "href": "/gala/heartland-awards" }
+          ]
+        },
+        {
+          "heading": "Educational",
+          "links": [
+            { "label": "Professional Advisor Seminars", "href": "/professional-advisors/continuing-education" },
+            { "label": "Grantwriting Workshop", "href": "/grant-seekers/resources" },
+            { "label": "YAC Special Events", "href": "/students/youth-advisory-council/annual-fundraiser" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Initiatives",
+      "href": "/about/strategic-initiatives",
+      "groups": [
+        {
+          "heading": "Current Initiatives",
+          "links": [
+            { "label": "Affordable Housing", "href": "/about/strategic-initiatives" },
+            { "label": "Sustainability Fund", "href": "/about/strategic-initiatives" },
+            { "label": "Event Calendar", "href": "/about/events-calendar" },
+            { "label": "In the News", "href": "/about/news", "badge": "Blog" }
+          ]
+        },
+        {
+          "heading": "Past Initiatives",
+          "links": [
+            { "label": "Job Skills", "href": "/about/strategic-initiatives" },
+            { "label": "Eastern Giving Circle", "href": "/about/strategic-initiatives" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "About Us",
+      "href": "/about",
+      "groups": [
+        {
+          "heading": "Our Organization",
+          "links": [
+            { "label": "Our Leadership", "href": "/about/board" },
+            { "label": "Staff", "href": "/about/staff" },
+            { "label": "History", "href": "/about" },
+            { "label": "What Is a Community Foundation?", "href": "/about" },
+            { "label": "Join the Fan Club", "href": "/donors/fan-club" }
+          ]
+        },
+        {
+          "heading": "Info & Contact",
+          "links": [
+            { "label": "Financials & Annual Reports", "href": "/about/annual-reports" },
+            { "label": "News", "href": "/about/news" },
+            { "label": "Events Calendar", "href": "/about/events-calendar" },
+            { "label": "Donate to a Fund", "href": "/donors/make-a-gift" },
+            { "label": "Contact Us", "href": "/about/contact-us" }
+          ]
+        }
+      ]
+    }
+  ]
+}

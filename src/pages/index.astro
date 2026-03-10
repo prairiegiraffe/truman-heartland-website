@@ -1,9 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import NewsCard from "../components/NewsCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import StatCounter from "../components/StatCounter.astro";
 import allNews from "../data/news.json";
 
-const featuredNews = allNews.slice(0, 3);
+const featuredNews = allNews.slice(0, 4);
+const heroArticle = featuredNews[0];
+const gridNews = featuredNews.slice(1);
 ---
 
 <Layout title="Home" description="Truman Heartland Community Foundation inspires generosity and advances community well-being through the power of charitable giving.">
@@ -18,38 +22,32 @@ const featuredNews = allNews.slice(0, 3);
     />
     <div class="home-hero__overlay"></div>
     <div class="container home-hero__content">
-      <p class="home-hero__eyebrow">Founded in 1982</p>
-      <h1 class="home-hero__title">Connecting People Who Care<br />with Causes That Matter</h1>
-      <p class="home-hero__subtitle">
+      <p class="home-hero__eyebrow reveal">Founded in 1982</p>
+      <h1 class="home-hero__title reveal">Connecting People Who Care<br />with Causes That Matter</h1>
+      <p class="home-hero__subtitle reveal">
         We inspire generosity and advance community well-being through the power of charitable giving in Eastern Jackson County and beyond.
       </p>
-      <div class="home-hero__actions">
+      <div class="home-hero__actions reveal">
         <a href="/donors/make-a-gift" class="btn btn-primary btn-lg">Give Now</a>
         <a href="/about" class="btn btn-outline-white btn-lg">Learn More</a>
       </div>
     </div>
   </section>
 
-  <!-- Impact Stats -->
-  <section class="home-stats">
+  <!-- Impact Stats — navy section with animated counters -->
+  <section class="section section--navy">
     <div class="container">
-      <div class="home-stats__grid">
-        <div class="home-stats__item">
-          <span class="home-stats__number">250+</span>
-          <span class="home-stats__label">Scholarship Funds</span>
-        </div>
-        <div class="home-stats__item">
-          <span class="home-stats__number">$100M+</span>
-          <span class="home-stats__label">In Assets Under Management</span>
-        </div>
-        <div class="home-stats__item">
-          <span class="home-stats__number">40+</span>
-          <span class="home-stats__label">Years Serving Our Community</span>
-        </div>
-        <div class="home-stats__item">
-          <span class="home-stats__number">500+</span>
-          <span class="home-stats__label">Funds Established</span>
-        </div>
+      <SectionHeader
+        eyebrow="Our Impact"
+        title="By the Numbers"
+        center={true}
+        accent={true}
+      />
+      <div class="home-stats__grid reveal-stagger">
+        <StatCounter target={250} suffix="+" label="Scholarship Funds" />
+        <StatCounter target={100} prefix="$" suffix="M+" label="In Assets Under Management" />
+        <StatCounter target={40} suffix="+" label="Years Serving Our Community" />
+        <StatCounter target={500} suffix="+" label="Funds Established" />
       </div>
     </div>
   </section>
@@ -58,10 +56,10 @@ const featuredNews = allNews.slice(0, 3);
   <section class="home-feature home-feature--navy">
     <div class="container">
       <div class="home-feature__grid">
-        <div class="home-feature__image">
+        <div class="home-feature__image reveal--left">
           <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/News/2025-Jan/_wide/Screenshot-2025-01-08-at-2.03.16-AM.png" alt="Community members" loading="lazy" />
         </div>
-        <div class="home-feature__text">
+        <div class="home-feature__text reveal--right">
           <p class="home-feature__eyebrow">Experts in Local Philanthropy</p>
           <h2>We Help You Grow Your Giving</h2>
           <p>At Truman Heartland Community Foundation, we help donors give smarter and leave a legacy. The power of pooling community funds means your financial investment grows, and the benefit to the community grows with it.</p>
@@ -71,40 +69,41 @@ const featuredNews = allNews.slice(0, 3);
     </div>
   </section>
 
-  <!-- Opportunities Grid -->
-  <section class="home-opportunities">
+  <!-- Opportunities Grid — bento layout -->
+  <section class="section section--light">
     <div class="container">
-      <div class="home-section-header">
-        <p class="home-section-header__eyebrow">Get Involved</p>
-        <h2 class="home-section-header__title">Current Opportunities</h2>
-      </div>
-      <div class="home-opps__grid">
-        <a href="/students/scholarships" class="home-opp-card">
-          <div class="home-opp-card__image">
+      <SectionHeader
+        eyebrow="Get Involved"
+        title="Current Opportunities"
+        accent={true}
+      />
+      <div class="home-opps__grid reveal-stagger">
+        <a href="/students/scholarships" class="home-opp-card card-lift">
+          <div class="home-opp-card__image img-zoom">
             <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Scholarship-Program.png" alt="Scholarship Program" loading="lazy" />
           </div>
           <div class="home-opp-card__body">
-            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <span class="chip chip--green">Apply Now</span>
             <h3 class="home-opp-card__title">Scholarship Applications</h3>
             <p>Over 250 scholarship funds to help students follow their dreams and work toward a brighter future.</p>
           </div>
         </a>
-        <a href="/grant-seekers/community-grants-program" class="home-opp-card">
-          <div class="home-opp-card__image">
+        <a href="/grant-seekers/community-grants-program" class="home-opp-card card-lift">
+          <div class="home-opp-card__image img-zoom">
             <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Home_CommunityGrants.png" alt="Community Grants" loading="lazy" />
           </div>
           <div class="home-opp-card__body">
-            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <span class="chip chip--green">Apply Now</span>
             <h3 class="home-opp-card__title">Community Grants Program</h3>
             <p>Funding for nonprofits addressing arts, education, health, and community betterment.</p>
           </div>
         </a>
-        <a href="/grant-seekers/jelley-family-foundation-for-childrens-education" class="home-opp-card">
-          <div class="home-opp-card__image">
+        <a href="/grant-seekers/jelley-family-foundation-for-childrens-education" class="home-opp-card card-lift">
+          <div class="home-opp-card__image img-zoom">
             <img src="https://stdidthcfprod.blob.core.windows.net/thcf/images/Home/_square/Jelley-Family-Foundation.png" alt="Jelley Family Foundation" loading="lazy" />
           </div>
           <div class="home-opp-card__body">
-            <span class="home-opp-card__eyebrow">Apply Now</span>
+            <span class="chip chip--green">Apply Now</span>
             <h3 class="home-opp-card__title">Jelley Family Foundation Grants</h3>
             <p>Educational initiatives for children, from early childhood through post-secondary education.</p>
           </div>
@@ -113,10 +112,48 @@ const featuredNews = allNews.slice(0, 3);
     </div>
   </section>
 
+  <!-- Audience Pathways -->
+  <section class="section section--blue-light">
+    <div class="container">
+      <SectionHeader
+        eyebrow="How Can We Help?"
+        title="Find Resources for You"
+        center={true}
+        accent={true}
+      />
+      <div class="home-opps__grid reveal-stagger">
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="audience-card__title">For Nonprofits</h3>
+          <p class="audience-card__body">Access community grants, grantwriting resources, and support to strengthen your mission.</p>
+          <a href="/grant-seekers" class="btn btn-outline btn-sm">Explore Resources</a>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 12 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="audience-card__title">For Students</h3>
+          <p class="audience-card__body">Discover scholarships, youth programs, and pathways to make an impact in your community.</p>
+          <a href="/students" class="btn btn-outline btn-sm">Find Scholarships</a>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          </div>
+          <h3 class="audience-card__title">For Financial Advisors</h3>
+          <p class="audience-card__body">Tools, continuing education, and partnership opportunities for professional advisors.</p>
+          <a href="/professional-advisors" class="btn btn-outline btn-sm">Advisor Resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Band -->
   <section class="home-cta-band">
     <div class="container">
-      <div class="home-cta-band__inner">
+      <div class="home-cta-band__inner reveal">
         <div class="home-cta-band__text">
           <h2>Support Your Local Food Pantries</h2>
           <p>Communities across Eastern Jackson County need your help. Your gift provides immediate access to food during times of need.</p>
@@ -126,15 +163,42 @@ const featuredNews = allNews.slice(0, 3);
     </div>
   </section>
 
-  <!-- Latest News -->
-  <section class="home-news">
+  <!-- Latest News — featured + grid layout -->
+  <section class="section section--white">
     <div class="container">
-      <div class="home-section-header">
-        <p class="home-section-header__eyebrow">Stay Connected</p>
-        <h2 class="home-section-header__title">Latest News</h2>
-      </div>
-      <div class="card-grid">
-        {featuredNews.map((article: any) => (
+      <SectionHeader
+        eyebrow="Stay Connected"
+        title="Latest News"
+        accent={true}
+      />
+
+      <!-- Featured article as overlay card -->
+      {heroArticle && (
+        <div class="reveal" style="margin-bottom: var(--space-2xl);">
+          <a href={`/news/${heroArticle.slug}`} class="card card--overlay card-lift" style="text-decoration: none;">
+            {heroArticle.featuredImage && (
+              <div class="card__image">
+                <img src={heroArticle.featuredImage} alt="" loading="lazy" />
+              </div>
+            )}
+            <div class="card__body">
+              {heroArticle.category && (
+                <span class="chip" data-category={heroArticle.category}>{heroArticle.category}</span>
+              )}
+              <h3 class="card__title" style="font-size: var(--text-2xl); margin-top: var(--space-sm);">
+                {heroArticle.title}
+              </h3>
+              {heroArticle.excerpt && (
+                <p class="card__excerpt" style="max-width: 600px;">{heroArticle.excerpt}</p>
+              )}
+            </div>
+          </a>
+        </div>
+      )}
+
+      <!-- Remaining articles in grid -->
+      <div class="card-grid reveal-stagger">
+        {gridNews.map((article: any) => (
           <NewsCard
             title={article.title}
             slug={article.slug}
@@ -145,7 +209,7 @@ const featuredNews = allNews.slice(0, 3);
           />
         ))}
       </div>
-      <div class="home-news__more">
+      <div class="home-news__more reveal">
         <a href="/about/news" class="btn btn-outline">View All News</a>
       </div>
     </div>
@@ -154,12 +218,14 @@ const featuredNews = allNews.slice(0, 3);
   <!-- Mission Tagline -->
   <section class="home-tagline">
     <div class="container">
-      <h2 class="home-tagline__text">
+      <h2 class="home-tagline__text reveal">
         Inspiring generosity.<br />
         Strengthening community.<br />
         Every day.
       </h2>
-      <a href="/donors/make-a-gift" class="btn btn-outline-white btn-lg">Start Giving Today</a>
+      <div class="reveal">
+        <a href="/donors/make-a-gift" class="btn btn-outline-white btn-lg">Start Giving Today</a>
+      </div>
     </div>
   </section>
 

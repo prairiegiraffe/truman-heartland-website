@@ -1,0 +1,23 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  center?: boolean;
+  accent?: boolean;
+}
+
+const { eyebrow, title, body, center = false, accent = false } = Astro.props;
+
+const classes = [
+  'section__header',
+  center && 'section__header--center',
+  accent && 'section__header--accent',
+].filter(Boolean).join(' ');
+---
+
+<div class={classes}>
+  {eyebrow && <p class="section__eyebrow">{eyebrow}</p>}
+  <h2 class="section__title">{title}</h2>
+  {body && <p class="section__body">{body}</p>}
+</div>

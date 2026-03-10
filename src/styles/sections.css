@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Section Variant System
+   Unilever-inspired full-bleed color sections for visual rhythm
+   ========================================================================== */
+
+/* -- Section base -- */
+.section {
+  padding: var(--space-3xl) 0;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .section { padding: var(--space-4xl) 0; }
+}
+
+/* -- Section color variants -- */
+.section--white {
+  background: var(--color-white);
+  color: var(--color-text);
+}
+
+.section--light {
+  background: var(--color-gray-100);
+  color: var(--color-text);
+}
+
+.section--blue-light {
+  background: var(--color-blue-50);
+  color: var(--color-text);
+}
+
+.section--navy {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.section--navy h2,
+.section--navy h3,
+.section--navy h4 { color: var(--color-white); }
+.section--navy p { color: rgba(255, 255, 255, 0.85); }
+.section--navy .section__eyebrow { color: var(--color-green-light); }
+.section--navy .section__title { color: var(--color-white); }
+.section--navy .section__body { color: rgba(255, 255, 255, 0.85); }
+.section--navy a { color: var(--color-green-light); }
+.section--navy a:hover { color: var(--color-white); }
+
+.section--navy-dark {
+  background: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%);
+  color: var(--color-white);
+}
+.section--navy-dark h2,
+.section--navy-dark h3,
+.section--navy-dark h4 { color: var(--color-white); }
+.section--navy-dark p { color: rgba(255, 255, 255, 0.85); }
+.section--navy-dark .section__eyebrow { color: var(--color-green-light); }
+.section--navy-dark .section__title { color: var(--color-white); }
+
+.section--green {
+  background: var(--color-green);
+  color: var(--color-white);
+}
+.section--green h2,
+.section--green h3,
+.section--green h4 { color: var(--color-white); }
+.section--green p { color: rgba(255, 255, 255, 0.9); }
+.section--green .section__eyebrow { color: rgba(255, 255, 255, 0.7); }
+.section--green .section__title { color: var(--color-white); }
+
+/* -- Section header pattern -- */
+.section__header {
+  margin-bottom: var(--space-2xl);
+}
+
+.section__eyebrow {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--color-green);
+  margin-bottom: var(--space-xs);
+}
+
+.section__title {
+  font-size: var(--text-2xl);
+  color: var(--color-navy);
+  line-height: var(--leading-tight);
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .section__title { font-size: var(--text-3xl); }
+}
+
+.section__body {
+  font-size: var(--text-lg);
+  max-width: 680px;
+  line-height: var(--leading-relaxed);
+  margin-top: var(--space-md);
+  color: var(--color-text);
+}
+
+/* -- Accent line decoration -- */
+.section__header--accent::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: var(--accent-line-thick);
+  background: var(--color-green);
+  margin-top: var(--space-md);
+}
+.section--navy .section__header--accent::after,
+.section--navy-dark .section__header--accent::after {
+  background: var(--color-green-light);
+}
+.section--green .section__header--accent::after {
+  background: var(--color-white);
+}
+
+/* -- Centered section header -- */
+.section__header--center {
+  text-align: center;
+}
+.section__header--center .section__body {
+  margin-left: auto;
+  margin-right: auto;
+}
+.section__header--center.section__header--accent::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -- Two-column section layout (text + image) -- */
+.section__split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .section__split {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+  }
+}
+
+.section__split--reverse {
+  direction: ltr;
+}
+@media (min-width: 768px) {
+  .section__split--reverse .section__split-image {
+    order: -1;
+  }
+}
+
+.section__split-image img {
+  width: 100%;
+  height: auto;
+}
+
+.section__split-text .section__eyebrow {
+  margin-bottom: var(--space-sm);
+}

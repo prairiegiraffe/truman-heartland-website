@@ -1,0 +1,210 @@
+/* ==========================================================================
+   Animation System
+   Scroll reveals, counters, microinteractions, scroll progress
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scroll-triggered Reveal
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from left */
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+.reveal--left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal--right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+.reveal--right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up */
+.reveal--scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+.reveal--scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   Staggered Children Reveal
+   -------------------------------------------------------------------------- */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-reveal) var(--ease-out-expo),
+              transform var(--duration-reveal) var(--ease-out-expo);
+}
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 100ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 300ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 400ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 500ms; }
+
+/* --------------------------------------------------------------------------
+   Card Hover Lift
+   -------------------------------------------------------------------------- */
+.card-lift {
+  transition: transform var(--transition-base) var(--ease-out-expo),
+              box-shadow var(--transition-base) var(--ease-out-expo);
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Image Zoom on Hover (contained)
+   -------------------------------------------------------------------------- */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   Gradient Overlay on Images
+   -------------------------------------------------------------------------- */
+.img-gradient {
+  position: relative;
+}
+.img-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(27, 58, 92, 0.7) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Counter Animation
+   -------------------------------------------------------------------------- */
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Progress Bar
+   -------------------------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-green);
+  z-index: 1001;
+  width: 0%;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Button Hover Enhancements
+   -------------------------------------------------------------------------- */
+.btn {
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Link Underline Animation
+   -------------------------------------------------------------------------- */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width var(--transition-base) var(--ease-out-expo);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Prefers Reduced Motion — respect user preferences
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal--scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+  .img-zoom:hover img {
+    transform: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* No-JS fallback — if JS doesn't load, show content */
+.no-js .reveal,
+.no-js .reveal--left,
+.no-js .reveal--right,
+.no-js .reveal--scale,
+.no-js .reveal-stagger > * {
+  opacity: 1;
+  transform: none;
+}

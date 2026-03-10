@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Enhanced Mega Navigation — 3-tier system
+   Utility bar + Audience bar + Main nav
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Audience Bar — green tier with audience-based navigation
+   -------------------------------------------------------------------------- */
+.audience-bar {
+  background-color: var(--color-green);
+  padding: 0;
+  font-size: var(--text-sm);
+  position: relative;
+}
+
+.audience-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  height: 40px;
+}
+
+.audience-bar__label {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  margin-right: var(--space-sm);
+  white-space: nowrap;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .audience-bar__label { display: block; }
+}
+
+.audience-bar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color var(--transition-fast);
+  white-space: nowrap;
+}
+.audience-bar__link:hover,
+.audience-bar__link[aria-expanded="true"] {
+  background-color: var(--color-green-dark);
+  color: var(--color-white);
+}
+
+.audience-bar__chevron {
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.audience-bar__link[aria-expanded="true"] .audience-bar__chevron {
+  transform: rotate(180deg);
+}
+
+/* Hide audience bar on mobile — items go into mobile menu instead */
+.audience-bar {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .audience-bar { display: block; }
+}
+
+/* --------------------------------------------------------------------------
+   Enhanced Mega Panel — grouped links with optional featured image
+   -------------------------------------------------------------------------- */
+.mega-panel__grid--grouped {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+@media (min-width: 768px) {
+  .mega-panel__grid--grouped {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .mega-panel__grid--grouped {
+    grid-template-columns: repeat(2, 1fr) 280px;
+  }
+  .mega-panel__grid--grouped.no-featured {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Link group within mega panel */
+.mega-panel__group {
+  padding: 0;
+}
+
+.mega-panel__group-heading {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--color-green);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+.mega-panel__group-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.mega-panel__group-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  color: var(--color-gray-700);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.mega-panel__group-link:hover {
+  color: var(--color-green);
+}
+
+/* Highlight link (e.g., "Apply Now") */
+.mega-panel__group-link--highlight {
+  color: var(--color-green);
+  font-weight: 700;
+}
+.mega-panel__group-link--highlight:hover {
+  color: var(--color-green-dark);
+}
+
+/* Badge (e.g., "Blog") */
+.mega-panel__badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-green);
+  color: var(--color-white);
+  border-radius: 2px;
+  line-height: 1.5;
+}
+
+/* External link indicator */
+.mega-panel__group-link--external::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%23A3A3A3' stroke-width='1.5'%3E%3Cpath d='M9 3L3 9M9 3H5M9 3v4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Featured image in mega panel */
+.mega-panel__featured {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .mega-panel__featured {
+    display: block;
+    border-left: 1px solid var(--color-gray-200);
+    padding-left: var(--space-xl);
+  }
+}
+
+.mega-panel__featured-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+.mega-panel__featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+.mega-panel__featured:hover .mega-panel__featured-image img {
+  transform: scale(1.04);
+}
+
+.mega-panel__featured-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: var(--space-xs);
+}
+
+.mega-panel__featured-link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-green);
+  text-decoration: none;
+}
+.mega-panel__featured-link:hover {
+  color: var(--color-green-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Enhanced Utility Bar — more links
+   -------------------------------------------------------------------------- */
+.site-header__utility-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.site-header__utility a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* External link icon in utility bar */
+.utility-external-icon {
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile: Audience cards at top of mobile menu
+   -------------------------------------------------------------------------- */
+.mobile-nav__audiences {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  border-bottom: 2px solid var(--color-gray-200);
+  margin-bottom: var(--space-sm);
+}
+
+.mobile-nav__audience-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-green);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  transition: background-color var(--transition-fast);
+}
+.mobile-nav__audience-link:hover {
+  background: var(--color-green-dark);
+  color: var(--color-white);
+}
+
+.mobile-nav__audience-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Search icon in nav
+   -------------------------------------------------------------------------- */
+.site-nav__search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-gray-600);
+  transition: color var(--transition-fast);
+}
+.site-nav__search:hover {
+  color: var(--color-green);
+}
+.site-nav__search svg {
+  width: 18px;
+  height: 18px;
+}

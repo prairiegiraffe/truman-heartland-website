@@ -1,47 +1,78 @@
 ---
 import navData from "../data/nav.json";
 
-interface NavChild {
+interface NavLink {
   label: string;
   href: string;
+  badge?: string;
+  highlight?: boolean;
+  external?: boolean;
+}
+
+interface NavGroup {
+  heading: string;
+  links: NavLink[];
 }
 
 interface NavItem {
   label: string;
   href: string;
-  children?: NavChild[];
+  groups?: NavGroup[];
+  featured?: {
+    image: string;
+    title: string;
+    href: string;
+  };
 }
 
-/**
- * Convert absolute thcf.org URLs to relative paths.
- */
-function toRelativePath(href: string): string {
-  if (!href) return "/";
-  return href
-    .replace("https://www.thcf.org", "")
-    .replace("http://www.thcf.org", "")
-    || "/";
+interface UtilityLink {
+  label: string;
+  href: string;
+  external?: boolean;
 }
 
-const nav: NavItem[] = (navData as NavItem[])
-  .filter((item) => item.label !== "Search")
-  .map((item) => ({
-    ...item,
-    href: toRelativePath(item.href),
-    children: item.children?.map((child) => ({
-      ...child,
-      href: toRelativePath(child.href),
-    })),
-  }));
+const utility: UtilityLink[] = (navData as any).utility;
+const audiences: NavItem[] = (navData as any).audiences;
+const main: NavItem[] = (navData as any).main;
 ---
 
 <header class="site-header">
-  <!-- Utility bar -->
+  <!-- Tier 1: Utility bar -->
   <div class="site-header__utility">
     <div class="container site-header__utility-inner">
-      <a href="https://www.grantinterface.com/Home/Logon?urlkey=thcf" target="_blank" rel="noopener noreferrer">
-        Fund Portal
-      </a>
+      {utility.map((link) => (
+        <a
+          href={link.href}
+          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {link.label}
+          {link.external && (
+            <svg class="utility-external-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 3L3 9M9 3H5M9 3v4" />
+            </svg>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- Tier 2: Audience bar (green) -->
+  <div class="audience-bar">
+    <div class="container audience-bar__inner">
+      <span class="audience-bar__label">I'm a:</span>
+      {audiences.map((item, index) => (
+        <button
+          class="audience-bar__link"
+          aria-expanded="false"
+          aria-controls={`audience-panel-${index}`}
+          data-mega-trigger
+        >
+          {item.label}
+          <svg class="audience-bar__chevron" width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      ))}
     </div>
   </div>
 
@@ -58,9 +89,9 @@ const nav: NavItem[] = (navData as NavItem[])
       <!-- Desktop Navigation -->
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__list">
-          {nav.map((item, index) => (
+          {main.map((item, index) => (
             <li class="site-nav__item">
-              {item.children && item.children.length > 0 ? (
+              {item.groups && item.groups.length > 0 ? (
                 <button
                   class="site-nav__link"
                   aria-expanded="false"
@@ -80,8 +111,13 @@ const nav: NavItem[] = (navData as NavItem[])
         </ul>
       </nav>
 
-      <!-- Desktop actions -->
+      <!-- Search + Desktop actions -->
       <div class="site-header__actions">
+        <a href="/search" class="site-nav__search" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </a>
         <a href="/donors/make-a-gift" class="btn btn-primary btn-sm">Give Now</a>
       </div>
 
@@ -97,9 +133,52 @@ const nav: NavItem[] = (navData as NavItem[])
     </div>
   </div>
 
-  <!-- Mega Panels (rendered outside the inner container for full-width) -->
-  {nav.map((item, index) => (
-    item.children && item.children.length > 0 && (
+  <!-- Audience Mega Panels -->
+  {audiences.map((item, index) => (
+    item.groups && item.groups.length > 0 && (
+      <div
+        id={`audience-panel-${index}`}
+        class="mega-panel"
+        aria-hidden="true"
+        data-mega-panel
+      >
+        <div class="container">
+          <div class="mega-panel__grid--grouped no-featured">
+            {item.groups.map((group) => (
+              <div class="mega-panel__group">
+                <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                <div class="mega-panel__group-links">
+                  {group.links.map((link) => (
+                    <a
+                      href={link.href}
+                      class:list={[
+                        'mega-panel__group-link',
+                        link.highlight && 'mega-panel__group-link--highlight',
+                        link.external && 'mega-panel__group-link--external',
+                      ]}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {link.label}
+                      {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid var(--color-gray-200);">
+            <a href={item.href} style="color: var(--color-green); font-weight: 600; font-size: var(--text-sm); text-decoration: none;">
+              View all {item.label.replace('For ', '').toLowerCase()} resources &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    )
+  ))}
+
+  <!-- Main Nav Mega Panels -->
+  {main.map((item, index) => (
+    item.groups && item.groups.length > 0 && (
       <div
         id={`mega-panel-${index}`}
         class="mega-panel"
@@ -107,18 +186,38 @@ const nav: NavItem[] = (navData as NavItem[])
         data-mega-panel
       >
         <div class="container">
-          <div class="mega-panel__grid">
-            <div class="mega-panel__overview">
-              <h3 class="mega-panel__heading">{item.label}</h3>
-              <a href={item.href} class="mega-panel__overview-link">
-                View all {item.label.toLowerCase()} &rarr;
+          <div class:list={['mega-panel__grid--grouped', !item.featured && 'no-featured']}>
+            {item.groups.map((group) => (
+              <div class="mega-panel__group">
+                <h4 class="mega-panel__group-heading">{group.heading}</h4>
+                <div class="mega-panel__group-links">
+                  {group.links.map((link) => (
+                    <a
+                      href={link.href}
+                      class:list={[
+                        'mega-panel__group-link',
+                        link.highlight && 'mega-panel__group-link--highlight',
+                        link.external && 'mega-panel__group-link--external',
+                      ]}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {link.label}
+                      {link.badge && <span class="mega-panel__badge">{link.badge}</span>}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {item.featured && (
+              <a href={item.featured.href} class="mega-panel__featured" style="text-decoration: none;">
+                <div class="mega-panel__featured-image">
+                  <img src={item.featured.image} alt="" loading="lazy" />
+                </div>
+                <p class="mega-panel__featured-title">{item.featured.title}</p>
+                <span class="mega-panel__featured-link">Read more &rarr;</span>
               </a>
-            </div>
-            <div class="mega-panel__links">
-              {item.children.map((child) => (
-                <a href={child.href} class="mega-panel__link">{child.label}</a>
-              ))}
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -127,14 +226,27 @@ const nav: NavItem[] = (navData as NavItem[])
 
   <!-- Mobile Navigation -->
   <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <!-- Audience cards first -->
+    <div class="mobile-nav__audiences">
+      {audiences.map((item) => (
+        <a href={item.href} class="mobile-nav__audience-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Main nav items -->
     <ul class="mobile-nav__list">
-      {nav.map((item, index) => (
+      {main.map((item, index) => (
         <li class="mobile-nav__item">
           <div style="display: flex; align-items: center;">
             <a href={item.href} class="mobile-nav__link" style="flex: 1;">
               {item.label}
             </a>
-            {item.children && item.children.length > 0 && (
+            {item.groups && item.groups.length > 0 && (
               <button
                 class="mobile-nav__toggle"
                 aria-expanded="false"
@@ -147,10 +259,23 @@ const nav: NavItem[] = (navData as NavItem[])
               </button>
             )}
           </div>
-          {item.children && item.children.length > 0 && (
+          {item.groups && item.groups.length > 0 && (
             <div id={`mobile-dropdown-${index}`} class="mobile-nav__dropdown">
-              {item.children.map((child) => (
-                <a href={child.href}>{child.label}</a>
+              {item.groups.map((group) => (
+                <div style="margin-bottom: var(--space-sm);">
+                  <span style="display: block; padding: 0.375rem 0 0.375rem var(--space-lg); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-green); font-weight: 700;">
+                    {group.heading}
+                  </span>
+                  {group.links.map((link) => (
+                    <a
+                      href={link.href}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {link.label}
+                      {link.badge && <span style="margin-left: var(--space-xs); font-size: 0.625rem; background: var(--color-green); color: white; padding: 0.125rem 0.375rem; border-radius: 2px; text-transform: uppercase; font-weight: 700;">{link.badge}</span>}
+                    </a>
+                  ))}
+                </div>
               ))}
             </div>
           )}

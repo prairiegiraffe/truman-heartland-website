@@ -27,15 +27,15 @@ function formatDate(dateStr: string): string {
 }
 ---
 
-<article class="card">
+<article class="card card-lift">
   {featuredImage && (
-    <a href={`/news/${slug}`} class="card__image" aria-hidden="true" tabindex="-1">
+    <a href={`/news/${slug}`} class="card__image img-zoom" aria-hidden="true" tabindex="-1">
       <img src={featuredImage} alt="" loading="lazy" />
     </a>
   )}
   <div class="card__body">
     {category && (
-      <span class="card__category">{category}</span>
+      <span class="chip" data-category={category}>{category}</span>
     )}
     <h3 class="card__title">
       <a href={`/news/${slug}`}>{title}</a>

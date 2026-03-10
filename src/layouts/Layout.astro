@@ -2,6 +2,10 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import "../styles/sections.css";
+import "../styles/animations.css";
+import "../styles/components.css";
+import "../styles/mega-nav.css";
 
 interface Props {
   title: string;
@@ -49,11 +53,66 @@ const siteName = "Truman Heartland Community Foundation";
     <meta name="twitter:description" content={description} />
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Scroll-reveal via IntersectionObserver
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal, .reveal--left, .reveal--right, .reveal--scale, .reveal-stagger')
+        .forEach(el => revealObserver.observe(el));
+
+      // Animated counters
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.target || '0');
+          const suffix = el.dataset.suffix || '';
+          const prefix = el.dataset.prefix || '';
+          const duration = 2000;
+          const start = performance.now();
+
+          function update(now: number) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = prefix + current.toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.counter[data-target]')
+        .forEach(el => counterObserver.observe(el));
+
+      // Scroll progress bar
+      const progressBar = document.querySelector('.scroll-progress') as HTMLElement;
+      if (progressBar) {
+        window.addEventListener('scroll', () => {
+          const scrollTop = document.documentElement.scrollTop;
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (scrollHeight > 0) {
+            progressBar.style.width = `${(scrollTop / scrollHeight) * 100}%`;
+          }
+        }, { passive: true });
+      }
+    </script>
   </body>
 </html>

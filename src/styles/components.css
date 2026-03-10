@@ -1,0 +1,268 @@
+/* ==========================================================================
+   Enhanced Component Styles
+   Chips, overlay cards, bento grids, stat cards
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Category Chips — colorful badges that add pops of color
+   -------------------------------------------------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Color variants */
+.chip--green   { background: var(--color-green); color: var(--color-white); }
+.chip--navy    { background: var(--color-navy); color: var(--color-white); }
+.chip--light   { background: var(--color-gray-200); color: var(--color-navy); }
+.chip--outline {
+  background: transparent;
+  border: 1.5px solid var(--color-green);
+  color: var(--color-green);
+}
+
+/* Category-specific colors — automatic coloring by data attribute */
+.chip[data-category="President's Blog"]           { background: var(--color-navy); }
+.chip[data-category="Smart Giving"]               { background: var(--color-green); }
+.chip[data-category="Scholarship Program"]         { background: #5B8DEF; }
+.chip[data-category="Grants Program"]              { background: #E67E22; }
+.chip[data-category="Community Foundation News"]   { background: var(--color-navy-light); }
+.chip[data-category="Annual Gala"]                 { background: #8B5CF6; }
+.chip[data-category="Youth Advisory Council"]      { background: #14B8A6; }
+.chip[data-category="Creating a Legacy"]           { background: var(--color-green-dark); }
+.chip[data-category="Feature"]                     { background: var(--color-navy-dark); }
+
+/* All category chips are white text */
+.chip[data-category] { color: var(--color-white); }
+
+/* --------------------------------------------------------------------------
+   Overlay Card — image with gradient + text on top
+   -------------------------------------------------------------------------- */
+.card--overlay {
+  position: relative;
+  border-bottom: none;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .card--overlay { min-height: 400px; }
+}
+
+.card--overlay .card__image {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+}
+.card--overlay .card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.card--overlay:hover .card__image img {
+  transform: scale(1.04);
+}
+.card--overlay .card__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 45, 72, 0.9) 0%,
+    rgba(20, 45, 72, 0.4) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.card--overlay .card__body {
+  position: relative;
+  z-index: 1;
+  color: var(--color-white);
+  width: 100%;
+}
+.card--overlay .card__title { color: var(--color-white); }
+.card--overlay .card__title a { color: var(--color-white); }
+.card--overlay .card__title a:hover { color: var(--color-green-light); }
+.card--overlay .card__excerpt { color: rgba(255, 255, 255, 0.8); }
+.card--overlay .card__date { color: rgba(255, 255, 255, 0.6); }
+.card--overlay .chip { box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); }
+
+/* --------------------------------------------------------------------------
+   Bento Grid — mixed card sizes for visual interest
+   -------------------------------------------------------------------------- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(280px, auto);
+  }
+  .bento-grid > :first-child {
+    grid-row: span 2;
+  }
+}
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Stat Card — for impact numbers / counters
+   -------------------------------------------------------------------------- */
+.stat-card {
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.stat-card__number {
+  display: block;
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-green);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-sm);
+}
+@media (min-width: 768px) {
+  .stat-card__number { font-size: var(--text-5xl); }
+}
+@media (min-width: 1024px) {
+  .stat-card__number { font-size: var(--text-6xl); }
+}
+
+.stat-card__label {
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-gray-600);
+}
+
+/* Dark section variants */
+.section--navy .stat-card__number { color: var(--color-green-light); }
+.section--navy .stat-card__label { color: rgba(255, 255, 255, 0.7); }
+.section--navy-dark .stat-card__number { color: var(--color-green-light); }
+.section--navy-dark .stat-card__label { color: rgba(255, 255, 255, 0.7); }
+
+/* --------------------------------------------------------------------------
+   Audience Pathway Cards — for homepage audience section
+   -------------------------------------------------------------------------- */
+.audience-card {
+  padding: var(--space-2xl);
+  text-align: center;
+  background: var(--color-white);
+  border-bottom: 3px solid var(--color-green);
+  transition: transform var(--transition-base) var(--ease-out-expo),
+              box-shadow var(--transition-base) var(--ease-out-expo);
+}
+.audience-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.audience-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-lg);
+  background: var(--color-green);
+  border-radius: 50%;
+  color: var(--color-white);
+}
+.audience-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.audience-card__title {
+  font-size: var(--text-xl);
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.audience-card__body {
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  margin-bottom: var(--space-lg);
+  line-height: var(--leading-relaxed);
+}
+
+/* --------------------------------------------------------------------------
+   Featured Story / Quote Card
+   -------------------------------------------------------------------------- */
+.story-spotlight {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .story-spotlight {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.story-spotlight__image {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+}
+.story-spotlight__image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-spotlight__content {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+@media (min-width: 768px) {
+  .story-spotlight__content {
+    padding: var(--space-3xl);
+  }
+}
+
+.story-spotlight__quote {
+  font-size: var(--text-xl);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-lg);
+  color: var(--color-white);
+  border-left: 3px solid var(--color-green-light);
+  padding-left: var(--space-lg);
+}
+@media (min-width: 768px) {
+  .story-spotlight__quote { font-size: var(--text-2xl); }
+}
+
+.story-spotlight__attribution {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-green-light);
+}

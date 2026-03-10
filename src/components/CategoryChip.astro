@@ -1,0 +1,15 @@
+---
+interface Props {
+  category: string;
+  variant?: 'green' | 'navy' | 'light' | 'outline';
+}
+
+const { category, variant } = Astro.props;
+
+const classes = [
+  'chip',
+  variant ? `chip--${variant}` : '',
+].filter(Boolean).join(' ');
+---
+
+<span class={classes} data-category={category}>{category}</span>

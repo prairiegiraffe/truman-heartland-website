@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  body?: string;
+  buttonText: string;
+  buttonHref: string;
+  variant?: 'green' | 'navy';
+}
+
+const { title, body, buttonText, buttonHref, variant = 'green' } = Astro.props;
+
+const sectionClass = variant === 'navy' ? 'section section--navy' : 'home-cta-band';
+---
+
+{variant === 'green' ? (
+  <section class="home-cta-band">
+    <div class="container">
+      <div class="home-cta-band__inner reveal">
+        <div class="home-cta-band__text">
+          <h2>{title}</h2>
+          {body && <p>{body}</p>}
+        </div>
+        <a href={buttonHref} class="btn btn-primary btn-lg">{buttonText}</a>
+      </div>
+    </div>
+  </section>
+) : (
+  <section class="section section--navy">
+    <div class="container">
+      <div class="home-cta-band__inner reveal">
+        <div class="home-cta-band__text">
+          <h2>{title}</h2>
+          {body && <p>{body}</p>}
+        </div>
+        <a href={buttonHref} class="btn btn-outline-white btn-lg">{buttonText}</a>
+      </div>
+    </div>
+  </section>
+)}
