@@ -1,0 +1,80 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  backgroundImage: Image;
+  overlayColor?: 'none' | 'dark' | 'navy' | 'green';
+  quote: string;
+  attribution?: string;
+}
+
+const { backgroundImage, overlayColor = 'navy', quote, attribution } = Astro.props;
+---
+
+<section class="img-quote">
+  <img class="img-quote__bg" src={backgroundImage.src} alt={backgroundImage.alt ?? ''} loading="lazy" />
+  {overlayColor !== 'none' && <div class={`img-quote__overlay img-quote__overlay--${overlayColor}`} />}
+  <div class="container img-quote__content">
+    <svg class="img-quote__mark" viewBox="0 0 56 40" fill="currentColor" aria-hidden="true">
+      <path d="M0 40V22.5C0 16 1.9 10.7 5.7 6.5C9.6 2.2 14.9 0 21.7 0V10C18.2 10 15.3 11.3 13 13.8C10.7 16.3 9.5 19.2 9.5 22.5H21.8V40H0ZM34.2 40V22.5C34.2 16 36.1 10.7 39.9 6.5C43.8 2.2 49.1 0 55.9 0V10C52.4 10 49.5 11.3 47.2 13.8C44.9 16.3 43.7 19.2 43.7 22.5H56V40H34.2Z"/>
+    </svg>
+    <blockquote class="img-quote__text"><p>{quote}</p></blockquote>
+    {attribution && <p class="img-quote__attribution">— {attribution}</p>}
+  </div>
+</section>
+
+<style>
+  .img-quote {
+    position: relative;
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: white;
+    padding: var(--space-3xl) 0;
+    isolation: isolate;
+  }
+  .img-quote__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .img-quote__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .img-quote__overlay--dark { background: rgba(0,0,0,0.65); }
+  .img-quote__overlay--navy { background: rgba(0,31,63,0.85); }
+  .img-quote__overlay--green { background: rgba(30,132,73,0.85); }
+  .img-quote__mark {
+    width: 56px;
+    height: 40px;
+    color: var(--color-green);
+    opacity: 0.5;
+    margin: 0 auto var(--space-md);
+  }
+  .img-quote__text {
+    margin: 0 auto var(--space-md);
+    border: none;
+    padding: 0;
+    font-size: clamp(var(--text-xl), 3.5vw, var(--text-3xl));
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    max-width: 900px;
+  }
+  .img-quote__attribution {
+    margin: 0;
+    opacity: 0.85;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+  }
+</style>

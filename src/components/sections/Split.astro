@@ -1,0 +1,82 @@
+---
+import { bgClass, type BgTone } from './bg';
+
+interface Image {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bodyHtml?: string;
+  image: Image;
+  reverse?: boolean;
+  bg?: BgTone;
+  ctas?: Cta[];
+}
+
+const { eyebrow, title, bodyHtml = '', image, reverse = false, bg = 'white', ctas = [] } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    <div class={`section__split ${reverse ? 'section__split--reverse' : ''}`}>
+      <div class="section__split-image">
+        {image.src ? (
+          <img src={image.src} alt={image.alt ?? ''} loading="lazy" />
+        ) : (
+          <div class="split-image-placeholder" aria-hidden="true">Image</div>
+        )}
+        {image.caption && <p class="split-caption">{image.caption}</p>}
+      </div>
+      <div class="section__split-text">
+        {eyebrow && <p class="section__eyebrow">{eyebrow}</p>}
+        {title && (
+          <div class="section__header section__header--accent">
+            <h2 class="section__title">{title}</h2>
+          </div>
+        )}
+        {bodyHtml && <div class="article-body prose" set:html={bodyHtml} />}
+        {ctas.length > 0 && (
+          <div class="split-actions">
+            {ctas.map((c) => (
+              <a href={c.href} class={`btn btn-${c.variant ?? 'primary'}`}>{c.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .split-image-placeholder {
+    aspect-ratio: 4/3;
+    display: grid;
+    place-items: center;
+    background: var(--color-gray-100);
+    color: var(--color-text-light);
+    border-radius: 6px;
+    font-size: var(--text-sm);
+  }
+  .split-caption {
+    font-size: var(--text-xs);
+    color: var(--color-text-light);
+    margin-top: var(--space-xs);
+    font-style: italic;
+  }
+  .split-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-md);
+  }
+</style>

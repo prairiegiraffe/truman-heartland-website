@@ -1,0 +1,111 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bodyHtml?: string;
+  image: Image;
+  imageOverlayStat?: string;
+  imageOverlayLabel?: string;
+  reverse?: boolean;
+  ctas?: Cta[];
+}
+
+const { eyebrow, title, bodyHtml = '', image, imageOverlayStat, imageOverlayLabel, reverse = false, ctas = [] } = Astro.props;
+---
+
+<section class="section section--white">
+  <div class="container">
+    <div class={`img-split ${reverse ? 'img-split--reverse' : ''}`}>
+      <div class="img-split__image">
+        <img src={image.src} alt={image.alt ?? ''} loading="lazy" />
+        {(imageOverlayStat || imageOverlayLabel) && (
+          <div class="img-split__image-overlay">
+            <div class="img-split__image-content">
+              {imageOverlayStat && <p class="img-split__image-stat">{imageOverlayStat}</p>}
+              {imageOverlayLabel && <p class="img-split__image-label">{imageOverlayLabel}</p>}
+            </div>
+          </div>
+        )}
+      </div>
+      <div class="img-split__text">
+        {eyebrow && <p class="section__eyebrow">{eyebrow}</p>}
+        {title && <h2 class="section__title">{title}</h2>}
+        {bodyHtml && <div class="article-body prose" set:html={bodyHtml} />}
+        {ctas.length > 0 && (
+          <div class="img-split__actions">
+            {ctas.map((c) => (
+              <a href={c.href} class={`btn btn-${c.variant ?? 'primary'}`}>{c.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .img-split {
+    display: grid;
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .img-split { grid-template-columns: 1.2fr 1fr; }
+    .img-split--reverse .img-split__image { order: 2; }
+  }
+  .img-split__image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    min-height: 320px;
+  }
+  .img-split__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .img-split__image-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-xl);
+    background: linear-gradient(to top, rgba(0,31,63,0.92), rgba(0,31,63,0));
+    color: white;
+  }
+  .img-split__image-stat {
+    margin: 0;
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-green);
+  }
+  .img-split__image-label {
+    margin: 0.25rem 0 0;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+  }
+  .img-split__actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import { bgClass } from './bg';
+
+interface Props {
+  label?: string;
+  html: string;
+  bg?: 'white' | 'light' | 'blue-light' | 'navy' | 'navy-dark' | 'green';
+}
+
+const { label, html, bg = 'white' } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)} custom-block`} data-custom-label={label ?? 'AI custom'}>
+  <div class="container">
+    <div class="article-body prose" set:html={html} />
+  </div>
+</section>
+
+<style>
+  .custom-block {
+    position: relative;
+  }
+  /* Visible in admin preview only — admin sets a query param or data attribute.
+     On the public site this badge is invisible (no parent sets the flag). */
+  [data-admin-preview] .custom-block::before {
+    content: attr(data-custom-label);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255,193,7,0.95);
+    color: #5a3c00;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 2;
+    font-family: -apple-system, system-ui, sans-serif;
+  }
+</style>

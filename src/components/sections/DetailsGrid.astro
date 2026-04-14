@@ -1,0 +1,88 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  icon?: string; // SVG
+  label: string;
+  value: string;
+  note?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  columns?: 2 | 3 | 4;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'white', columns = 4, items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} center={true} accent={true} />}
+    <div class={`details-grid details-grid--cols-${columns}`}>
+      {items.map((it) => (
+        <div class="details-card">
+          {it.icon && <div class="details-card__icon" set:html={it.icon} />}
+          <p class="details-card__label">{it.label}</p>
+          <p class="details-card__value">{it.value}</p>
+          {it.note && <p class="details-card__note">{it.note}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .details-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .details-grid--cols-2, .details-grid--cols-3, .details-grid--cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .details-grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .details-grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .details-grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  .details-card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .details-card__icon {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto var(--space-sm);
+    color: var(--color-green);
+  }
+  .details-card__icon :global(svg) { width: 100%; height: 100%; }
+  .details-card__label {
+    margin: 0 0 0.25rem;
+    color: var(--color-text-light);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .details-card__value {
+    margin: 0;
+    color: var(--color-navy);
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+  .details-card__note {
+    margin: 0.25rem 0 0;
+    color: var(--color-text-light);
+    font-size: var(--text-sm);
+  }
+</style>

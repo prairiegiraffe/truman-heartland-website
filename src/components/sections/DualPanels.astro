@@ -1,0 +1,97 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Item {
+  image: Image;
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  cta?: Cta;
+}
+
+interface Props {
+  items: [Item, Item];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="dual-panels">
+  {items.map((it) => (
+    <div class="dual-panels__item">
+      <div class="dual-panels__bg">
+        <img src={it.image.src} alt={it.image.alt ?? ''} loading="lazy" />
+      </div>
+      <div class="dual-panels__overlay"></div>
+      <div class="dual-panels__content">
+        {it.eyebrow && <p class="dual-panels__eyebrow">{it.eyebrow}</p>}
+        <h3 class="dual-panels__title">{it.title}</h3>
+        {it.body && <p class="dual-panels__body">{it.body}</p>}
+        {it.cta && <a href={it.cta.href} class={`btn btn-${it.cta.variant ?? 'outline-white'}`}>{it.cta.label}</a>}
+      </div>
+    </div>
+  ))}
+</section>
+
+<style>
+  .dual-panels {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 50vh;
+  }
+  @media (min-width: 900px) { .dual-panels { grid-template-columns: 1fr 1fr; } }
+  .dual-panels__item {
+    position: relative;
+    overflow: hidden;
+    color: white;
+    padding: var(--space-3xl) var(--space-xl);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    isolation: isolate;
+  }
+  .dual-panels__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+  .dual-panels__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .dual-panels__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 12, 24, 0.55);
+    transition: background 0.3s;
+    z-index: -1;
+  }
+  .dual-panels__item:hover .dual-panels__bg img { transform: scale(1.05); }
+  .dual-panels__item:hover .dual-panels__overlay { background: rgba(0, 12, 24, 0.7); }
+  .dual-panels__content { max-width: 480px; }
+  .dual-panels__eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-xs);
+  }
+  .dual-panels__title {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-2xl);
+    color: white;
+  }
+  .dual-panels__body { margin: 0 0 var(--space-md); opacity: 0.9; }
+</style>

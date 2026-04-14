@@ -1,0 +1,74 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Item {
+  icon?: string;
+  title: string;
+  body: string;
+  cta?: Cta;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bodyHtml?: string;
+  columns?: 2 | 3 | 4;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bodyHtml, columns = 3, bg = 'light', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && (
+      <SectionHeader eyebrow={eyebrow} title={title} body={bodyHtml ? undefined : undefined} accent={true} />
+    )}
+    {bodyHtml && <div class="icon-cards__body prose" set:html={bodyHtml} />}
+    <div class={`icon-cards icon-cards--cols-${columns}`}>
+      {items.map((it) => (
+        <div class="audience-card">
+          {it.icon && <div class="audience-card__icon" set:html={it.icon} />}
+          <h3 class="audience-card__title">{it.title}</h3>
+          <div class="audience-card__body" set:html={it.body} />
+          {it.cta && (
+            <a href={it.cta.href} class={`btn btn-${it.cta.variant ?? 'outline'} btn-sm`}>
+              {it.cta.label}
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .icon-cards__body {
+    max-width: 780px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+  }
+  .icon-cards {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .icon-cards--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .icon-cards--cols-3 { grid-template-columns: repeat(2, 1fr); }
+    .icon-cards--cols-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .icon-cards--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .icon-cards--cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .icon-cards--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

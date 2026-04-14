@@ -1,0 +1,39 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import StatCounter from '../StatCounter.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'navy', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && (
+      <SectionHeader eyebrow={eyebrow} title={title} center={true} accent={true} />
+    )}
+    <div class="home-stats__grid reveal-stagger">
+      {items.map((it) => (
+        <StatCounter
+          target={it.target}
+          prefix={it.prefix}
+          suffix={it.suffix ?? ''}
+          label={it.label}
+        />
+      ))}
+    </div>
+  </div>
+</section>

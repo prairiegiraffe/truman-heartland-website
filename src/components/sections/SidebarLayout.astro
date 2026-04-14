@@ -1,0 +1,174 @@
+---
+import PageRenderer from '../PageRenderer.astro';
+import type { Section } from '../../lib/sections';
+
+interface QuickFacts {
+  cardKind: 'quick-facts';
+  title: string;
+  items: { label: string; value: string }[];
+  cta?: { label: string; href: string; variant?: string };
+}
+
+interface NavCard {
+  cardKind: 'nav';
+  title: string;
+  items: { label: string; href: string }[];
+}
+
+interface ContactCard {
+  cardKind: 'contact';
+  title: string;
+  name?: string;
+  role?: string;
+  email?: string;
+  phone?: string;
+}
+
+type SidebarCard = QuickFacts | NavCard | ContactCard;
+
+interface Props {
+  sidebarPosition?: 'left' | 'right';
+  sidebar: SidebarCard[];
+  main: Section[];
+}
+
+const { sidebarPosition = 'right', sidebar, main } = Astro.props;
+---
+
+<section class="section section--white">
+  <div class="container">
+    <div class={`sidebar-layout sidebar-layout--${sidebarPosition}`}>
+      <div class="sidebar-layout__sidebar">
+        {sidebar.map((card) => {
+          if (card.cardKind === 'quick-facts') {
+            return (
+              <div class="sidebar-card sidebar-card--facts">
+                <h3 class="sidebar-card__title">{card.title}</h3>
+                <dl class="sidebar-card__list">
+                  {card.items.map((it) => (
+                    <>
+                      <dt>{it.label}</dt>
+                      <dd>{it.value}</dd>
+                    </>
+                  ))}
+                </dl>
+                {card.cta && (
+                  <a href={card.cta.href} class="btn btn-primary" style="width:100%;text-align:center;justify-content:center;">{card.cta.label}</a>
+                )}
+              </div>
+            );
+          }
+          if (card.cardKind === 'nav') {
+            return (
+              <div class="sidebar-card">
+                <h3 class="sidebar-card__title">{card.title}</h3>
+                <ul class="sidebar-card__nav">
+                  {card.items.map((it) => <li><a href={it.href}>{it.label}</a></li>)}
+                </ul>
+              </div>
+            );
+          }
+          return (
+            <div class="sidebar-card sidebar-card--contact">
+              <h3 class="sidebar-card__title">{card.title}</h3>
+              {card.name && <p class="sidebar-card__name"><strong>{card.name}</strong></p>}
+              {card.role && <p class="sidebar-card__role">{card.role}</p>}
+              {card.email && <p><a href={`mailto:${card.email}`}>{card.email}</a></p>}
+              {card.phone && <p><a href={`tel:${card.phone.replace(/[^\d+]/g, '')}`}>{card.phone}</a></p>}
+            </div>
+          );
+        })}
+      </div>
+      <div class="sidebar-layout__main">
+        <PageRenderer sections={main} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sidebar-layout {
+    display: grid;
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1024px) {
+    .sidebar-layout--right { grid-template-columns: minmax(0, 1fr) 320px; }
+    .sidebar-layout--left  { grid-template-columns: 320px minmax(0, 1fr); }
+    .sidebar-layout--left .sidebar-layout__sidebar { order: 0; }
+    .sidebar-layout--right .sidebar-layout__sidebar { order: 2; }
+  }
+  .sidebar-layout__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  @media (min-width: 1024px) {
+    .sidebar-layout__sidebar {
+      position: sticky;
+      top: calc(var(--space-xl) + 60px);
+      align-self: start;
+    }
+  }
+  /* The embedded PageRenderer produces <section> elements with their own
+     padding. Inside a sidebar the outer container already padded, so strip
+     internal section padding / backgrounds to avoid nesting visual clashes. */
+  .sidebar-layout__main :global(.section) {
+    padding-top: 0;
+    padding-bottom: var(--space-xl);
+    background: transparent !important;
+    color: inherit;
+  }
+  .sidebar-layout__main :global(.section > .container) {
+    padding: 0;
+    max-width: none;
+  }
+  .sidebar-card {
+    background: var(--color-blue-light);
+    padding: var(--space-lg);
+    border-radius: 8px;
+  }
+  .sidebar-card--facts { background: var(--color-green); color: white; }
+  .sidebar-card--facts .sidebar-card__title { color: white; }
+  .sidebar-card--facts dt { color: rgba(255,255,255,0.8); }
+  .sidebar-card--facts dd { color: white; }
+  .sidebar-card__title {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .sidebar-card__list {
+    margin: 0 0 var(--space-md);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.3rem var(--space-sm);
+  }
+  .sidebar-card__list dt {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
+    align-self: center;
+  }
+  .sidebar-card__list dd {
+    margin: 0;
+    font-weight: 600;
+  }
+  .sidebar-card__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .sidebar-card__nav a {
+    display: block;
+    padding: 0.4rem 0;
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,31,63,0.08);
+  }
+  .sidebar-card__nav a:hover { color: var(--color-green); }
+</style>

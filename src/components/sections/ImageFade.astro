@@ -1,0 +1,82 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Props {
+  image: Image;
+  fadeColor?: 'navy' | 'navy-dark' | 'green';
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  cta?: Cta;
+}
+
+const { image, fadeColor = 'navy', eyebrow, title, body, cta } = Astro.props;
+const fadeVar = { navy: '0,31,63', 'navy-dark': '0,22,44', green: '30,132,73' }[fadeColor];
+---
+
+<section class={`img-fade-section img-fade-section--${fadeColor}`}>
+  <img class="img-fade-section__img" src={image.src} alt={image.alt ?? ''} loading="lazy" />
+  <div class="img-fade-section__gradient" style={`--fade-rgb: ${fadeVar};`}></div>
+  <div class="container img-fade-section__content">
+    {eyebrow && <p class="img-fade-section__eyebrow">{eyebrow}</p>}
+    <h2 class="img-fade-section__title">{title}</h2>
+    {body && <p class="img-fade-section__body">{body}</p>}
+    {cta && <a href={cta.href} class={`btn btn-${cta.variant ?? 'primary'}`}>{cta.label}</a>}
+  </div>
+</section>
+
+<style>
+  .img-fade-section {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    color: white;
+  }
+  .img-fade-section__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .img-fade-section__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(var(--fade-rgb),0) 0%, rgba(var(--fade-rgb),0.95) 65%);
+    z-index: -1;
+  }
+  @media (max-width: 767px) {
+    .img-fade-section__gradient {
+      background: linear-gradient(to bottom, rgba(var(--fade-rgb),0) 0%, rgba(var(--fade-rgb),0.95) 60%);
+    }
+  }
+  .img-fade-section__content { max-width: 520px; margin-left: auto; text-align: right; }
+  @media (max-width: 767px) { .img-fade-section__content { margin: auto 0 0; text-align: left; padding-bottom: var(--space-2xl); } }
+  .img-fade-section__eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-sm);
+  }
+  .img-fade-section__title {
+    margin: 0 0 var(--space-md);
+    font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    color: white;
+  }
+  .img-fade-section__body { margin: 0 0 var(--space-md); opacity: 0.9; font-size: var(--text-lg); }
+</style>

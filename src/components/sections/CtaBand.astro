@@ -1,0 +1,28 @@
+---
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Props {
+  title: string;
+  body?: string;
+  cta: Cta;
+}
+
+const { title, body, cta } = Astro.props;
+const btnClass = `btn btn-${cta.variant ?? 'primary'} btn-lg`;
+---
+
+<section class="home-cta-band">
+  <div class="container">
+    <div class="home-cta-band__inner reveal">
+      <div class="home-cta-band__text">
+        <h2>{title}</h2>
+        {body && <p>{body}</p>}
+      </div>
+      <a href={cta.href} class={btnClass}>{cta.label}</a>
+    </div>
+  </div>
+</section>

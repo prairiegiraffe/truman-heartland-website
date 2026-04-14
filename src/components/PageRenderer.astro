@@ -1,0 +1,75 @@
+---
+// Switch on section.kind and render the matching component.
+// Unknown kinds fall back to legacy-html rendering of whatever `html` they
+// carry (or an empty string), so a malformed AI section can't blank the page.
+
+import type { Section } from '../lib/sections';
+
+import LegacyHtml from './sections/LegacyHtml.astro';
+import CustomBlock from './sections/CustomBlock.astro';
+import PageBanner from './sections/PageBanner.astro';
+import HeroBanner from './sections/HeroBanner.astro';
+import Split from './sections/Split.astro';
+import ImageSplit from './sections/ImageSplit.astro';
+import StatGrid from './sections/StatGrid.astro';
+import IconCards from './sections/IconCards.astro';
+import BorderedCards from './sections/BorderedCards.astro';
+import FeatureGrid from './sections/FeatureGrid.astro';
+import Timeline from './sections/Timeline.astro';
+import StepsNumbered from './sections/StepsNumbered.astro';
+import StorySpotlight from './sections/StorySpotlight.astro';
+import Testimonials from './sections/Testimonials.astro';
+import PricingTiers from './sections/PricingTiers.astro';
+import DetailsGrid from './sections/DetailsGrid.astro';
+import FaqAccordion from './sections/FaqAccordion.astro';
+import HighlightBox from './sections/HighlightBox.astro';
+import CtaBand from './sections/CtaBand.astro';
+import ImageMosaic from './sections/ImageMosaic.astro';
+import DualPanels from './sections/DualPanels.astro';
+import ImageQuote from './sections/ImageQuote.astro';
+import FloatingCards from './sections/FloatingCards.astro';
+import ImageFade from './sections/ImageFade.astro';
+import SidebarLayout from './sections/SidebarLayout.astro';
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections } = Astro.props;
+---
+
+{sections.map((s) => {
+  switch (s.kind) {
+    case 'legacy-html':     return <LegacyHtml html={s.html} hoistLead={s.hoistLead} />;
+    case 'custom-block':    return <CustomBlock label={s.label} html={s.html} bg={s.bg} />;
+    case 'page-banner':     return <PageBanner category={s.category} title={s.title} subtitle={s.subtitle} />;
+    case 'hero-banner':     return <HeroBanner backgroundImage={s.backgroundImage} overlayColor={s.overlayColor} minHeight={s.minHeight} eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle} buttons={s.buttons} alignment={s.alignment} parallax={s.parallax} />;
+    case 'split':           return <Split eyebrow={s.eyebrow} title={s.title} bodyHtml={s.bodyHtml} image={s.image} reverse={s.reverse} bg={s.bg} ctas={s.ctas} />;
+    case 'image-split':     return <ImageSplit eyebrow={s.eyebrow} title={s.title} bodyHtml={s.bodyHtml} image={s.image} imageOverlayStat={s.imageOverlayStat} imageOverlayLabel={s.imageOverlayLabel} reverse={s.reverse} ctas={s.ctas} />;
+    case 'stat-grid':       return <StatGrid eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'icon-cards':      return <IconCards eyebrow={s.eyebrow} title={s.title} bodyHtml={s.bodyHtml} columns={s.columns} bg={s.bg} items={s.items} />;
+    case 'bordered-cards':  return <BorderedCards eyebrow={s.eyebrow} title={s.title} columns={s.columns} bg={s.bg} items={s.items} />;
+    case 'feature-grid':    return <FeatureGrid eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'timeline':        return <Timeline eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'steps-numbered':  return <StepsNumbered eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'story-spotlight': return <StorySpotlight image={s.image} reverse={s.reverse} eyebrow={s.eyebrow} quote={s.quote} attribution={s.attribution} cta={s.cta} bg={s.bg} />;
+    case 'testimonials':    return <Testimonials eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'pricing-tiers':   return <PricingTiers eyebrow={s.eyebrow} title={s.title} bodyHtml={s.bodyHtml} bg={s.bg} items={s.items} />;
+    case 'details-grid':    return <DetailsGrid eyebrow={s.eyebrow} title={s.title} bg={s.bg} columns={s.columns} items={s.items} />;
+    case 'faq-accordion':   return <FaqAccordion eyebrow={s.eyebrow} title={s.title} bg={s.bg} items={s.items} />;
+    case 'highlight-box':   return <HighlightBox icon={s.icon} title={s.title} body={s.body} tone={s.tone} />;
+    case 'cta-band':        return <CtaBand title={s.title} body={s.body} cta={s.cta} />;
+    case 'image-mosaic':    return <ImageMosaic eyebrow={s.eyebrow} title={s.title} items={s.items} />;
+    case 'dual-panels':     return <DualPanels items={s.items as [any, any]} />;
+    case 'image-quote':     return <ImageQuote backgroundImage={s.backgroundImage} overlayColor={s.overlayColor} quote={s.quote} attribution={s.attribution} />;
+    case 'floating-cards':  return <FloatingCards backgroundImage={s.backgroundImage} eyebrow={s.eyebrow} title={s.title} body={s.body} items={s.items} />;
+    case 'image-fade':      return <ImageFade image={s.image} fadeColor={s.fadeColor} eyebrow={s.eyebrow} title={s.title} body={s.body} cta={s.cta} />;
+    case 'sidebar-layout':  return <SidebarLayout sidebarPosition={s.sidebarPosition} sidebar={s.sidebar} main={s.main} />;
+    default: {
+      // Exhaustiveness fallback. If a section kind slips through, show nothing
+      // rather than break the build.
+      const _exhaustive: never = s;
+      return null;
+    }
+  }
+})}

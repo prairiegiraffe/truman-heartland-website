@@ -1,0 +1,78 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'white', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} accent={true} />}
+    <ol class="timeline">
+      {items.map((it) => (
+        <li class="timeline__item">
+          <div class="timeline__marker" aria-hidden="true" />
+          <div class="timeline__content">
+            <h3 class="timeline__title">{it.title}</h3>
+            <div class="timeline__body" set:html={it.body} />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    max-width: 760px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-gray-200);
+  }
+  .timeline__item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: var(--space-xl);
+  }
+  .timeline__item:last-child { margin-bottom: 0; }
+  .timeline__marker {
+    position: absolute;
+    left: 4px;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-green);
+    border: 3px solid white;
+    box-shadow: 0 0 0 1px var(--color-green);
+  }
+  .timeline__title {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+  }
+  .timeline__body { color: var(--color-text); }
+  .timeline__body :global(p:last-child) { margin-bottom: 0; }
+</style>

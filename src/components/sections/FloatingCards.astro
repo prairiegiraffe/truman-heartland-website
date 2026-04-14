@@ -1,0 +1,130 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Item {
+  icon?: string;
+  title: string;
+  body: string;
+  cta?: Cta;
+}
+
+interface Props {
+  backgroundImage: Image;
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  items: Item[];
+}
+
+const { backgroundImage, eyebrow, title, body, items } = Astro.props;
+---
+
+<section class="floating-cards">
+  <img class="floating-cards__bg" src={backgroundImage.src} alt={backgroundImage.alt ?? ''} loading="lazy" />
+  <div class="floating-cards__overlay"></div>
+  <div class="container floating-cards__content">
+    <div class="floating-cards__intro">
+      {eyebrow && <p class="floating-cards__eyebrow">{eyebrow}</p>}
+      <h2 class="floating-cards__title">{title}</h2>
+      {body && <p class="floating-cards__body">{body}</p>}
+    </div>
+    <div class="floating-cards__grid">
+      {items.map((it) => (
+        <div class="floating-card">
+          {it.icon && <div class="floating-card__icon" set:html={it.icon} />}
+          <h3 class="floating-card__title">{it.title}</h3>
+          <div class="floating-card__body" set:html={it.body} />
+          {it.cta && (
+            <a href={it.cta.href} class="floating-card__cta">{it.cta.label} →</a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .floating-cards {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    color: white;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .floating-cards__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .floating-cards__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 12, 24, 0.75);
+    z-index: -1;
+  }
+  .floating-cards__intro { max-width: 720px; margin-bottom: var(--space-2xl); }
+  .floating-cards__eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-sm);
+  }
+  .floating-cards__title {
+    margin: 0 0 var(--space-md);
+    font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    color: white;
+  }
+  .floating-cards__body {
+    margin: 0;
+    opacity: 0.9;
+    font-size: var(--text-lg);
+  }
+  .floating-cards__grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) { .floating-cards__grid { grid-template-columns: repeat(3, 1fr); } }
+  .floating-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: var(--space-lg);
+    border-radius: 10px;
+  }
+  .floating-card__icon {
+    width: 36px;
+    height: 36px;
+    color: var(--color-green);
+    margin-bottom: var(--space-sm);
+  }
+  .floating-card__icon :global(svg) { width: 100%; height: 100%; }
+  .floating-card__title {
+    margin: 0 0 var(--space-sm);
+    color: white;
+    font-size: var(--text-lg);
+  }
+  .floating-card__body { color: rgba(255,255,255,0.82); }
+  .floating-card__body :global(p:last-child) { margin-bottom: 0; }
+  .floating-card__cta {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    color: var(--color-green);
+    font-weight: 600;
+  }
+</style>

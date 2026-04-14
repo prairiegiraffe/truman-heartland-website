@@ -1,0 +1,111 @@
+---
+import { bgClass, type BgTone } from './bg';
+
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Props {
+  image: Image;
+  reverse?: boolean;
+  eyebrow?: string;
+  quote: string;
+  attribution?: string;
+  cta?: Cta;
+  bg?: BgTone;
+}
+
+const { image, reverse = false, eyebrow, quote, attribution, cta, bg = 'navy-dark' } = Astro.props;
+const isDark = bg === 'navy' || bg === 'navy-dark' || bg === 'green';
+---
+
+<section class={`section ${bgClass(bg)} story-spotlight ${isDark ? 'story-spotlight--dark' : ''}`}>
+  <div class="container">
+    <div class={`story-spotlight__grid ${reverse ? 'story-spotlight__grid--reverse' : ''}`}>
+      <div class="story-spotlight__image">
+        {image.src ? (
+          <img src={image.src} alt={image.alt ?? ''} loading="lazy" />
+        ) : (
+          <div class="story-spotlight__placeholder" aria-hidden="true">Image</div>
+        )}
+      </div>
+      <div class="story-spotlight__text">
+        {eyebrow && <p class="story-spotlight__eyebrow">{eyebrow}</p>}
+        <blockquote class="story-spotlight__quote">
+          <p>{quote}</p>
+        </blockquote>
+        {attribution && <p class="story-spotlight__attribution">— {attribution}</p>}
+        {cta && (
+          <a href={cta.href} class={`btn btn-${cta.variant ?? 'outline-white'}`} style="margin-top: var(--space-md);">
+            {cta.label}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story-spotlight__grid {
+    display: grid;
+    gap: var(--space-2xl);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .story-spotlight__grid { grid-template-columns: 1fr 1.2fr; }
+    .story-spotlight__grid--reverse .story-spotlight__image { order: 2; }
+  }
+  .story-spotlight__image {
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 320px;
+    position: relative;
+  }
+  .story-spotlight__image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story-spotlight__placeholder {
+    aspect-ratio: 4/3;
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.6);
+  }
+  .story-spotlight__eyebrow {
+    color: var(--color-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-sm);
+  }
+  .story-spotlight__quote {
+    margin: 0 0 var(--space-md);
+    border: none;
+    padding: 0;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .story-spotlight__quote p::before { content: '“'; }
+  .story-spotlight__quote p::after { content: '”'; }
+  .story-spotlight--dark .story-spotlight__quote,
+  .story-spotlight--dark .story-spotlight__attribution { color: white; }
+  .story-spotlight__attribution {
+    margin: 0;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+</style>

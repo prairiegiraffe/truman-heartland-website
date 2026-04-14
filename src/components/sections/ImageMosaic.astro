@@ -1,0 +1,86 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+interface Image {
+  src: string;
+  alt?: string;
+}
+
+interface Item {
+  image: Image;
+  title: string;
+  body?: string;
+  wide?: boolean;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  items: Item[];
+}
+
+const { eyebrow, title, items } = Astro.props;
+---
+
+<section class="section section--white">
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} accent={true} />}
+    <div class="img-mosaic">
+      {items.map((it) => (
+        <div class={`img-mosaic__item ${it.wide ? 'img-mosaic__item--wide' : ''}`}>
+          <img src={it.image.src} alt={it.image.alt ?? ''} loading="lazy" />
+          <div class="img-mosaic__overlay">
+            <h3 class="img-mosaic__title">{it.title}</h3>
+            {it.body && <p class="img-mosaic__body">{it.body}</p>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .img-mosaic {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .img-mosaic { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .img-mosaic { grid-template-columns: repeat(3, 1fr); } }
+  .img-mosaic__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+  }
+  .img-mosaic__item--wide { grid-column: span 1; }
+  @media (min-width: 1024px) {
+    .img-mosaic__item--wide { grid-column: span 2; aspect-ratio: 2 / 1; }
+  }
+  .img-mosaic__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .img-mosaic__overlay {
+    position: absolute;
+    inset: 0;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    background: linear-gradient(to top, rgba(0,31,63,0.9) 0%, rgba(0,31,63,0.15) 55%, rgba(0,31,63,0) 100%);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .img-mosaic__item:hover .img-mosaic__overlay { opacity: 1; }
+  .img-mosaic__item:hover img { transform: scale(1.08); }
+  .img-mosaic__title {
+    margin: 0;
+    font-size: var(--text-lg);
+    color: white;
+  }
+  .img-mosaic__body { margin: 0.25rem 0 0; font-size: var(--text-sm); opacity: 0.9; }
+</style>

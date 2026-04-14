@@ -1,0 +1,28 @@
+---
+interface Props {
+  category?: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { category, title, subtitle } = Astro.props;
+---
+
+<div class="page-banner">
+  <div class="container">
+    {category && <p class="page-banner__category">{category}</p>}
+    <h1 class="page-banner__title">{title}</h1>
+    {subtitle && <p class="page-banner__subtitle">{subtitle}</p>}
+  </div>
+</div>
+
+<style>
+  .page-banner__category {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+</style>

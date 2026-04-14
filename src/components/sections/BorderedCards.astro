@@ -1,0 +1,65 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  columns?: 2 | 3 | 4;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, columns = 4, bg = 'white', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} accent={true} />}
+    <div class={`bordered-cards bordered-cards--cols-${columns}`}>
+      {items.map((it) => (
+        <div class="bordered-card">
+          <h3 class="bordered-card__title">{it.title}</h3>
+          <div class="bordered-card__body" set:html={it.body} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bordered-cards {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .bordered-cards--cols-2, .bordered-cards--cols-3, .bordered-cards--cols-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .bordered-cards--cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .bordered-cards--cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .bordered-cards--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  .bordered-card {
+    background: white;
+    padding: var(--space-lg);
+    border-left: 4px solid var(--color-green);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .bordered-card__title {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+  }
+  .bordered-card__body { margin: 0; color: var(--color-text); }
+  .bordered-card__body :global(p:last-child) { margin-bottom: 0; }
+</style>

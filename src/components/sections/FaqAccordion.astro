@@ -1,0 +1,77 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'light', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} center={true} accent={true} />}
+    <div class="faq-list">
+      {items.map((it) => (
+        <details class="faq-item">
+          <summary class="faq-item__question">
+            <span>{it.question}</span>
+          </summary>
+          <div class="faq-item__answer" set:html={it.answer} />
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .faq-item {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .faq-item__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    font-weight: 600;
+    color: var(--color-navy);
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--text-base);
+  }
+  .faq-item__question::-webkit-details-marker { display: none; }
+  .faq-item__question::after {
+    content: '+';
+    color: var(--color-green);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] .faq-item__question::after { content: '−'; }
+  .faq-item__answer {
+    padding: 0 var(--space-lg) var(--space-md);
+    color: var(--color-text);
+  }
+  .faq-item__answer :global(p:first-child) { margin-top: 0; }
+  .faq-item__answer :global(p:last-child) { margin-bottom: 0; }
+</style>

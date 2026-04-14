@@ -1,0 +1,72 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  number?: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'white', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} accent={true} />}
+    <ol class="steps">
+      {items.map((it, i) => (
+        <li class="steps__item">
+          <span class="steps__number">{it.number ?? String(i + 1)}</span>
+          <div class="steps__content">
+            <h3 class="steps__title">{it.title}</h3>
+            <div class="steps__body" set:html={it.body} />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+  .steps__item {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+  .steps__number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-green);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--text-lg);
+  }
+  .steps__title {
+    margin: 0 0 var(--space-xs);
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+  }
+  .steps__body { color: var(--color-text); }
+  .steps__body :global(p:last-child) { margin-bottom: 0; }
+</style>

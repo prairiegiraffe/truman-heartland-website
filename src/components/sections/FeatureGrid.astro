@@ -1,0 +1,62 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Item {
+  number?: string;
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bg = 'white', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} accent={true} />}
+    <div class="feature-grid">
+      {items.map((it, i) => (
+        <div class="feature-grid__item">
+          <span class="feature-grid__number">{it.number ?? String(i + 1).padStart(2, '0')}</span>
+          <h3 class="feature-grid__title">{it.title}</h3>
+          <div class="feature-grid__body" set:html={it.body} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-grid {
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .feature-grid__item { position: relative; }
+  .feature-grid__number {
+    display: block;
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-green);
+    opacity: 0.35;
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+  }
+  .feature-grid__title {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-xl);
+    color: var(--color-navy);
+  }
+  .feature-grid__body { color: var(--color-text); }
+  .feature-grid__body :global(p:last-child) { margin-bottom: 0; }
+</style>

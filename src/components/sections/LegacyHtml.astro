@@ -1,0 +1,12 @@
+---
+import ContentRenderer from '../ContentRenderer.astro';
+
+interface Props {
+  html: string;
+  hoistLead?: boolean;
+}
+
+const { html, hoistLead = false } = Astro.props;
+---
+
+<ContentRenderer html={html} hoistLead={hoistLead} />

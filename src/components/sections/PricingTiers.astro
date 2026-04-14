@@ -1,0 +1,154 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import { bgClass, type BgTone } from './bg';
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-white' | 'ghost';
+}
+
+interface Item {
+  title: string;
+  price: string;
+  priceSuffix?: string;
+  features?: string[];
+  featured?: boolean;
+  featuredLabel?: string;
+  cta?: Cta;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  bodyHtml?: string;
+  bg?: BgTone;
+  items: Item[];
+}
+
+const { eyebrow, title, bodyHtml, bg = 'light', items } = Astro.props;
+---
+
+<section class={`section ${bgClass(bg)}`}>
+  <div class="container">
+    {title && <SectionHeader eyebrow={eyebrow} title={title} center={true} accent={true} />}
+    {bodyHtml && <div class="pricing-tiers__body prose" set:html={bodyHtml} />}
+    <div class={`pricing-grid pricing-grid--${items.length}`}>
+      {items.map((it) => (
+        <div class={`pricing-card ${it.featured ? 'pricing-card--featured' : ''}`}>
+          {it.featured && <span class="pricing-card__badge">{it.featuredLabel ?? 'Most popular'}</span>}
+          <h3 class="pricing-card__title">{it.title}</h3>
+          <p class="pricing-card__price">
+            <span>{it.price}</span>
+            {it.priceSuffix && <small>{it.priceSuffix}</small>}
+          </p>
+          {it.features && it.features.length > 0 && (
+            <ul class="pricing-card__features">
+              {it.features.map((f) => <li>{f}</li>)}
+            </ul>
+          )}
+          {it.cta && (
+            <a href={it.cta.href} class={`btn btn-${it.cta.variant ?? (it.featured ? 'primary' : 'outline')} pricing-card__cta`}>
+              {it.cta.label}
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-tiers__body {
+    max-width: 780px;
+    margin: 0 auto var(--space-xl);
+    text-align: center;
+  }
+  .pricing-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  @media (min-width: 640px) {
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .pricing-grid--2 { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin: 0 auto; }
+    .pricing-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .pricing-grid--4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  .pricing-card {
+    position: relative;
+    background: white;
+    padding: var(--space-xl);
+    border-radius: 10px;
+    border: 1px solid var(--color-gray-200);
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card--featured {
+    border-color: var(--color-green);
+    border-width: 2px;
+    box-shadow: 0 12px 28px rgba(0,31,63,0.12);
+  }
+  .pricing-card__badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-green);
+    color: white;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+  .pricing-card__title {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+  }
+  .pricing-card__price {
+    margin: 0 0 var(--space-md);
+    font-size: var(--text-3xl);
+    color: var(--color-navy);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .pricing-card__price small {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+  .pricing-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+    flex: 1;
+  }
+  .pricing-card__features li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+  }
+  .pricing-card__features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-green);
+    font-weight: 700;
+  }
+  .pricing-card__cta {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+</style>

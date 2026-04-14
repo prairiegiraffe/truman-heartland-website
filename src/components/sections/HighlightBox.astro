@@ -1,0 +1,55 @@
+---
+interface Props {
+  icon?: string; // SVG markup
+  title: string;
+  body: string;
+  tone?: 'info' | 'success' | 'warning';
+}
+
+const { icon, title, body, tone = 'info' } = Astro.props;
+---
+
+<div class={`highlight-box highlight-box--${tone}`}>
+  {icon && <div class="highlight-box__icon" set:html={icon} />}
+  <div class="highlight-box__content">
+    <h3 class="highlight-box__title">{title}</h3>
+    <div class="highlight-box__body" set:html={body} />
+  </div>
+</div>
+
+<style>
+  .highlight-box {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    padding: var(--space-lg);
+    border-radius: 8px;
+    border-left: 4px solid var(--color-green);
+    background: var(--color-blue-light);
+    margin: var(--space-lg) 0;
+  }
+  .highlight-box--success { border-left-color: var(--color-green); }
+  .highlight-box--warning { border-left-color: #e6a700; background: #fff8e1; }
+  .highlight-box__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: var(--color-navy);
+  }
+  .highlight-box__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .highlight-box__title {
+    margin: 0 0 0.35rem;
+    font-size: var(--text-lg);
+    color: var(--color-navy);
+  }
+  .highlight-box__body {
+    margin: 0;
+    color: var(--color-text);
+  }
+  .highlight-box__body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

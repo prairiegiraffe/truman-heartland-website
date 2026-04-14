@@ -1,6 +1,8 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro';
 import { getDB, getPage, listVersions } from '../../../lib/d1';
+import { TEMPLATES, UNIVERSAL_SECTIONS, getTemplate } from '../../../lib/templates';
+import { SECTION_KINDS } from '../../../lib/sections';
 
 export const prerender = false;
 
@@ -13,6 +15,11 @@ if (!page) {
   return new Response('page not found', { status: 404 });
 }
 const versions = await listVersions(db, slug, 20);
+const template = getTemplate(page.template);
+const preferredKinds = template ? template.preferredSections : [];
+const otherKinds = SECTION_KINDS.filter(
+  (k) => !preferredKinds.includes(k) && !UNIVERSAL_SECTIONS.includes(k)
+);
 
 function fmtDate(ms: number): string {
   return new Date(ms).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
@@ -39,17 +46,25 @@ function fmtDate(ms: number): string {
           <label>Subtitle <input name="subtitle" type="text" value={page.subtitle ?? ''} /></label>
           <label>Template
             <select name="template">
-              <option value="legacy" selected={page.template === 'legacy'}>legacy (WordPress HTML)</option>
-              <option value="pillar" selected={page.template === 'pillar'}>pillar</option>
-              <option value="program" selected={page.template === 'program'}>program</option>
-              <option value="landing" selected={page.template === 'landing'}>landing</option>
+              {TEMPLATES.map((t) => (
+                <option value={t.id} selected={page.template === t.id}>{t.label}</option>
+              ))}
             </select>
           </label>
+          {template && (
+            <p class="hint">
+              {template.description}
+            </p>
+          )}
         </section>
 
         <section class="editor-card">
           <h2>Sections (JSON)</h2>
-          <p class="hint">One JSON array of sections. Schema depends on template. For now, edit raw JSON; Phase 3 adds per-type forms.</p>
+          <p class="hint">
+            JSON array of sections. Each section has a <code>kind</code> plus fields for that type.
+            Preferred for this template: {preferredKinds.length > 0 ? preferredKinds.join(', ') : '—'}.
+            Always available: {UNIVERSAL_SECTIONS.join(', ')}. Other kinds ({otherKinds.length}): use when they fit better.
+          </p>
           <textarea name="sections" rows="22" spellcheck="false" set:text={JSON.stringify(page.sections, null, 2)} />
         </section>
 
