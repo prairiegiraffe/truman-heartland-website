@@ -10,6 +10,7 @@
       "label": "For Nonprofits",
       "href": "/grant-seekers",
       "layout": "featured-events",
+      "cardsHeading": "For Nonprofits",
       "featuredEvent": {
         "title": "Grantseekers",
         "description": "Resources and funding opportunities for nonprofits serving our communities.",
@@ -55,6 +56,7 @@
       "label": "For Students",
       "href": "/students",
       "layout": "two-boxes",
+      "cardsHeading": "For Students",
       "boxes": [
         {
           "title": "Youth Advisory Council",
@@ -94,7 +96,9 @@
                 { "label": "Application Process", "href": "/students/scholarships/scholarship-faqs" },
                 { "label": "FAFSA", "href": "/students/scholarships/scholarship-faqs" },
                 { "label": "Awards Reception", "href": "/students/scholarships/scholarship-recipients" },
-                { "label": "Renewal Instructions", "href": "/students/scholarships/scholarship-faqs" }
+                { "label": "Renewal Instructions", "href": "/students/scholarships/scholarship-faqs" },
+                { "label": "For Education Foundations", "href": "/students/scholarships" },
+                { "label": "For School Counselors", "href": "/students/scholarships" }
               ]
             }
           ]
@@ -109,6 +113,7 @@
       "label": "For Financial Advisors",
       "href": "/professional-advisors",
       "layout": "cards",
+      "cardsHeading": "For Financial Advisors",
       "cards": [
         {
           "label": "Professional Advisor Program",
@@ -144,6 +149,10 @@
           ]
         }
       ]
+    },
+    {
+      "label": "For Fundholders",
+      "href": "/fundholder-resources"
     }
   ],
   "main": [
@@ -151,18 +160,19 @@
       "label": "Charitable Giving",
       "href": "/donors",
       "layout": "cards",
+      "cardsHeading": "Learn About Charitable Giving",
       "cards": [
-        {
-          "label": "Ways to Give",
-          "description": "Explore the many ways you can make a difference through charitable giving.",
-          "href": "/donors/make-a-gift",
-          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_BannerImages/_square/Dec-Newsletter-Thompsons.png"
-        },
         {
           "label": "When to Open a Fund",
           "description": "Learn when starting a fund is right for your philanthropic goals.",
           "href": "/donors/make-a-gift",
           "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/Money-Growing.png"
+        },
+        {
+          "label": "Ways to Give",
+          "description": "Explore the many ways you can make a difference through charitable giving.",
+          "href": "/donors/make-a-gift",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_BannerImages/_square/Dec-Newsletter-Thompsons.png"
         },
         {
           "label": "What to Give",
@@ -199,7 +209,7 @@
       "label": "Fundholder Services",
       "href": "/fundholder-resources",
       "layout": "cards",
-      "cardsHeading": "Welcome",
+      "cardsHeading": "Welcome to Fundholder Services",
       "cards": [
         {
           "label": "DAF Fundholders",
@@ -239,7 +249,9 @@
             { "label": "Bequest Language", "href": "/donors/planned-giving" },
             { "label": "NonProfit Agency Lookup", "href": "/fundholder-resources" },
             { "label": "Fund Directory", "href": "/fundholder-resources" },
-            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
+            { "label": "Personalized Guidance", "href": "/fundholder-resources" },
+            { "label": "Fill the Gap", "href": "/events/fill-the-gap-campaign" },
+            { "label": "Behind the Scenes", "href": "/events/behind-the-scenes-csl-drop-in-center" }
           ]
         }
       ]
@@ -248,6 +260,7 @@
       "label": "Special Events",
       "href": "/gala",
       "layout": "featured-events",
+      "cardsHeading": "Join us at Special Events",
       "featuredEvent": {
         "title": "Toast to our Towns Gala",
         "description": "Our signature annual fundraiser celebrating community impact across the heartland.",
@@ -286,6 +299,7 @@
             { "label": "Grants Workshop", "href": "/grant-seekers/resources" },
             { "label": "YAC - Strike in the Night", "href": "/students/youth-advisory-council/annual-fundraiser" },
             { "label": "YAC - Fill Those Trucks", "href": "/students/youth-advisory-council/food-drive" },
+            { "label": "Behind the Scenes", "href": "/events/behind-the-scenes-csl-drop-in-center" },
             { "label": "Fund Directory", "href": "/fundholder-resources" },
             { "label": "Personalized Guidance", "href": "/fundholder-resources" }
           ]
@@ -293,9 +307,10 @@
       ]
     },
     {
-      "label": "Initiatives",
+      "label": "Community Impact",
       "href": "/about/strategic-initiatives",
       "layout": "cards",
+      "cardsHeading": "Learn about our Programs",
       "cards": [
         {
           "label": "Affordable Housing",
@@ -341,6 +356,7 @@
       "label": "About Us",
       "href": "/about",
       "layout": "cards",
+      "cardsHeading": "About Us",
       "cards": [
         {
           "label": "Staff",
@@ -359,6 +375,12 @@
           "description": "Local advisory boards guide community investment across the heartland.",
           "href": "/about/board/blue-springs-grain-valley-advisory-board",
           "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/THCF-Blue-Springs-Mural.png"
+        },
+        {
+          "label": "What is a Community Foundation?",
+          "description": "Discover how community foundations strengthen the places we call home.",
+          "href": "/about",
+          "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Admin_Misc/_largeBodyImage/Money-Growing.png"
         }
       ],
       "cta": {
@@ -371,7 +393,9 @@
           "links": [
             { "label": "Financials & Annual Reports", "href": "/about/annual-reports" },
             { "label": "Our History", "href": "/about" },
-            { "label": "What Is a Community Foundation?", "href": "/about" },
+            { "label": "Mission & Vision", "href": "/about" },
+            { "label": "Strategic Plan", "href": "/about" },
+            { "label": "Become a Board Member", "href": "/about/board" },
             { "label": "News", "href": "/about/news" },
             { "label": "Events", "href": "/about/events-calendar" }
           ]
@@ -379,9 +403,10 @@
       ]
     },
     {
-      "label": "Get Involved",
+      "label": "Give Now",
       "href": "/donors/make-a-gift",
       "layout": "cards",
+      "cardsHeading": "Invest in Your Community",
       "cards": [
         {
           "label": "Open a Fund",
@@ -418,6 +443,8 @@
           "links": [
             { "label": "Give to a Fund", "href": "/donors/give-now" },
             { "label": "Join the Eastland Giving Circle", "href": "/donors/make-a-gift" },
+            { "label": "Fill the Gap", "href": "/events/fill-the-gap-campaign" },
+            { "label": "Become a Board Member", "href": "/about/board" },
             { "label": "Events Calendar", "href": "/about/events-calendar" },
             { "label": "News", "href": "/about/news" }
           ]

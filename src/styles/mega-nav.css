@@ -245,6 +245,10 @@
   border-bottom: 2px solid var(--color-gray-200);
 }
 
+.mega-panel__cards-heading--standalone {
+  margin: 0 0 var(--space-lg) 0;
+}
+
 .mega-panel__cards-grid {
   display: grid;
   grid-template-columns: 1fr;

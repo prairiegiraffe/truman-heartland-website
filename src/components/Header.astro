@@ -96,19 +96,24 @@ const main: NavItem[] = (navData as any).main;
   <!-- Tier 2: Audience bar (green) -->
   <div class="audience-bar">
     <div class="container audience-bar__inner">
-      <span class="audience-bar__label">I'm a:</span>
       {audiences.map((item, index) => (
-        <button
-          class="audience-bar__link"
-          aria-expanded="false"
-          aria-controls={`audience-panel-${index}`}
-          data-mega-trigger
-        >
-          {item.label}
-          <svg class="audience-bar__chevron" width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        item.layout || (item.groups && item.groups.length > 0) ? (
+          <button
+            class="audience-bar__link"
+            aria-expanded="false"
+            aria-controls={`audience-panel-${index}`}
+            data-mega-trigger
+          >
+            {item.label}
+            <svg class="audience-bar__chevron" width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        ) : (
+          <a href={item.href} class="audience-bar__link audience-bar__link--direct">
+            {item.label}
+          </a>
+        )
       ))}
     </div>
   </div>
@@ -172,6 +177,7 @@ const main: NavItem[] = (navData as any).main;
 
   <!-- Audience Mega Panels -->
   {audiences.map((item, index) => (
+    (item.layout || (item.groups && item.groups.length > 0)) && (
     <div
       id={`audience-panel-${index}`}
       class="mega-panel"
@@ -181,6 +187,10 @@ const main: NavItem[] = (navData as any).main;
       <div class="container">
         {item.layout === 'featured-events' && item.featuredEvent ? (
           /* Featured box + cards layout */
+          <div>
+            {item.cardsHeading && (
+              <h3 class="mega-panel__cards-heading mega-panel__cards-heading--standalone">{item.cardsHeading}</h3>
+            )}
           <div class="mega-panel__events-layout">
             <div class="mega-panel__events-columns">
               <div class="mega-panel__event-box">
@@ -248,9 +258,13 @@ const main: NavItem[] = (navData as any).main;
               </div>
             )}
           </div>
+          </div>
         ) : item.layout === 'two-boxes' && item.boxes ? (
           /* Two-box layout (e.g., For Students) */
           <div class="mega-panel__two-boxes-wrapper">
+            {item.cardsHeading && (
+              <h3 class="mega-panel__cards-heading mega-panel__cards-heading--standalone">{item.cardsHeading}</h3>
+            )}
             <div class="mega-panel__two-boxes">
               {item.boxes.map((box) => (
                 <div class="mega-panel__box">
@@ -372,6 +386,7 @@ const main: NavItem[] = (navData as any).main;
         ) : null}
       </div>
     </div>
+    )
   ))}
 
   <!-- Main Nav Mega Panels -->
@@ -436,6 +451,10 @@ const main: NavItem[] = (navData as any).main;
             </div>
           ) : item.layout === 'featured-events' && item.featuredEvent ? (
             /* Featured events layout (Special Events) */
+            <div>
+              {item.cardsHeading && (
+                <h3 class="mega-panel__cards-heading mega-panel__cards-heading--standalone">{item.cardsHeading}</h3>
+              )}
             <div class="mega-panel__events-layout">
               {/* 3 columns: Gala box | Scholarship card | Grants card */}
               <div class="mega-panel__events-columns">
@@ -498,6 +517,7 @@ const main: NavItem[] = (navData as any).main;
                   )}
                 </div>
               )}
+            </div>
             </div>
           ) : (
             /* Standard grouped layout */
