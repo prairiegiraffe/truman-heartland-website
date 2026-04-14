@@ -149,15 +149,26 @@ export function extractLead(html: string): string | null {
   cleanupLegacy(container);
   stripEmpty(container);
   const children = container.childNodes.filter((n) => n.nodeType === 1) as HTMLElement[];
-  // Lead = first <p class="largetext"> if it exists and comes before any heading;
-  // otherwise the first non-empty <p> before the first heading.
   const firstHeadingIdx = children.findIndex((c) => c.tagName === "H2" || c.tagName === "H3");
   const scope = firstHeadingIdx === -1 ? children : children.slice(0, firstHeadingIdx);
-  const firstP = scope.find((n) => n.tagName === "P" && n.text.replace(/\s+/g, "").length > 0);
-  if (!firstP) return null;
-  // Strip wrapping <strong> etc. — return inner text so the banner can style it.
-  const text = firstP.text.replace(/\s+/g, " ").trim();
-  return text || null;
+  // Gather pre-heading paragraphs into the subtitle — avoids orphan "intro"
+  // sections for short pages. Cap combined length so dense history paragraphs
+  // don't bloat the banner.
+  const LEAD_CAP = 300;
+  const paragraphs = scope
+    .filter((n) => n.tagName === "P")
+    .map((p) => p.text.replace(/\s+/g, " ").trim())
+    .filter((t) => t.length > 0);
+  if (paragraphs.length === 0) return null;
+  const out: string[] = [paragraphs[0]];
+  for (let k = 1; k < paragraphs.length && k < 2; k++) {
+    if ([...out, paragraphs[k]].join(" ").length <= LEAD_CAP) {
+      out.push(paragraphs[k]);
+    } else {
+      break;
+    }
+  }
+  return out.join(" ");
 }
 
 export function segment(html: string): Section[] {
@@ -181,20 +192,29 @@ export function segment(html: string): Section[] {
 
   let introNodes: HTMLElement[] = [];
   if (preH2.length > 0) {
-    // First text-bearing node becomes the lead; everything else goes into intro
-    const firstTextIdx = preH2.findIndex(
-      (n) => n.tagName === "P" && n.text.replace(/\s+/g, "").length > 0
-    );
-    if (firstTextIdx >= 0) {
-      const leadHtml = preH2[firstTextIdx].toString().trim();
-      if (leadHtml) sections.push({ kind: "lead", html: leadHtml });
-      introNodes = [
-        ...preH2.slice(0, firstTextIdx),
-        ...preH2.slice(firstTextIdx + 1),
-      ];
-    } else {
-      introNodes = preH2;
+    // Consume pre-heading paragraphs as the lead, same cap as extractLead()
+    const LEAD_CAP = 300;
+    const consumedLeadIdxs: number[] = [];
+    const leadHtmlParts: string[] = [];
+    let leadLength = 0;
+    for (let k = 0; k < preH2.length && consumedLeadIdxs.length < 2; k++) {
+      const n = preH2[k];
+      if (n.tagName === "P" && n.text.replace(/\s+/g, "").length > 0) {
+        const textLen = n.text.replace(/\s+/g, " ").trim().length;
+        if (consumedLeadIdxs.length === 0 || leadLength + textLen <= LEAD_CAP) {
+          consumedLeadIdxs.push(k);
+          leadHtmlParts.push(n.toString().trim());
+          leadLength += textLen;
+        } else {
+          break;
+        }
+      }
     }
+    if (leadHtmlParts.length > 0) {
+      sections.push({ kind: "lead", html: leadHtmlParts.join("\n") });
+    }
+    const consumedSet = new Set(consumedLeadIdxs);
+    introNodes = preH2.filter((_, k) => !consumedSet.has(k));
   }
 
   // Emit the intro as its own prose/split section if it has content
