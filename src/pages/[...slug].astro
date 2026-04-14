@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Breadcrumb from "../components/Breadcrumb.astro";
+import ContentRenderer from "../components/ContentRenderer.astro";
+import PageCTA from "../components/PageCTA.astro";
 import allPages from "../data/pages.json";
 
 export function getStaticPaths() {
-  // Paths handled by other routes or that should be skipped
   const skipPaths = new Set([
-    "/",           // handled by index.astro
-    "/news",       // redirect to /about/news (the news listing page)
+    "/",
+    "/news",
   ]);
 
-  // Skip admin/junk paths
   const skipPrefixes = ["/cpadmin"];
 
   return allPages
@@ -20,7 +20,6 @@ export function getStaticPaths() {
       return true;
     })
     .map((page: any) => {
-      // Convert path like "/about/board" to slug segments ["about", "board"]
       const slug = page.path.replace(/^\//, "").split("/");
       return {
         params: { slug: slug.join("/") || undefined },
@@ -30,6 +29,13 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
+
+const path: string = page.path || "";
+const usePolishedRenderer =
+  !path.startsWith("/story") &&
+  !path.startsWith("/about/news") &&
+  !path.startsWith("/about/events-calendar") &&
+  path !== "/search";
 ---
 
 <Layout title={page.title}>
@@ -41,11 +47,18 @@ const { page } = Astro.props;
 
   <Breadcrumb />
 
-  <div class="page-content">
-    <div class="container">
-      <div class="article-body prose">
-        <Fragment set:html={page.body} />
+  {usePolishedRenderer ? (
+    <>
+      <ContentRenderer html={page.body} />
+      <PageCTA path={path} />
+    </>
+  ) : (
+    <div class="page-content">
+      <div class="container">
+        <div class="article-body prose">
+          <Fragment set:html={page.body} />
+        </div>
       </div>
     </div>
-  </div>
+  )}
 </Layout>

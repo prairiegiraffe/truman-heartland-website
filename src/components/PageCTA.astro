@@ -1,0 +1,90 @@
+---
+export interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+
+type Variant = { eyebrow: string; title: string; body: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
+
+function variantFor(p: string): Variant {
+  if (p.startsWith("/grant-seekers")) {
+    return {
+      eyebrow: "For Nonprofits",
+      title: "Ready to apply for funding?",
+      body: "Whether you're exploring a grant, attending our annual workshop, or need help with an application — we're here to help.",
+      primary: { label: "Apply Now", href: "/grant-seekers" },
+      secondary: { label: "Contact Us", href: "/about/contact-us" },
+    };
+  }
+  if (p.startsWith("/students")) {
+    return {
+      eyebrow: "For Students",
+      title: "Find a scholarship that fits you.",
+      body: "Browse our scholarship directory and start your application today.",
+      primary: { label: "View Scholarships", href: "/students/scholarships" },
+      secondary: { label: "Contact Us", href: "/about/contact-us" },
+    };
+  }
+  if (p.startsWith("/professional-advisors")) {
+    return {
+      eyebrow: "For Financial Advisors",
+      title: "Partner with THCF for your clients.",
+      body: "Help your clients achieve their philanthropic goals with our full suite of advisor resources.",
+      primary: { label: "Advisor Resources", href: "/professional-advisors/advisor-resourses" },
+      secondary: { label: "Contact Us", href: "/about/contact-us" },
+    };
+  }
+  if (p.startsWith("/fundholder-resources")) {
+    return {
+      eyebrow: "Fundholder Services",
+      title: "Need help with your fund?",
+      body: "Access the Fund Portal, browse quick references, or reach out for personalized guidance.",
+      primary: { label: "Contribute to Your Fund", href: "/fundholder-resources" },
+      secondary: { label: "Contact Us", href: "/about/contact-us" },
+    };
+  }
+  if (p.startsWith("/gala") || p.startsWith("/events")) {
+    return {
+      eyebrow: "Special Events",
+      title: "See what's coming up.",
+      body: "Browse our full events calendar and join us at our next gathering.",
+      primary: { label: "Events Calendar", href: "/about/events-calendar" },
+      secondary: { label: "Contact Us", href: "/about/contact-us" },
+    };
+  }
+  return {
+    eyebrow: "Make an Impact",
+    title: "Start your giving journey today.",
+    body: "Whether you're ready to open a fund or just want to learn more, we're here to help.",
+    primary: { label: "Open a Fund", href: "/donors/make-a-gift" },
+    secondary: { label: "Contact Us", href: "/about/contact-us" },
+  };
+}
+
+const v = variantFor(path || "");
+---
+
+<section class="section section--green page-cta">
+  <div class="container">
+    <div class="section__header section__header--center section__header--accent">
+      <p class="section__eyebrow">{v.eyebrow}</p>
+      <h2 class="section__title">{v.title}</h2>
+      <p class="section__body">{v.body}</p>
+    </div>
+    <div class="page-cta__actions">
+      <a href={v.primary.href} class="btn btn-primary btn-lg">{v.primary.label}</a>
+      <a href={v.secondary.href} class="btn btn-outline-white btn-lg">{v.secondary.label}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .page-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-lg);
+  }
+</style>

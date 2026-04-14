@@ -1,0 +1,202 @@
+---
+import { segment } from "../lib/content-parser";
+
+export interface Props {
+  html: string;
+}
+
+const { html } = Astro.props;
+const sections = segment(html || "");
+
+// Assign alternating bg to neutral sections (prose + split), skipping the lead.
+// cards/quote/table keep their own fixed bg.
+let neutralIdx = 0;
+const bgFor: Record<number, string> = {};
+sections.forEach((s, i) => {
+  if (s.kind === "lead") return;
+  if (s.kind === "prose" || s.kind === "split") {
+    bgFor[i] = neutralIdx % 2 === 0 ? "white" : "light";
+    neutralIdx++;
+  }
+});
+---
+
+{sections.map((s, idx) => {
+  if (s.kind === "lead") {
+    return (
+      <section class="section section--white content-lead">
+        <div class="container">
+          <div class="article-body prose content-lead__body" set:html={s.html} />
+        </div>
+      </section>
+    );
+  }
+
+  if (s.kind === "quote") {
+    return (
+      <section class="section section--blue-light">
+        <div class="container">
+          {s.title && (
+            <div class="section__header section__header--center section__header--accent">
+              <h2 class="section__title">{s.title}</h2>
+            </div>
+          )}
+          <figure class="content-quote">
+            <blockquote class="content-quote__text" set:html={s.html} />
+            {s.attribution && <figcaption class="content-quote__attribution">{s.attribution}</figcaption>}
+          </figure>
+        </div>
+      </section>
+    );
+  }
+
+  if (s.kind === "cards") {
+    return (
+      <section class="section section--light">
+        <div class="container">
+          {s.title && (
+            <div class="section__header section__header--accent">
+              <h2 class="section__title">{s.title}</h2>
+            </div>
+          )}
+          <div class="content-cards">
+            {s.items.map((it) => (
+              <div class="audience-card">
+                <div class="audience-card__body" set:html={it.text} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (s.kind === "split") {
+    return (
+      <section class={`section section--${bgFor[idx] || "white"}`}>
+        <div class="container">
+          <div class={`section__split ${s.reverse ? "section__split--reverse" : ""}`}>
+            <div class="section__split-image">
+              <img src={s.imageSrc} alt={s.imageAlt} loading="lazy" />
+              {s.caption && <p class="content-split__caption">{s.caption}</p>}
+            </div>
+            <div class="section__split-text">
+              {s.title && (
+                <div class="section__header section__header--accent">
+                  <h2 class="section__title">{s.title}</h2>
+                </div>
+              )}
+              <div class="article-body prose" set:html={s.textHtml} />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (s.kind === "table") {
+    return (
+      <section class="section section--white">
+        <div class="container">
+          {s.title && (
+            <div class="section__header section__header--accent">
+              <h2 class="section__title">{s.title}</h2>
+            </div>
+          )}
+          {s.preHtml && <div class="article-body prose" set:html={s.preHtml} />}
+          <div class="content-table-wrap">
+            <Fragment set:html={s.tableHtml} />
+          </div>
+          {s.postHtml && <div class="article-body prose" set:html={s.postHtml} />}
+        </div>
+      </section>
+    );
+  }
+
+  // prose
+  return (
+    <section class={`section section--${bgFor[idx] || s.bg}`}>
+      <div class="container">
+        {s.title && (
+          <div class="section__header section__header--accent">
+            <h2 class="section__title">{s.title}</h2>
+          </div>
+        )}
+        <div class="article-body prose" set:html={s.html} />
+      </div>
+    </section>
+  );
+})}
+
+<style is:global>
+  .content-lead__body p:first-child {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-light);
+  }
+
+  .content-quote {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .content-quote__text {
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+    color: var(--color-navy);
+    font-style: italic;
+    margin: 0 0 var(--space-md);
+    border: none;
+    padding: 0;
+  }
+  @media (min-width: 768px) {
+    .content-quote__text { font-size: var(--text-2xl); }
+  }
+  .content-quote__attribution {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .content-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 640px) {
+    .content-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .content-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+  .content-cards .audience-card { padding: var(--space-xl); }
+  .content-cards .audience-card__body { font-size: var(--text-base); color: var(--color-text); line-height: var(--leading-relaxed); }
+
+  .content-split__caption {
+    font-size: var(--text-xs);
+    color: var(--color-text-light);
+    margin-top: var(--space-xs);
+    font-style: italic;
+  }
+
+  .content-table-wrap {
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+  }
+  .content-table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .content-table-wrap th,
+  .content-table-wrap td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-gray-200);
+    text-align: left;
+  }
+  .content-table-wrap th {
+    background: var(--color-gray-100);
+    font-weight: 600;
+  }
+</style>
