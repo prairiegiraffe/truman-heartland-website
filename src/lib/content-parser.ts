@@ -20,7 +20,16 @@ function stripEmpty(el: HTMLElement): void {
 }
 
 function cleanupLegacy(el: HTMLElement): void {
+  // Remove images pointing at dead legacy CDN hosts (and their wrapping <figure>)
+  const deadHosts = [/d2f39dzk9sbfur\.cloudfront\.net/i];
   el.querySelectorAll("img").forEach((img) => {
+    const src = img.getAttribute("src") || "";
+    if (deadHosts.some((r) => r.test(src))) {
+      const fig = img.closest("figure");
+      if (fig) fig.remove();
+      else img.remove();
+      return;
+    }
     const style = img.getAttribute("style") || "";
     if (/aspect-ratio\s*:/i.test(style)) {
       const cleaned = style.replace(/aspect-ratio\s*:[^;]*;?/gi, "").trim();
@@ -61,10 +70,6 @@ function collectAfter(start: HTMLElement, until: (n: HTMLElement) => boolean): H
     n = n.nextElementSibling;
   }
   return out;
-}
-
-function isHeading(n: HTMLElement, level: 2): boolean {
-  return !!n && n.tagName === "H2";
 }
 
 function blockImages(nodes: HTMLElement[]): HTMLElement[] {
@@ -158,10 +163,14 @@ export function segment(html: string): Section[] {
   const sections: Section[] = [];
   const children = container.childNodes.filter((n) => n.nodeType === 1) as HTMLElement[];
 
+  // Detect heading level: prefer H2. If no H2 exists but H3s do, segment by H3.
+  const hasH2 = children.some((c) => c.tagName === "H2");
+  const headingTag: "H2" | "H3" = hasH2 ? "H2" : children.some((c) => c.tagName === "H3") ? "H3" : "H2";
+
   // 1. Lead = the first "largetext" p OR the first paragraph(s) before any meaningful content.
-  //    Pre-H2 content that isn't the lead becomes an intro prose section.
-  const firstH2Idx = children.findIndex((c) => c.tagName === "H2");
-  const preH2 = firstH2Idx === -1 ? [...children] : children.slice(0, firstH2Idx);
+  //    Pre-heading content that isn't the lead becomes an intro prose section.
+  const firstHeadingIdx = children.findIndex((c) => c.tagName === headingTag);
+  const preH2 = firstHeadingIdx === -1 ? [...children] : children.slice(0, firstHeadingIdx);
 
   let introNodes: HTMLElement[] = [];
   if (preH2.length > 0) {
@@ -206,32 +215,32 @@ export function segment(html: string): Section[] {
     }
   }
 
-  if (firstH2Idx === -1) {
+  if (firstHeadingIdx === -1) {
     return sections;
   }
 
-  // 2. Walk h2 boundaries and classify each section
-  const rest = children.slice(firstH2Idx);
+  // 2. Walk heading boundaries and classify each section
+  const rest = children.slice(firstHeadingIdx);
   let i = 0;
   let proseIndex = 0; // for alternating bg
 
   while (i < rest.length) {
     const h = rest[i];
-    if (h.tagName !== "H2") {
+    if (h.tagName !== headingTag) {
       i++;
       continue;
     }
-    // Merge consecutive H2s (WordPress sometimes splits a single heading)
+    // Merge consecutive headings at the same level (WordPress sometimes splits)
     const titleParts = [headingText(h)];
     let j = i + 1;
-    while (j < rest.length && rest[j].tagName === "H2") {
+    while (j < rest.length && rest[j].tagName === headingTag) {
       titleParts.push(headingText(rest[j]));
       j++;
     }
     const title = titleParts.filter(Boolean).join(" ").trim();
-    // Collect body until next H2
+    // Collect body until next heading
     const bodyNodes: HTMLElement[] = [];
-    while (j < rest.length && rest[j].tagName !== "H2") {
+    while (j < rest.length && rest[j].tagName !== headingTag) {
       bodyNodes.push(rest[j]);
       j++;
     }

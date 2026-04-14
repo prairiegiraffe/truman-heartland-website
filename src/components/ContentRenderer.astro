@@ -129,10 +129,32 @@ sections.forEach((s, i) => {
 })}
 
 <style is:global>
+  .content-lead {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+  @media (min-width: 768px) {
+    .content-lead {
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+  }
+  .content-lead__body {
+    max-width: 820px;
+  }
   .content-lead__body p:first-child {
     font-size: var(--text-lg);
     line-height: var(--leading-relaxed);
     color: var(--color-text-light);
+    margin: 0;
+  }
+  .content-lead__body p:first-child::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: var(--accent-line-thick);
+    background: var(--color-green);
+    margin-top: var(--space-md);
   }
 
   .content-quote {
