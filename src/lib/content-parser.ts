@@ -61,17 +61,6 @@ function headingText(h: HTMLElement): string {
   return h.text.replace(/\s+/g, " ").trim();
 }
 
-function collectAfter(start: HTMLElement, until: (n: HTMLElement) => boolean): HTMLElement[] {
-  const out: HTMLElement[] = [];
-  let n = start.nextElementSibling;
-  while (n) {
-    if (until(n as HTMLElement)) break;
-    out.push(n as HTMLElement);
-    n = n.nextElementSibling;
-  }
-  return out;
-}
-
 function blockImages(nodes: HTMLElement[]): HTMLElement[] {
   const imgs: HTMLElement[] = [];
   nodes.forEach((n) => {
@@ -151,6 +140,24 @@ function hasTable(nodes: HTMLElement[]): HTMLElement | null {
     if (t) return t as HTMLElement;
   }
   return null;
+}
+
+export function extractLead(html: string): string | null {
+  const root = parse(`<div>${html || ""}</div>`);
+  const container = root.firstChild as HTMLElement;
+  if (!container) return null;
+  cleanupLegacy(container);
+  stripEmpty(container);
+  const children = container.childNodes.filter((n) => n.nodeType === 1) as HTMLElement[];
+  // Lead = first <p class="largetext"> if it exists and comes before any heading;
+  // otherwise the first non-empty <p> before the first heading.
+  const firstHeadingIdx = children.findIndex((c) => c.tagName === "H2" || c.tagName === "H3");
+  const scope = firstHeadingIdx === -1 ? children : children.slice(0, firstHeadingIdx);
+  const firstP = scope.find((n) => n.tagName === "P" && n.text.replace(/\s+/g, "").length > 0);
+  if (!firstP) return null;
+  // Strip wrapping <strong> etc. — return inner text so the banner can style it.
+  const text = firstP.text.replace(/\s+/g, " ").trim();
+  return text || null;
 }
 
 export function segment(html: string): Section[] {

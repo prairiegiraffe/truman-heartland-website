@@ -3,10 +3,12 @@ import { segment } from "../lib/content-parser";
 
 export interface Props {
   html: string;
+  hoistLead?: boolean;
 }
 
-const { html } = Astro.props;
-const sections = segment(html || "");
+const { html, hoistLead = false } = Astro.props;
+const allSections = segment(html || "");
+const sections = hoistLead ? allSections.filter((s) => s.kind !== "lead") : allSections;
 
 // Assign alternating bg to neutral sections (prose + split), skipping the lead.
 // cards/quote/table keep their own fixed bg.

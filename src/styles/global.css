@@ -1269,6 +1269,17 @@ blockquote {
   .page-banner__title { font-size: var(--text-5xl); }
 }
 
+.page-banner__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin-top: var(--space-md);
+  max-width: 720px;
+}
+@media (min-width: 768px) {
+  .page-banner__subtitle { font-size: var(--text-lg); }
+}
+
 .page-banner__meta {
   display: flex;
   flex-wrap: wrap;
