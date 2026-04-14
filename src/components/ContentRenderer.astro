@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const { html, hoistLead = false } = Astro.props;
-const allSections = segment(html || "");
+const allSections = segment(html || "", { hoistLead });
 const sections = hoistLead ? allSections.filter((s) => s.kind !== "lead") : allSections;
 
 // Assign alternating bg to neutral sections (prose + split), skipping the lead.

@@ -142,41 +142,92 @@ function hasTable(nodes: HTMLElement[]): HTMLElement | null {
   return null;
 }
 
+const LEAD_CAP = 300;
+
+/**
+ * Identify lead paragraph(s) in the given container. The returned elements
+ * are still attached to the DOM — callers can `.remove()` them to prevent
+ * duplication in the body.
+ */
+function findLeadParagraphs(container: HTMLElement): HTMLElement[] {
+  const allContent = container.querySelectorAll("h2, h3, p") as HTMLElement[];
+  if (allContent.length === 0) return [];
+
+  // Prefer a largetext paragraph as the canonical lead.
+  const largetext = allContent.find(
+    (n) =>
+      n.tagName === "P" &&
+      (n.getAttribute("class") || "").includes("largetext") &&
+      n.text.trim().length > 0
+  );
+  if (largetext) return [largetext];
+
+  // Collect up to 2 paragraphs that precede any heading.
+  const preHeading: HTMLElement[] = [];
+  let running = 0;
+  for (const n of allContent) {
+    if (n.tagName === "H2" || n.tagName === "H3") break;
+    if (n.tagName === "P") {
+      const t = n.text.replace(/\s+/g, " ").trim();
+      if (!t) continue;
+      if (preHeading.length === 0) {
+        preHeading.push(n);
+        running = t.length;
+      } else if (running + t.length <= LEAD_CAP) {
+        preHeading.push(n);
+        running += t.length;
+      } else {
+        break;
+      }
+      if (preHeading.length >= 2) break;
+    }
+  }
+  if (preHeading.length > 0) return preHeading;
+
+  // No pre-heading paragraphs — grab the first paragraph after the first heading.
+  let seenHeading = false;
+  for (const n of allContent) {
+    if (n.tagName === "H2" || n.tagName === "H3") {
+      seenHeading = true;
+      continue;
+    }
+    if (seenHeading && n.tagName === "P") {
+      const t = n.text.replace(/\s+/g, " ").trim();
+      if (t) return [n];
+    }
+  }
+  return [];
+}
+
 export function extractLead(html: string): string | null {
   const root = parse(`<div>${html || ""}</div>`);
   const container = root.firstChild as HTMLElement;
   if (!container) return null;
   cleanupLegacy(container);
   stripEmpty(container);
-  const children = container.childNodes.filter((n) => n.nodeType === 1) as HTMLElement[];
-  const firstHeadingIdx = children.findIndex((c) => c.tagName === "H2" || c.tagName === "H3");
-  const scope = firstHeadingIdx === -1 ? children : children.slice(0, firstHeadingIdx);
-  // Gather pre-heading paragraphs into the subtitle — avoids orphan "intro"
-  // sections for short pages. Cap combined length so dense history paragraphs
-  // don't bloat the banner.
-  const LEAD_CAP = 300;
-  const paragraphs = scope
-    .filter((n) => n.tagName === "P")
+  const leads = findLeadParagraphs(container);
+  if (leads.length === 0) return null;
+  return leads
     .map((p) => p.text.replace(/\s+/g, " ").trim())
-    .filter((t) => t.length > 0);
-  if (paragraphs.length === 0) return null;
-  const out: string[] = [paragraphs[0]];
-  for (let k = 1; k < paragraphs.length && k < 2; k++) {
-    if ([...out, paragraphs[k]].join(" ").length <= LEAD_CAP) {
-      out.push(paragraphs[k]);
-    } else {
-      break;
-    }
-  }
-  return out.join(" ");
+    .filter(Boolean)
+    .join(" ");
 }
 
-export function segment(html: string): Section[] {
+export function segment(html: string, opts: { hoistLead?: boolean } = {}): Section[] {
   const root = parse(`<div id="__root">${html}</div>`);
   const container = root.getElementById("__root") || (root.firstChild as HTMLElement);
 
   cleanupLegacy(container);
   stripEmpty(container);
+
+  // If the caller is hoisting the lead into the banner, remove the lead
+  // paragraphs from the DOM here so they don't duplicate in the body.
+  if (opts.hoistLead) {
+    const leads = findLeadParagraphs(container);
+    leads.forEach((p) => p.remove());
+    // Clean up any now-empty wrapper divs so we don't emit hollow sections.
+    stripEmpty(container);
+  }
 
   const sections: Section[] = [];
   const children = container.childNodes.filter((n) => n.nodeType === 1) as HTMLElement[];
