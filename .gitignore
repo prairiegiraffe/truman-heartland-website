@@ -16,6 +16,10 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.dev.vars
+
+# generated migration seed SQL (produced by migrate-to-d1.mjs)
+migrations/_seed_*.sql
 
 # macOS-specific files
 .DS_Store
