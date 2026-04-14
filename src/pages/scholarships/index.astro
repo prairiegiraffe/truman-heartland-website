@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import ScholarshipCard from "../../components/ScholarshipCard.astro";
 import allScholarships from "../../data/scholarships.json";
+
+export const prerender = true;
 ---
 
 <Layout title="Scholarship Directory" description="Browse scholarships available through Truman Heartland Community Foundation.">

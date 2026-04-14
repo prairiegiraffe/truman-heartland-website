@@ -1,0 +1,246 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { getDB, getPage, listVersions } from '../../../lib/d1';
+
+export const prerender = false;
+
+const key = Astro.params.key ?? '';
+const slug = key === '__home__' ? '' : key;
+
+const db = getDB(Astro.locals);
+const page = await getPage(db, slug);
+if (!page) {
+  return new Response('page not found', { status: 404 });
+}
+const versions = await listVersions(db, slug, 20);
+
+function fmtDate(ms: number): string {
+  return new Date(ms).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+}
+---
+<AdminLayout title={page.title}>
+  <header class="admin-header">
+    <div>
+      <h1>{page.title}</h1>
+      <p class="admin-sub"><code>{page.path}</code> · template: <span class="chip">{page.template}</span></p>
+    </div>
+    <div style="display:flex;gap:.5rem;">
+      <a class="admin-btn admin-btn--ghost" href="/cpadmin">← All pages</a>
+      <a class="admin-btn" href={page.path} target="_blank">View live ↗</a>
+    </div>
+  </header>
+
+  <div class="editor-grid">
+    <div class="editor-col">
+      <form id="edit-form" data-slug={slug}>
+        <section class="editor-card">
+          <h2>Page meta</h2>
+          <label>Title <input name="title" type="text" value={page.title} /></label>
+          <label>Subtitle <input name="subtitle" type="text" value={page.subtitle ?? ''} /></label>
+          <label>Template
+            <select name="template">
+              <option value="legacy" selected={page.template === 'legacy'}>legacy (WordPress HTML)</option>
+              <option value="pillar" selected={page.template === 'pillar'}>pillar</option>
+              <option value="program" selected={page.template === 'program'}>program</option>
+              <option value="landing" selected={page.template === 'landing'}>landing</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="editor-card">
+          <h2>Sections (JSON)</h2>
+          <p class="hint">One JSON array of sections. Schema depends on template. For now, edit raw JSON; Phase 3 adds per-type forms.</p>
+          <textarea name="sections" rows="22" spellcheck="false" set:text={JSON.stringify(page.sections, null, 2)} />
+        </section>
+
+        <section class="editor-card">
+          <h2>Legacy HTML body</h2>
+          <p class="hint">Raw WordPress HTML. Only rendered when template = <code>legacy</code>.</p>
+          <textarea name="legacyBody" rows="12" spellcheck="false" set:text={page.legacyBody} />
+        </section>
+
+        <div class="editor-actions">
+          <button type="submit" class="admin-btn">Save</button>
+          <span id="save-status" class="admin-dim"></span>
+        </div>
+      </form>
+    </div>
+
+    <aside class="editor-col editor-col--aside">
+      <section class="editor-card">
+        <h2>Preview</h2>
+        <p class="hint">Live from D1 (no build needed). Refreshes on save.</p>
+        <iframe id="preview" src={`/cpadmin/preview/${key}`} loading="lazy"></iframe>
+        <div style="margin-top:.5rem;"><a class="admin-btn admin-btn--ghost" href={`/cpadmin/preview/${key}`} target="_blank">Open preview in new tab ↗</a></div>
+      </section>
+
+      <section class="editor-card">
+        <h2>Version history</h2>
+        {versions.length === 0 && <p class="admin-dim">No edits yet.</p>}
+        <ul class="version-list">
+          {versions.map((v) => (
+            <li>
+              <div>
+                <strong>{fmtDate(v.createdAt)}</strong>
+                <span class="chip chip--muted" style="margin-left:.5rem;">{v.author ?? 'unknown'}</span>
+              </div>
+              <button class="admin-btn admin-btn--ghost" type="button" data-revert={v.id}>Revert to this</button>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  <style>
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .editor-grid { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); }
+    }
+    .editor-col { display: flex; flex-direction: column; gap: 1.25rem; }
+    .editor-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem 1.25rem;
+    }
+    .editor-card h2 {
+      margin: 0 0 .85rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-dim);
+    }
+    .editor-card label {
+      display: block;
+      margin-bottom: .85rem;
+      font-size: .85rem;
+      color: var(--text-dim);
+    }
+    .editor-card input[type="text"],
+    .editor-card select,
+    .editor-card textarea {
+      display: block;
+      width: 100%;
+      margin-top: .3rem;
+      padding: .55rem .7rem;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: .9rem;
+      border-radius: 6px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .editor-card textarea {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: .8rem;
+      line-height: 1.5;
+      resize: vertical;
+    }
+    .editor-card .hint {
+      color: var(--text-muted);
+      font-size: .75rem;
+      margin: 0 0 .6rem;
+    }
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    #preview {
+      display: block;
+      width: 100%;
+      height: 720px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+    }
+    .version-list { list-style: none; padding: 0; margin: 0; max-height: 320px; overflow-y: auto; }
+    .version-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .75rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .version-list li:last-child { border-bottom: none; }
+  </style>
+
+  <script>
+    const form = document.getElementById('edit-form') as HTMLFormElement;
+    const slug = form.dataset.slug ?? '';
+    const status = document.getElementById('save-status') as HTMLSpanElement;
+    const preview = document.getElementById('preview') as HTMLIFrameElement;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const sectionsRaw = String(data.get('sections') ?? '[]');
+      let sections: unknown[];
+      try {
+        sections = JSON.parse(sectionsRaw);
+        if (!Array.isArray(sections)) throw new Error('sections must be an array');
+      } catch (err) {
+        status.textContent = `Invalid JSON: ${(err as Error).message}`;
+        status.style.color = 'var(--danger)';
+        return;
+      }
+
+      status.textContent = 'Saving...';
+      status.style.color = 'var(--text-dim)';
+
+      const body = {
+        title: String(data.get('title') ?? ''),
+        subtitle: String(data.get('subtitle') ?? '') || null,
+        template: String(data.get('template') ?? 'legacy'),
+        sections,
+        legacyBody: String(data.get('legacyBody') ?? ''),
+      };
+
+      const slugPath = slug.split('/').map(encodeURIComponent).join('/');
+      const res = await fetch(`/api/pages/${slugPath}`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        status.textContent = `Save failed: ${(payload as { error?: string }).error ?? res.status}`;
+        status.style.color = 'var(--danger)';
+        return;
+      }
+      status.textContent = 'Saved. Reloading preview...';
+      status.style.color = 'var(--success)';
+      // Bust preview cache
+      preview.src = preview.src.split('?')[0] + '?v=' + Date.now();
+      // Soft-reload this page so version history updates
+      setTimeout(() => { window.location.reload(); }, 600);
+    });
+
+    document.querySelectorAll('[data-revert]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const id = Number((btn as HTMLElement).dataset.revert);
+        if (!confirm(`Revert to version ${id}? This creates a new version entry.`)) return;
+        const revertPath = slug.split('/').map(encodeURIComponent).join('/');
+        const res = await fetch(`/api/pages/${revertPath}/revert`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ versionId: id }),
+        });
+        if (!res.ok) {
+          const payload = await res.json().catch(() => ({}));
+          alert(`Revert failed: ${(payload as { error?: string }).error ?? res.status}`);
+          return;
+        }
+        window.location.reload();
+      });
+    });
+  </script>
+</AdminLayout>

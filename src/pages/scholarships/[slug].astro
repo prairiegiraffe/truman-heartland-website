@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import allScholarships from "../../data/scholarships.json";
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return allScholarships.map((s: any) => ({
     params: { slug: s.slug },

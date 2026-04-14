@@ -5,6 +5,8 @@ import SectionHeader from "../components/SectionHeader.astro";
 import StatCounter from "../components/StatCounter.astro";
 import allNews from "../data/news.json";
 
+export const prerender = true;
+
 // Filter to articles with images for the homepage feature area
 const newsWithImages = allNews.filter((a: any) => a.featuredImage);
 const featuredNews = newsWithImages.slice(0, 4);

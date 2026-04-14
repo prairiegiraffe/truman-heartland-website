@@ -6,12 +6,12 @@ import PageCTA from "../components/PageCTA.astro";
 import allPages from "../data/pages.json";
 import { extractLead } from "../lib/content-parser";
 
-export function getStaticPaths() {
-  const skipPaths = new Set([
-    "/",
-    "/news",
-  ]);
+export const prerender = true;
 
+export function getStaticPaths() {
+  // "/" is rendered by src/pages/index.astro (a hand-designed home), so we skip it here.
+  // "/news" has its own index route.
+  const skipPaths = new Set(["/", "/news"]);
   const skipPrefixes = ["/cpadmin"];
 
   return allPages

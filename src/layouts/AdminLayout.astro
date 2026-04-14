@@ -1,0 +1,176 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{`${title} · cpadmin`}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <style is:global>
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2e;
+      --panel-2: #0f1627;
+      --border: #1f2a46;
+      --text: #e8eefb;
+      --text-dim: #9fb0d8;
+      --text-muted: #6b7ea3;
+      --accent: #3b7dff;
+      --accent-hover: #2d68de;
+      --danger: #ff5d5d;
+      --success: #4ade80;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    code {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: .9em;
+      color: var(--text-dim);
+    }
+    .admin-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: .85rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel-2);
+    }
+    .admin-nav__brand { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .8rem; color: var(--text-dim); }
+    .admin-nav__links { display: flex; gap: 1rem; margin-left: 1rem; }
+    .admin-nav__links a { color: var(--text-dim); font-weight: 500; }
+    .admin-nav__links a.active { color: var(--text); }
+    .admin-nav__right { margin-left: auto; }
+    .admin-nav form { display: inline; }
+    .admin-nav button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: .35rem .8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: .85rem;
+    }
+    .admin-nav button:hover { color: var(--text); border-color: var(--text-dim); }
+
+    .admin-main { max-width: 1280px; margin: 0 auto; padding: 1.5rem; }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .admin-header h1 { margin: 0; font-size: 1.5rem; }
+    .admin-sub { margin: .25rem 0 0; color: var(--text-muted); font-size: .85rem; }
+    .admin-search { display: flex; gap: .5rem; }
+    .admin-search input {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .5rem .75rem;
+      border-radius: 6px;
+      font-size: .9rem;
+      width: 280px;
+    }
+    .admin-search button {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: .5rem .9rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .admin-table th, .admin-table td { padding: .75rem 1rem; text-align: left; }
+    .admin-table th {
+      background: var(--panel-2);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-table tbody tr { border-bottom: 1px solid var(--border); }
+    .admin-table tbody tr:last-child { border-bottom: none; }
+    .admin-table tbody tr:hover { background: var(--panel-2); }
+    .admin-title-cell { font-weight: 600; }
+    .admin-dim { color: var(--text-muted); font-size: .85rem; }
+
+    .chip {
+      display: inline-block;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      background: rgba(59,125,255,.15);
+      color: #9bc1ff;
+      font-size: .75rem;
+      font-weight: 500;
+    }
+    .chip--muted { background: rgba(107,126,163,.15); color: var(--text-dim); }
+    .chip--success { background: rgba(74,222,128,.15); color: var(--success); }
+    .chip--danger { background: rgba(255,93,93,.15); color: var(--danger); }
+
+    .admin-btn {
+      display: inline-block;
+      padding: .35rem .85rem;
+      border-radius: 6px;
+      background: var(--accent);
+      color: white !important;
+      font-size: .85rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .admin-btn:hover { background: var(--accent-hover); color: white !important; }
+    .admin-btn--ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim) !important;
+    }
+    .admin-btn--ghost:hover { border-color: var(--text-dim); color: var(--text) !important; background: var(--panel-2); }
+    .admin-btn--danger { background: var(--danger); }
+    .admin-btn--danger:hover { background: #e04b4b; }
+  </style>
+</head>
+<body>
+  <nav class="admin-nav">
+    <span class="admin-nav__brand">cpadmin</span>
+    <div class="admin-nav__links">
+      <a href="/cpadmin">Pages</a>
+      <a href="/" target="_blank">View site ↗</a>
+    </div>
+    <div class="admin-nav__right">
+      <form method="post" action="/api/logout">
+        <button type="submit">Sign out</button>
+      </form>
+    </div>
+  </nav>
+  <main class="admin-main">
+    <slot />
+  </main>
+</body>
+</html>

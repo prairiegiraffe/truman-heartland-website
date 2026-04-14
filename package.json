@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:d1": "npm run dump-d1 && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "scrape": "node scripts/scrape.mjs",
     "scrape:resume": "node scripts/scrape.mjs --resume",
     "download-images": "node scripts/download-images.mjs",
     "upload-r2": "node scripts/upload-to-r2.mjs",
-    "prepare-content": "node scripts/prepare-content.mjs"
+    "prepare-content": "node scripts/prepare-content.mjs",
+    "migrate-to-d1": "tsx scripts/migrate-to-d1.mjs",
+    "dump-d1": "node scripts/dump-d1.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
@@ -20,5 +23,9 @@
     "fs-extra": "^11.3.3",
     "node-html-parser": "^7.1.0",
     "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260414.1",
+    "tsx": "^4.21.0"
   }
 }

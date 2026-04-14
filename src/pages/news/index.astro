@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import NewsCard from "../../components/NewsCard.astro";
 import allNews from "../../data/news.json";
+
+export const prerender = true;
 ---
 
 <Layout title="News" description="Latest news from Truman Heartland Community Foundation.">
