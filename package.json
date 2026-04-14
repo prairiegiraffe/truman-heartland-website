@@ -17,6 +17,7 @@
     "dump-d1": "node scripts/dump-d1.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.89.0",
     "@astrojs/cloudflare": "^12.6.12",
     "astro": "^5.17.1",
     "cheerio": "^1.2.0",

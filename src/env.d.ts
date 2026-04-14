@@ -9,6 +9,7 @@ type Runtime = import('@astrojs/cloudflare').Runtime<{
   ADMIN_PASSWORD_HASH?: string;
   ADMIN_PASSWORD_SALT?: string;
   ADMIN_SESSION_SECRET?: string;
+  ANTHROPIC_API_KEY?: string;
 }>;
 
 declare namespace App {

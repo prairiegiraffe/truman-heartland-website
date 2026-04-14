@@ -1,5 +1,6 @@
 ---
 import AdminLayout from '../../../layouts/AdminLayout.astro';
+import ChatPanel from '../../../components/admin/ChatPanel.astro';
 import { getDB, getPage, listVersions } from '../../../lib/d1';
 import { TEMPLATES, UNIVERSAL_SECTIONS, getTemplate } from '../../../lib/templates';
 import { SECTION_KINDS } from '../../../lib/sections';
@@ -20,9 +21,54 @@ const preferredKinds = template ? template.preferredSections : [];
 const otherKinds = SECTION_KINDS.filter(
   (k) => !preferredKinds.includes(k) && !UNIVERSAL_SECTIONS.includes(k)
 );
+const sectionCount = Array.isArray(page.sections) ? page.sections.length : 0;
 
 function fmtDate(ms: number): string {
   return new Date(ms).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+}
+
+// Context-aware empty-state prompts for the chat panel.
+function suggestedPrompts() {
+  const templateId = page.template;
+  const common = [
+    { label: 'Rewrite the page title to be more compelling', prompt: 'Rewrite the page title to be more compelling and clear.' },
+    { label: 'Add a CTA band at the bottom', prompt: 'Add a cta-band section at the end of the page with a headline that matches this page\'s topic and a button to /about/contact-us.' },
+  ];
+  if (templateId === 'legacy') {
+    return [
+      { label: 'Convert this page to the pillar template', prompt: 'This page uses the legacy template. Propose a conversion to the pillar template that preserves the key messages from the current content.' },
+      ...common,
+    ];
+  }
+  if (templateId === 'pillar') {
+    return [
+      { label: 'Add a stat-grid after the intro', prompt: 'Add a stat-grid section after the intro split. Use placeholder numbers (e.g. 250 scholarships, $100M assets, 40 years, 500 funds) that I\'ll edit later.' },
+      { label: 'Rewrite the intro split to be more emotional', prompt: 'Rewrite the first split section to lead with the human impact — why this matters to people, not just what we do.' },
+      ...common,
+    ];
+  }
+  if (templateId === 'program') {
+    return [
+      { label: 'Add a timeline to the main column', prompt: 'Add a timeline section inside the sidebar-layout main column. Use 5 milestones that describe a typical participant\'s year.' },
+      { label: 'Add a testimonials section', prompt: 'Add a testimonials section with 2 placeholder quotes from past program participants.' },
+      ...common,
+    ];
+  }
+  if (templateId === 'landing') {
+    return [
+      { label: 'Add a pricing-tiers section', prompt: 'Add a pricing-tiers section for sponsorship levels: Community $2,500, Leadership $5,000 (featured), Legacy $10,000, Founders $25,000.' },
+      { label: 'Add an FAQ section with 5 common questions', prompt: 'Add a faq-accordion section with 5 common questions a visitor might have about this event or campaign.' },
+      ...common,
+    ];
+  }
+  if (templateId === 'image-sections') {
+    return [
+      { label: 'Add a dual-panels section', prompt: 'Add a dual-panels section with two calls to action for different audiences.' },
+      { label: 'Add an image-quote after the hero', prompt: 'Add an image-quote section after the hero with a placeholder quote about our community\'s impact.' },
+      ...common,
+    ];
+  }
+  return common;
 }
 ---
 <AdminLayout title={page.title}>
@@ -88,6 +134,15 @@ function fmtDate(ms: number): string {
         <iframe id="preview" src={`/cpadmin/preview/${key}`} loading="lazy"></iframe>
         <div style="margin-top:.5rem;"><a class="admin-btn admin-btn--ghost" href={`/cpadmin/preview/${key}`} target="_blank">Open preview in new tab ↗</a></div>
       </section>
+
+      <ChatPanel
+        slug={slug}
+        pageKey={key}
+        template={page.template}
+        title={page.title}
+        sectionCount={sectionCount}
+        suggestedPrompts={suggestedPrompts()}
+      />
 
       <section class="editor-card">
         <h2>Version history</h2>
