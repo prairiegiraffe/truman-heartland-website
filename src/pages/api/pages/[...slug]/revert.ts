@@ -5,7 +5,8 @@ export const prerender = false;
 
 export const POST: APIRoute = async ({ locals, params, request }) => {
   const db = getDB(locals);
-  const slug = params.slug ?? '';
+  const raw = (params.slug as string) ?? '';
+  const slug = raw === '__home__' ? '' : raw;
   const body = (await request.json().catch(() => null)) as { versionId?: number } | null;
   if (!body || typeof body.versionId !== 'number') {
     return new Response(JSON.stringify({ error: 'versionId required' }), {

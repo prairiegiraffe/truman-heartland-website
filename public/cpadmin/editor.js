@@ -1,7 +1,14 @@
 (() => {
   const params = new URLSearchParams(location.search);
-  const slug = params.get('slug') ?? '';
-  const slugPath = slug.split('/').map(encodeURIComponent).join('/');
+  const rawSlug = params.get('slug') ?? '';
+  // The homepage's slug is the empty string. The dashboard passes __home__ in
+  // the URL to avoid /api/pages/ (trailing slash) resolving to the list route.
+  const slug = rawSlug === '__home__' ? '' : rawSlug;
+  // For building API URLs: if slug is empty, use __home__ as the path segment.
+  // Our API catch-all maps __home__ back to '' in the handler (see below).
+  const slugPath = slug === ''
+    ? '__home__'
+    : slug.split('/').map(encodeURIComponent).join('/');
 
   // ---------- State ---------------------------------------------------------
   let page = null;
@@ -240,9 +247,17 @@
       ]);
       if (pageRes.status === 401) { location.href = '/cpadmin/login'; return; }
       if (pageRes.status === 404) { titleEl.textContent = 'Page not found'; return; }
+      if (!pageRes.ok) {
+        titleEl.textContent = 'Error loading page (status ' + pageRes.status + ')';
+        return;
+      }
 
       const pageBody = await pageRes.json();
       page = pageBody.page;
+      if (!page || !page.path) {
+        titleEl.textContent = 'Error: API did not return a page (got: ' + JSON.stringify(pageBody).slice(0, 120) + ')';
+        return;
+      }
 
       // /api/templates might not exist yet — fall back to a sensible hard-coded list.
       if (templatesRes.ok) {

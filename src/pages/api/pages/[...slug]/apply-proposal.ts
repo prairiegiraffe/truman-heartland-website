@@ -14,7 +14,8 @@ export const prerender = false;
  */
 export const POST: APIRoute = async ({ locals, params, request }) => {
   const db = getDB(locals);
-  const slug = params.slug ?? '';
+  const raw = (params.slug as string) ?? '';
+  const slug = raw === '__home__' ? '' : raw;
   let body: { proposal?: Proposal; chatTurn?: unknown };
   try {
     body = await request.json();

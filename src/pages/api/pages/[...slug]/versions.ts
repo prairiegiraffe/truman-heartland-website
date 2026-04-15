@@ -5,7 +5,8 @@ export const prerender = false;
 
 export const GET: APIRoute = async ({ locals, params }) => {
   const db = getDB(locals);
-  const slug = params.slug ?? '';
+  const raw = (params.slug as string) ?? '';
+  const slug = raw === '__home__' ? '' : raw;
   const versions = await listVersions(db, slug, 50);
   return new Response(JSON.stringify({ versions }), {
     status: 200,

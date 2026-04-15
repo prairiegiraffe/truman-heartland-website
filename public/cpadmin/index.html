@@ -70,7 +70,7 @@
       for (const p of pages) {
         const tr = document.createElement('tr');
         const key = p.slug || '__home__';
-        const editHref = '/cpadmin/editor?slug=' + encodeURIComponent(p.slug);
+        const editHref = '/cpadmin/editor?slug=' + encodeURIComponent(key);
         tr.innerHTML =
           '<td class="admin-title-cell"></td>' +
           '<td><code></code></td>' +

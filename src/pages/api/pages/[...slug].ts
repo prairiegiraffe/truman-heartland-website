@@ -3,9 +3,16 @@ import { getDB, getPage, updatePage, type PageUpdate, type Section } from '../..
 
 export const prerender = false;
 
+// Client URLs use `__home__` as a stand-in for the empty-string slug (the
+// homepage), because `/api/pages/` with trailing slash would collide with
+// the LIST route. Translate it back here.
+function normalizeSlug(raw: string): string {
+  return raw === '__home__' ? '' : raw;
+}
+
 export const GET: APIRoute = async ({ locals, params }) => {
   const db = getDB(locals);
-  const slug = params.slug ?? '';
+  const slug = normalizeSlug((params.slug as string) ?? '');
   const page = await getPage(db, slug);
   if (!page) {
     return new Response(JSON.stringify({ error: 'not found' }), {
@@ -21,7 +28,7 @@ export const GET: APIRoute = async ({ locals, params }) => {
 
 export const PUT: APIRoute = async ({ locals, params, request }) => {
   const db = getDB(locals);
-  const slug = params.slug ?? '';
+  const slug = normalizeSlug((params.slug as string) ?? '');
   const body = (await request.json().catch(() => null)) as
     | {
         template?: string;
