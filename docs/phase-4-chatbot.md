@@ -2,7 +2,17 @@
 
 **Goal:** a chat assistant inside the editor that understands templates, section kinds, and page context. The non-developer editor types plain-language requests; the bot edits D1 via a fixed tool schema.
 
-**Status:** shipped. Chatbot lives in [src/components/admin/ChatPanel.astro](../src/components/admin/ChatPanel.astro) inside the editor screen.
+**Status:** shipped and deployed at `https://truman-heartland-website.kellee.workers.dev/cpadmin/`. Chatbot UI lives in [public/cpadmin/editor.js](../public/cpadmin/editor.js).
+
+## Architecture note
+
+During Phase 4 deployment we hit an Astro + Cloudflare runtime bug where SSR-rendered `.astro` pages returned `[object Object]` in production. Rather than keep fighting the adapter, we pivoted:
+
+- **Admin UI** is now pure static HTML + client-side JavaScript, served from `public/cpadmin/`.
+- **APIs stay as SSR endpoints** under `src/pages/api/*.ts` — they return explicit `Response` objects which work reliably on the Worker runtime.
+- The Astro adapter major-version upgrade (5 → 6, adapter 12 → 13) also forced a switch from Cloudflare Pages to Cloudflare Workers with bundled static assets. We're on Workers now.
+
+Net effect for the editor: same UX, but all HTML rendering happens in the browser. Every admin action still goes through the server-side API tool layer + D1.
 
 ## Architecture
 

@@ -1,13 +1,16 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 import { buildSessionCookie, createSessionToken, verifyPassword } from '../../lib/auth';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = locals.runtime?.env as
-    | { ADMIN_PASSWORD_HASH?: string; ADMIN_PASSWORD_SALT?: string; ADMIN_SESSION_SECRET?: string }
-    | undefined;
-  if (!env?.ADMIN_PASSWORD_HASH || !env?.ADMIN_PASSWORD_SALT || !env?.ADMIN_SESSION_SECRET) {
+export const POST: APIRoute = async ({ request }) => {
+  const cfg = env as {
+    ADMIN_PASSWORD_HASH?: string;
+    ADMIN_PASSWORD_SALT?: string;
+    ADMIN_SESSION_SECRET?: string;
+  };
+  if (!cfg.ADMIN_PASSWORD_HASH || !cfg.ADMIN_PASSWORD_SALT || !cfg.ADMIN_SESSION_SECRET) {
     return new Response(JSON.stringify({ error: 'admin not configured' }), {
       status: 503,
       headers: { 'content-type': 'application/json' },
@@ -31,7 +34,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
-  const ok = await verifyPassword(password, env.ADMIN_PASSWORD_HASH, env.ADMIN_PASSWORD_SALT);
+  const ok = await verifyPassword(password, cfg.ADMIN_PASSWORD_HASH, cfg.ADMIN_PASSWORD_SALT);
   if (!ok) {
     return new Response(JSON.stringify({ error: 'invalid password' }), {
       status: 401,
@@ -39,7 +42,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
-  const token = await createSessionToken(env.ADMIN_SESSION_SECRET);
+  const token = await createSessionToken(cfg.ADMIN_SESSION_SECRET);
   const cookie = buildSessionCookie(token);
 
   if (ct.includes('application/json')) {

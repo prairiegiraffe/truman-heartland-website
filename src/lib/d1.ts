@@ -1,9 +1,10 @@
-// D1 helpers for /api and /cpadmin routes. Only callable at request time (from
-// a prerender=false route) since the D1 binding lives on Astro.locals.runtime.
+// D1 helpers for /api and /cpadmin routes. Only callable at request time
+// since the D1 binding comes from the Cloudflare Workers env import.
 //
-// D1 bindings are added via wrangler.jsonc (binding: thcf_content).
+// D1 bindings are declared in wrangler.jsonc (binding: thcf_content).
 
 import type { D1Database } from '@cloudflare/workers-types';
+import { env } from 'cloudflare:workers';
 
 // ---------------------------------------------------------------------------
 // Types that mirror the pages table + the in-memory shape the editor expects.
@@ -49,15 +50,17 @@ export interface VersionRow {
 }
 
 // ---------------------------------------------------------------------------
-// Accessor: extract the D1 binding from Astro.locals.runtime
+// Accessor: pull the D1 binding from the cloudflare:workers env.
+// The `locals` arg is kept for call-site compatibility but ignored — Astro 6
+// moved env off locals.runtime and into a module-level import.
 // ---------------------------------------------------------------------------
 
-export function getDB(locals: App.Locals): D1Database {
-  const env = locals.runtime?.env as { thcf_content?: D1Database } | undefined;
-  if (!env?.thcf_content) {
-    throw new Error('D1 binding `thcf_content` not available on locals.runtime.env');
+export function getDB(_locals?: App.Locals): D1Database {
+  const db = (env as unknown as { thcf_content?: D1Database }).thcf_content;
+  if (!db) {
+    throw new Error('D1 binding `thcf_content` is not configured');
   }
-  return env.thcf_content;
+  return db;
 }
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pages · cpadmin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/cpadmin/style.css">
+</head>
+<body>
+  <nav class="admin-nav">
+    <span class="admin-nav__brand">cpadmin</span>
+    <div class="admin-nav__links">
+      <a href="/cpadmin/">Pages</a>
+      <a href="/" target="_blank">View site ↗</a>
+    </div>
+    <div class="admin-nav__right">
+      <form method="post" action="/api/logout">
+        <button type="submit">Sign out</button>
+      </form>
+    </div>
+  </nav>
+  <main class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1>Pages</h1>
+        <p class="admin-sub" id="sub">Loading...</p>
+      </div>
+      <form class="admin-search" id="search-form">
+        <input name="q" type="search" placeholder="Search title or path" id="search-input">
+        <button type="submit">Search</button>
+      </form>
+    </header>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Path</th>
+          <th>Template</th>
+          <th>Type</th>
+          <th>Updated</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="pages-body"></tbody>
+    </table>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const currentSearch = params.get('q') ?? '';
+    document.getElementById('search-input').value = currentSearch;
+
+    document.getElementById('search-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = document.getElementById('search-input').value.trim();
+      location.href = '/cpadmin/' + (q ? '?q=' + encodeURIComponent(q) : '');
+    });
+
+    async function load() {
+      const url = '/api/pages' + (currentSearch ? '?search=' + encodeURIComponent(currentSearch) : '');
+      const res = await fetch(url);
+      if (res.status === 401) {
+        location.href = '/cpadmin/login';
+        return;
+      }
+      const { pages } = await res.json();
+      document.getElementById('sub').textContent = pages.length + ' page' + (pages.length === 1 ? '' : 's') + ' in D1';
+      const tbody = document.getElementById('pages-body');
+      tbody.innerHTML = '';
+      for (const p of pages) {
+        const tr = document.createElement('tr');
+        const key = p.slug || '__home__';
+        const editHref = '/cpadmin/editor?slug=' + encodeURIComponent(p.slug);
+        tr.innerHTML =
+          '<td class="admin-title-cell"></td>' +
+          '<td><code></code></td>' +
+          '<td><span class="chip"></span></td>' +
+          '<td><span class="chip chip--muted"></span></td>' +
+          '<td class="admin-dim"></td>' +
+          '<td><a class="admin-btn" href="' + editHref + '">Edit</a></td>';
+        tr.children[0].textContent = p.title;
+        tr.children[1].querySelector('code').textContent = p.path;
+        tr.children[2].querySelector('.chip').textContent = p.template;
+        tr.children[3].querySelector('.chip').textContent = p.type;
+        tr.children[4].textContent = new Date(p.updatedAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+        tbody.appendChild(tr);
+      }
+    }
+    load().catch((err) => {
+      document.getElementById('sub').textContent = 'Error: ' + err.message;
+    });
+  </script>
+</body>
+</html>

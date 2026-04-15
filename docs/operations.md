@@ -36,7 +36,25 @@ Start the dev server:
 npm run dev
 ```
 
-Visit `http://localhost:4321/cpadmin`.
+Visit `http://localhost:4321/cpadmin/` (the admin is a static HTML SPA, so the Astro dev server serves the public site while API routes run via the Cloudflare platform proxy).
+
+Better: use `wrangler dev` against the production-style build so the Worker entry point (and the asset binding that serves `/cpadmin/*.html`) matches production:
+
+```bash
+npm run build
+npx wrangler dev --port 8788
+```
+
+Then visit `http://localhost:8788/cpadmin/`.
+
+## Production deploy
+
+The site is now deployed as a **Cloudflare Worker with static assets** (not Pages). Live URL: `https://truman-heartland-website.kellee.workers.dev`.
+
+```bash
+npm run build:d1    # dump D1 → src/data/*.json + astro build
+npx wrangler deploy # push dist/client static + dist/server worker
+```
 
 ## Production secrets
 

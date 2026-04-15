@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Editor · cpadmin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/cpadmin/style.css">
+</head>
+<body>
+  <nav class="admin-nav">
+    <span class="admin-nav__brand">cpadmin</span>
+    <div class="admin-nav__links">
+      <a href="/cpadmin/">Pages</a>
+      <a href="/" target="_blank">View site ↗</a>
+    </div>
+    <div class="admin-nav__right">
+      <form method="post" action="/api/logout">
+        <button type="submit">Sign out</button>
+      </form>
+    </div>
+  </nav>
+  <main class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1 id="page-title">Loading…</h1>
+        <p class="admin-sub"><code id="page-path"></code> · template: <span class="chip" id="page-template-chip"></span></p>
+      </div>
+      <div style="display:flex;gap:.5rem;">
+        <a class="admin-btn admin-btn--ghost" href="/cpadmin/">← All pages</a>
+        <a class="admin-btn" id="view-live" href="#" target="_blank">View live ↗</a>
+      </div>
+    </header>
+
+    <div class="editor-grid">
+      <div class="editor-col">
+        <form id="edit-form">
+          <section class="editor-card">
+            <h2>Page meta</h2>
+            <label>Title <input name="title" type="text" id="input-title"></label>
+            <label>Subtitle <input name="subtitle" type="text" id="input-subtitle"></label>
+            <label>Template
+              <select name="template" id="input-template">
+                <!-- filled in JS -->
+              </select>
+            </label>
+            <p class="hint" id="template-description"></p>
+          </section>
+
+          <section class="editor-card">
+            <h2>Sections (JSON)</h2>
+            <p class="hint" id="sections-hint"></p>
+            <textarea name="sections" id="input-sections" rows="22" spellcheck="false"></textarea>
+          </section>
+
+          <section class="editor-card">
+            <h2>Legacy HTML body</h2>
+            <p class="hint">Raw WordPress HTML. Rendered when template = <code>legacy</code>.</p>
+            <textarea name="legacyBody" id="input-legacy-body" rows="12" spellcheck="false"></textarea>
+          </section>
+
+          <div class="editor-actions">
+            <button type="submit" class="admin-btn">Save</button>
+            <span id="save-status" class="admin-dim"></span>
+          </div>
+        </form>
+      </div>
+
+      <aside class="editor-col">
+        <section class="editor-card">
+          <h2>Content assistant</h2>
+          <p class="hint">Ask for edits in plain language. Small changes apply immediately. Big changes propose first.</p>
+          <div class="chat-feed" id="chat-feed">
+            <div class="chat-empty" id="chat-empty"></div>
+          </div>
+          <form class="chat-form" id="chat-form">
+            <textarea id="chat-input" name="message" placeholder="Ask me to edit this page..." rows="2" required></textarea>
+            <button type="submit" class="admin-btn" id="chat-send">Send</button>
+          </form>
+        </section>
+
+        <section class="editor-card">
+          <h2>Preview</h2>
+          <p class="hint">Summary of current sections as stored in D1. Rebuild the site to see them rendered on the live URL.</p>
+          <div id="preview-summary" style="max-height:480px;overflow-y:auto;"></div>
+          <div style="margin-top:.5rem;"><a class="admin-btn admin-btn--ghost" id="view-live-preview" href="#" target="_blank">Open public page ↗</a></div>
+        </section>
+
+        <section class="editor-card">
+          <h2>Version history</h2>
+          <ul class="version-list" id="versions-list"></ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/cpadmin/editor.js"></script>
+</body>
+</html>

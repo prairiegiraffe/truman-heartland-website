@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.89.0",
-    "@astrojs/cloudflare": "^12.6.12",
-    "astro": "^5.17.1",
+    "@astrojs/cloudflare": "^13.1.9",
+    "astro": "^6.1.6",
     "cheerio": "^1.2.0",
     "fs-extra": "^11.3.3",
     "node-html-parser": "^7.1.0",

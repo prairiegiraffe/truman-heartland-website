@@ -18,6 +18,7 @@
 // history and sends it back with each turn.
 
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 import Anthropic from '@anthropic-ai/sdk';
 
 import { getDB, getPage } from '../../lib/d1';
@@ -61,8 +62,8 @@ interface ActivityEvent {
 // ---------------------------------------------------------------------------
 
 export const POST: APIRoute = async ({ locals, request }) => {
-  const env = locals.runtime?.env as { ANTHROPIC_API_KEY?: string } | undefined;
-  if (!env?.ANTHROPIC_API_KEY) {
+  const apiKey = (env as { ANTHROPIC_API_KEY?: string }).ANTHROPIC_API_KEY;
+  if (!apiKey) {
     return json({ error: 'admin disabled (ANTHROPIC_API_KEY not set)' }, 503);
   }
 
@@ -102,7 +103,7 @@ export const POST: APIRoute = async ({ locals, request }) => {
     pendingProposals: [],
   };
 
-  const anthropic = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  const anthropic = new Anthropic({ apiKey });
 
   // Convert client messages to Anthropic input_messages.
   let conv: Anthropic.MessageParam[] = messages.map((m) => ({

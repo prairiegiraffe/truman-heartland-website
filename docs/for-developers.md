@@ -2,13 +2,24 @@
 
 ## Stack
 
-- **Astro 5** — site generator. `output: 'server'` on Cloudflare adapter; public pages opt into `prerender = true`.
-- **Cloudflare Pages** — hosts the static build.
-- **Cloudflare Workers** — SSR for `/api/**` and `/cpadmin/**` and the chat API.
+- **Astro 6** — site generator. `output: 'server'` on Cloudflare adapter 13; public pages opt into `prerender = true` to bake to static HTML.
+- **Cloudflare Workers with static assets** — hosts both the static site and the SSR API endpoints. Deployed via `npx wrangler deploy`. URL: `https://truman-heartland-website.kellee.workers.dev`.
 - **Cloudflare D1** — content source of truth (`thcf-content` database).
 - **Cloudflare R2** — image storage (bucket `thcf-assets`, binding `ASSETS_BUCKET`).
 - **Zod** — schemas for sections + templates; validates both admin writes and AI tool output.
 - **Anthropic SDK** — Claude Sonnet 4.6 drives the chat assistant.
+
+## Admin UI approach
+
+The `/cpadmin/**` surface is **pure static HTML + vanilla JS** under [public/cpadmin/](../public/cpadmin/), NOT Astro SSR. This sidesteps an Astro+Cloudflare runtime bug where SSR pages returned `[object Object]` in production. The admin:
+
+1. User hits `/cpadmin/` → Cloudflare serves `public/cpadmin/index.html` via the ASSETS binding (no Worker invocation)
+2. JS in the page fetches `/api/pages` → Worker's fetch handler runs, middleware checks auth, API route returns JSON
+3. JS renders the page list
+
+API routes (in `src/pages/api/*.ts`) continue to work because they return explicit `Response` objects, which is the part of the Astro adapter that works reliably on the Worker runtime.
+
+Trade-off: the admin preview is a client-side summary (not a full rendered page). To see the real rendered page, `npm run build:d1 && npx wrangler deploy`.
 
 ## Key directories
 

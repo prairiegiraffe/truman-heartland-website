@@ -4,7 +4,9 @@ This is your guide to editing the Truman Heartland website. Written for content 
 
 ## Signing in
 
-Go to **https://truman-heartland.com/cpadmin** (your dev environment URL will differ). You'll see a password prompt. Your password was sent to you separately; keep it safe.
+Go to **https://truman-heartland-website.kellee.workers.dev/cpadmin/** (this URL will change once we wire the custom domain). You'll see a password prompt. Your password was sent to you separately; keep it safe.
+
+The current temporary password is `THCF-admin-2026-change-me`. **Change it as soon as possible** — see [operations.md](operations.md#change-the-admin-password) for how.
 
 Stay signed in for 30 days; after that, the password prompt comes back.
 
