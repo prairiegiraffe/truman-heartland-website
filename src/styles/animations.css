@@ -54,6 +54,25 @@
 }
 
 /* --------------------------------------------------------------------------
+   Hero Ken Burns — slow zoom on hero background images
+   -------------------------------------------------------------------------- */
+@keyframes ken-burns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+.home-hero__bg-image,
+.hero-banner__bg {
+  animation: ken-burns 20s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__bg-image,
+  .hero-banner__bg {
+    animation: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Staggered Children Reveal
    -------------------------------------------------------------------------- */
 .reveal-stagger > * {

@@ -360,15 +360,29 @@
 }
 @media (min-width: 1024px) {
   .mega-panel__events-columns {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
   }
 }
 
-/* Gala featured box */
+/* Gala featured box — spans full first column, 2-col internal layout on desktop */
 .mega-panel__event-box {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+}
+@media (min-width: 1024px) {
+  .mega-panel__event-box {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-xs) var(--space-lg);
+  }
+  .mega-panel__event-box .mega-panel__event-box-img-link {
+    grid-row: 1 / -1;
+  }
+  .mega-panel__event-box .mega-panel__event-box-img {
+    aspect-ratio: auto;
+    height: 100%;
+  }
 }
 
 .mega-panel__event-box-img-link {
