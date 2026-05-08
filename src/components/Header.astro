@@ -45,6 +45,7 @@ interface BoxItem {
   description: string;
   image: string;
   linkColumns: BoxLinkColumn[];
+  cta?: NavCTA;
 }
 
 interface NavItem {
@@ -62,6 +63,7 @@ interface NavItem {
     title: string;
     href: string;
   };
+  megaTargetMain?: string;
 }
 
 interface UtilityLink {
@@ -96,12 +98,20 @@ const main: NavItem[] = (navData as any).main;
   <!-- Tier 2: Audience bar (green) -->
   <div class="audience-bar">
     <div class="container audience-bar__inner">
-      {audiences.map((item, index) => (
-        item.layout || (item.groups && item.groups.length > 0) ? (
+      {audiences.map((item, index) => {
+        const mainTargetIndex = item.megaTargetMain
+          ? main.findIndex((m) => m.label === item.megaTargetMain)
+          : -1;
+        const hasMega = item.layout || (item.groups && item.groups.length > 0);
+        const panelId = mainTargetIndex >= 0
+          ? `mega-panel-${mainTargetIndex}`
+          : `audience-panel-${index}`;
+
+        return hasMega || mainTargetIndex >= 0 ? (
           <button
             class="audience-bar__link"
             aria-expanded="false"
-            aria-controls={`audience-panel-${index}`}
+            aria-controls={panelId}
             data-mega-trigger
           >
             {item.label}
@@ -113,8 +123,8 @@ const main: NavItem[] = (navData as any).main;
           <a href={item.href} class="audience-bar__link audience-bar__link--direct">
             {item.label}
           </a>
-        )
-      ))}
+        );
+      })}
     </div>
   </div>
 
@@ -299,6 +309,11 @@ const main: NavItem[] = (navData as any).main;
                     </div>
                   </div>
                   <p class="mega-panel__card-desc">{box.description}</p>
+                  {box.cta && (
+                    <div style="margin-top: var(--space-sm);">
+                      <a href={box.cta.href} class="btn btn-primary btn-sm">{box.cta.label}</a>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

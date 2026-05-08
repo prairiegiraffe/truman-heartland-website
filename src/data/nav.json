@@ -47,6 +47,7 @@
           "heading": "Nonprofit Support",
           "links": [
             { "label": "How to Engage with DAF Fundholders", "href": "/fundholder-resources" },
+            { "label": "Grantwriting Resources", "href": "/grant-seekers/resources" },
             { "label": "Nonprofit Stories", "href": "/about/news", "badge": "Blog" }
           ]
         }
@@ -62,15 +63,16 @@
           "title": "Youth Advisory Council",
           "href": "/students/youth-advisory-council",
           "description": "Empowering young leaders to drive philanthropic impact in their communities.",
+          "cta": { "label": "Become a Member", "href": "/students/youth-advisory-council/member-applications" },
           "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/YAC/_largeBodyImage/YAC-Volunteer-Day-1.jpg",
           "linkColumns": [
             {
               "heading": "About YAC",
               "links": [
-                { "label": "About YAC", "href": "/students/youth-advisory-council", "highlight": true },
+                { "label": "Youth Advisory Council", "href": "/students/youth-advisory-council", "highlight": true },
                 { "label": "YAC Scholarships", "href": "/students/scholarships" },
-                { "label": "YAC Endowment", "href": "/students/youth-advisory-council" },
-                { "label": "Member Applications", "href": "/students/youth-advisory-council" },
+                { "label": "YAC Endowment", "href": "/students/youth-advisory-council/yac-endowment" },
+                { "label": "Member Applications", "href": "/students/youth-advisory-council/member-applications" },
                 { "label": "Perks Points", "href": "/students/youth-advisory-council" }
               ]
             },
@@ -88,6 +90,7 @@
           "title": "Scholarships",
           "href": "/students/scholarships",
           "description": "Investing in the next generation through scholarships and mentorship.",
+          "cta": { "label": "Apply Now", "href": "/students/scholarships/apply-now" },
           "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/_largeBodyImage/3H2A9261.jpg",
           "linkColumns": [
             {
@@ -152,7 +155,8 @@
     },
     {
       "label": "For Fundholders",
-      "href": "/fundholder-resources"
+      "href": "/fundholder-resources",
+      "megaTargetMain": "Fundholder Services"
     }
   ],
   "main": [
@@ -247,8 +251,7 @@
             { "label": "Fund Portal Guide", "href": "https://thcf.fcsuite.com/erp/portal", "external": true },
             { "label": "Writing Instructions for Stock", "href": "/fundholder-resources/helpful-docs" },
             { "label": "Bequest Language", "href": "/donors/planned-giving" },
-            { "label": "NonProfit Agency Lookup", "href": "/fundholder-resources" },
-            { "label": "Fund Directory", "href": "/fundholder-resources" },
+            { "label": "Fund Directory", "href": "/fundholder-resources", "badge": "Directory" },
             { "label": "Personalized Guidance", "href": "/fundholder-resources" },
             { "label": "Fill the Gap", "href": "/events/fill-the-gap-campaign" },
             { "label": "Behind the Scenes", "href": "/events/behind-the-scenes-csl-drop-in-center" }
@@ -257,7 +260,7 @@
       ]
     },
     {
-      "label": "Special Events",
+      "label": "News & Events",
       "href": "/gala",
       "layout": "featured-events",
       "cardsHeading": "Join us at Special Events",
@@ -275,7 +278,7 @@
       },
       "cards": [
         {
-          "label": "Scholarship Luncheon",
+          "label": "Scholarship Reception",
           "description": "Celebrating scholarship recipients and the donors who make it possible.",
           "href": "/students/scholarships/scholarship-recipients",
           "image": "https://stdidthcfprod.blob.core.windows.net/thcf/images/Scholarships/Impact-Stats/_largeBodyImage/Impact-Stats_2025.png"
@@ -299,9 +302,7 @@
             { "label": "Grants Workshop", "href": "/grant-seekers/resources" },
             { "label": "YAC - Strike in the Night", "href": "/students/youth-advisory-council/annual-fundraiser" },
             { "label": "YAC - Fill Those Trucks", "href": "/students/youth-advisory-council/food-drive" },
-            { "label": "Behind the Scenes", "href": "/events/behind-the-scenes-csl-drop-in-center" },
-            { "label": "Fund Directory", "href": "/fundholder-resources" },
-            { "label": "Personalized Guidance", "href": "/fundholder-resources" }
+            { "label": "Behind the Scenes", "href": "/events/behind-the-scenes-csl-drop-in-center" }
           ]
         }
       ]
@@ -396,7 +397,7 @@
             { "label": "Mission & Vision", "href": "/about" },
             { "label": "Strategic Plan", "href": "/about" },
             { "label": "Become a Board Member", "href": "/about/board" },
-            { "label": "News", "href": "/about/news" },
+            { "label": "In the News", "href": "/about/news" },
             { "label": "Events", "href": "/about/events-calendar" }
           ]
         }
