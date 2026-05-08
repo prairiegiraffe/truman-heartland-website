@@ -1771,6 +1771,7 @@ blockquote {
 .home-opp-card__title {
   font-size: var(--text-lg);
   color: var(--color-navy);
+  margin-top: var(--space-sm);
   margin-bottom: var(--space-sm);
 }
 
