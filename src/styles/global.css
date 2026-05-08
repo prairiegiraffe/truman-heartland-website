@@ -281,6 +281,9 @@ blockquote {
   text-decoration-thickness: 1px;
 }
 .prose a:hover { color: var(--color-green); }
+.prose a.btn { color: inherit; text-decoration: none; }
+.prose a.btn-primary { color: var(--color-white); }
+.prose a.btn-outline { color: var(--color-green); }
 
 .prose img {
   border-radius: 0;
