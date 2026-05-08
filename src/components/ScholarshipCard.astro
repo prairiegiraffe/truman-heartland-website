@@ -3,27 +3,115 @@ interface Props {
   name: string;
   slug: string;
   amount?: string;
-  deadline?: string;
+  applicationType?: string;
+  renewable?: boolean;
 }
 
-const { name, slug, amount, deadline } = Astro.props;
+const { name, slug, amount, applicationType, renewable } = Astro.props;
+
+const typeColors: Record<string, string> = {
+  'General Application': 'green',
+  'Stand Alone': 'navy',
+  'Education Foundation': 'blue',
+};
+const typeColor = typeColors[applicationType ?? ''] ?? 'navy';
 ---
 
-<article class="card">
-  <div class="card__body">
-    <h3 class="card__title">
-      <a href={`/scholarships/${slug}`}>{name}</a>
-    </h3>
-    <div class="card__meta">
-      {amount && (
-        <p><strong>Award Amount:</strong> {amount}</p>
-      )}
-      {deadline && (
-        <p><strong>Deadline:</strong> {deadline}</p>
-      )}
-    </div>
-    <div class="card__actions">
-      <a href={`/scholarships/${slug}`} class="btn btn-outline btn-sm">Learn More</a>
-    </div>
+<article class="scholarship-card" data-type={applicationType} data-renewable={renewable ? 'renewable' : 'one-time'}>
+  <div class="scholarship-card__tags">
+    {applicationType && (
+      <span class={`scholarship-tag scholarship-tag--${typeColor}`}>{applicationType}</span>
+    )}
+    {renewable !== undefined && (
+      <span class={`scholarship-tag scholarship-tag--${renewable ? 'green-outline' : 'gray'}`}>
+        {renewable ? 'Renewable' : 'One-Time'}
+      </span>
+    )}
+  </div>
+  <h3 class="scholarship-card__title">
+    <a href={`/scholarships/${slug}`}>{name}</a>
+  </h3>
+  {amount && (
+    <p class="scholarship-card__amount">{amount}</p>
+  )}
+  <div class="scholarship-card__actions">
+    <a href={`/scholarships/${slug}`} class="btn btn-outline btn-sm">Learn More</a>
   </div>
 </article>
+
+<style>
+  .scholarship-card {
+    background: white;
+    padding: var(--space-lg);
+    border-radius: 6px;
+    border: 1px solid var(--color-gray-200);
+    border-left: 4px solid var(--color-green);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .scholarship-card:hover {
+    border-left-color: var(--color-navy);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .scholarship-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .scholarship-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .scholarship-tag--green {
+    background: var(--color-green);
+    color: white;
+  }
+  .scholarship-tag--navy {
+    background: var(--color-navy);
+    color: white;
+  }
+  .scholarship-tag--blue {
+    background: #5B8DEF;
+    color: white;
+  }
+  .scholarship-tag--green-outline {
+    background: transparent;
+    border: 1.5px solid var(--color-green);
+    color: var(--color-green);
+  }
+  .scholarship-tag--gray {
+    background: var(--color-gray-200);
+    color: var(--color-navy);
+  }
+  .scholarship-card__title {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: 1.35;
+  }
+  .scholarship-card__title a {
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  .scholarship-card__title a:hover {
+    color: var(--color-green);
+  }
+  .scholarship-card__amount {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+  }
+  .scholarship-card__actions {
+    margin-top: auto;
+    padding-top: var(--space-xs);
+  }
+</style>

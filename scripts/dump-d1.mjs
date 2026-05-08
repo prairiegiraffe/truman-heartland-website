@@ -113,16 +113,39 @@ async function dumpScholarships() {
   const rows = runSelect(
     'SELECT slug, name, description, eligibility, amount, renewable, deadline, requirements FROM scholarships WHERE deleted_at IS NULL;'
   );
-  const scholarships = rows.map((r) => ({
-    slug: r.slug,
-    name: r.name,
-    description: r.description || '',
-    eligibility: parseJson(r.eligibility, []),
-    amount: r.amount || '',
-    renewable: parseJson(r.renewable, { isRenewable: false, details: '' }),
-    deadline: r.deadline || '',
-    requirements: parseJson(r.requirements, []),
-  }));
+  // Education-foundation name patterns for application type tagging
+  const edPatterns = [
+    'education foundation', 'school district foundation', 'school foundation',
+    'public school foundation', 'fort osage resources champion education',
+    'raytown educational foundation',
+  ];
+
+  const scholarships = rows.map((r) => {
+    const name = r.name || '';
+    const deadline = r.deadline || '';
+    const nameLower = name.toLowerCase();
+    const deadlineLower = deadline.toLowerCase();
+
+    // Derive application type from name/deadline patterns
+    let applicationType = 'Stand Alone';
+    if (edPatterns.some((p) => nameLower.includes(p))) {
+      applicationType = 'Education Foundation';
+    } else if (deadlineLower.includes('general application')) {
+      applicationType = 'General Application';
+    }
+
+    return {
+      slug: r.slug,
+      name,
+      description: r.description || '',
+      eligibility: parseJson(r.eligibility, []),
+      amount: r.amount || '',
+      renewable: parseJson(r.renewable, { isRenewable: false, details: '' }),
+      deadline,
+      requirements: parseJson(r.requirements, []),
+      applicationType,
+    };
+  });
   scholarships.sort((a, b) => a.name.localeCompare(b.name));
   await fs.writeJson(path.join(DATA, 'scholarships.json'), scholarships, { spaces: 2 });
   return scholarships.length;

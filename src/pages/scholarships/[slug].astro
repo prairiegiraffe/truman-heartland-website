@@ -13,6 +13,16 @@ export function getStaticPaths() {
 }
 
 const { scholarship } = Astro.props;
+
+const applicationType = (() => {
+  const name = scholarship.name.toLowerCase();
+  const deadline = (scholarship.deadline || '').toLowerCase();
+  const edPatterns = ['education foundation', 'school district foundation', 'school foundation', 'public school foundation', 'fort osage resources champion education', 'raytown educational foundation'];
+  if (edPatterns.some((p) => name.includes(p))) return 'Education Foundation';
+  if (deadline.includes('general application')) return 'General Application';
+  return 'Stand Alone';
+})();
+const isRenewable = scholarship.renewable?.isRenewable ?? false;
 ---
 
 <Layout title={scholarship.name} description={`Learn about the ${scholarship.name} scholarship from Truman Heartland Community Foundation.`}>
@@ -27,6 +37,16 @@ const { scholarship } = Astro.props;
   <div class="page-content">
     <div class="container">
       <div class="article-body prose">
+        <h2 class="scholarship-page-title">{scholarship.name}</h2>
+        <div class="scholarship-page-tags">
+          <span class={`scholarship-page-tag scholarship-page-tag--${applicationType === 'General Application' ? 'green' : applicationType === 'Education Foundation' ? 'blue' : 'navy'}`}>
+            {applicationType}
+          </span>
+          <span class={`scholarship-page-tag scholarship-page-tag--${isRenewable ? 'green-outline' : 'gray'}`}>
+            {isRenewable ? 'Renewable' : 'One-Time Award'}
+          </span>
+        </div>
+
         {scholarship.description && (
           <div class="scholarship-description">
             <Fragment set:html={scholarship.description} />
@@ -84,3 +104,35 @@ const { scholarship } = Astro.props;
     </div>
   </div>
 </Layout>
+
+<style>
+  .scholarship-page-title {
+    margin-bottom: var(--space-sm);
+  }
+  .scholarship-page-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-bottom: var(--space-xl);
+  }
+  .scholarship-page-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    line-height: 1.5;
+  }
+  .scholarship-page-tag--green { background: var(--color-green); color: white; }
+  .scholarship-page-tag--navy { background: var(--color-navy); color: white; }
+  .scholarship-page-tag--blue { background: #5B8DEF; color: white; }
+  .scholarship-page-tag--green-outline {
+    background: transparent;
+    border: 1.5px solid var(--color-green);
+    color: var(--color-green);
+  }
+  .scholarship-page-tag--gray { background: var(--color-gray-200); color: var(--color-navy); }
+</style>

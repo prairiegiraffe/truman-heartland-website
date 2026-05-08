@@ -18,7 +18,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of Recommendation from a teacher, coach, pastor or mentor (influential adult)."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "alpha-iota-education-foundation-dr-richard-dick-miller-scholarship",
@@ -38,7 +39,8 @@
       "details": "This is not a renewable scholarship."
     },
     "deadline": "Applications must be submitted by August 31.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "alpha-iota-education-foundation-richard-rich-and-ruth-swanson-memorial-scholarship",
@@ -58,7 +60,8 @@
       "details": "This is not a renewable scholarship."
     },
     "deadline": "Applications must be submitted by August 31.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "association-for-industrial-development-scholarship",
@@ -80,7 +83,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A letter of reference from a community leader/non-relative (teacher, pastor, employer, scout leader, etc.)"
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "bess-wallace-truman-scholarship",
@@ -105,7 +109,8 @@
       "Personal reference from a supervisor of a school activity in which you participated.",
       "Personal reference from a supervisor of a community service activity in which you participated.",
       "A third personal reference, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "bill-summa-scholarship",
@@ -127,7 +132,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal reference from a coach."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "blair-michaela-shanahan-lane-memorial-scholarship",
@@ -149,7 +155,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A typed essay of approximately 500 words that addresses your perseverance through difficult life circumstances, how you feel this perseverance has helped you become stronger, and how you hope to make an impact on other people's lives in the future.",
       "Two personal reference letters. One from a teacher and another from an employer, community service supervisor, or other adult."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "blue-springs-rotary-club-scholarship-and-presidents-scholarship",
@@ -171,7 +178,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A typed essay of approximately 500 words elaborating on your personal qualities, career goals, and why you are passionate about community service.",
       "A reference letter from a current teacher, coach or mentor."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "brandon-gieselman-memorial-4-h-and-ffa-scholarship",
@@ -192,7 +200,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Download the Gieselman Scholarship 4-H Information Form or Gieselman Scholarship FFA Information Form to submit when requested."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "centerpoint-medical-center-auxiliary-scholarship",
@@ -219,7 +228,8 @@
       "Essay of 500 words stating what healthcare means to you and how you hope to use your profession to help others.",
       "Letter of Acceptance to a healthcare-related degree program.",
       "Letter of recommendation from someone who can attest to your professional abilities."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "centerpoint-medical-center-medical-staff-scholarship",
@@ -243,7 +253,8 @@
       "Proof of acceptance to a healthcare-specific program at your college or university.",
       "Letter of recommendation from a teacher or supervisor.",
       "Personal Statement essay elaborating on your educational and career goals (approximately 500 words)."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "christopher-michael-rose-scholarship",
@@ -264,7 +275,8 @@
     "requirements": [
       "Three (3) brief letters of recommendation explaining how the applicant meets the criteria for the scholarship and would benefit from receiving it- Two from school staff or faculty and one from a community member, mentor, boss, etc.",
       "Brief essay on the student’s educational and career aspirations. Include details on coming from an underserved community if applicable (first-generation American, minority, etc.). This essay WILL NOT be evaluated on technical writing ability and is only intended for the purposes of learning about the applicants and their hopes and dreams."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "chuck-jeneen-jones-scholarship",
@@ -281,7 +293,8 @@
       "details": "This is not a renewable scholarship; however, previous recipients may apply again."
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "corporal-benjamin-ashley-memorial-scholarship",
@@ -303,7 +316,8 @@
     "requirements": [
       "Transcripts showing grades through Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "At least one personal reference from a supervisor of a school activity you participated in."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "council-of-clubs-of-greater-kansas-city-scholarship",
@@ -322,7 +336,8 @@
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "daniel-l-bodas-technical-scholarship",
@@ -347,7 +362,8 @@
       "FAFSA Student Aid Report showing Expected Family Contribution amount;",
       "Reference Letter from your industrial technology (or similar trade) teacher;",
       "Personal Essay: Attach an essay of approximately 500 words that details your passion for your planned career field."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "david-a-cromwell-memorial-scholarship",
@@ -365,7 +381,8 @@
     "deadline": "",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "david-hurt-memorial-scholarship",
@@ -386,7 +403,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from a supervisor of an activity included in the resume submitted as part of the application."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "david-sennewald-costello-scholarship",
@@ -408,7 +426,8 @@
       "Resume",
       "Personal Statement Essay elaborating on your educational and career goals and why you feel you should be selected to receive a scholarship",
       "Transcripts showing grades through Fall Semester 2025"
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "drexel-public-school-foundation-scholarships",
@@ -421,7 +440,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "drs-kurt-hanneman-elizabeth-ward-health-sciences-scholarship",
@@ -442,7 +462,8 @@
     "requirements": [
       "Essay of 500 words briefly explaining your career goals.",
       "Letter of reference."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "edward-l-and-helen-l-newlin-scholarship",
@@ -461,7 +482,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from at least one supervisor of an activity included in the resume you previously submitted. Up to two more references may be submitted, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "elizabeth-weekley-sutton-scholarship",
@@ -483,7 +505,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal reference from a teacher or counselor."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "emily-kirk-memorial-scholarship",
@@ -506,7 +529,8 @@
       "Personal Statement essay about your educational and career goals (approximately 500 words)",
       "FAFSA Student Aid Index",
       "Letter of Recommendation"
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "eugene-j-rolfe-memorial-scholarship",
@@ -529,7 +553,8 @@
       "Personal reference from a supervisor of a school activity in which you participated.",
       "Personal reference from a teacher.",
       "Personal reference from a non-family, community member who can verify your musical interest and participation."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "forrest-and-marjorie-martin-graduate-scholarship",
@@ -550,7 +575,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A letter of reference"
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "forrest-and-marjorie-martin-technical-scholarship",
@@ -570,7 +596,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal reference."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "forrest-and-marjorie-martin-undergraduate-scholarship",
@@ -592,7 +619,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of reference."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "for-osage-resources-champion-education-force-scholarships",
@@ -605,7 +633,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "gene-and-joanne-cable-scholarship",
@@ -626,7 +655,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "At least one personal reference from a supervisor of an activity you listed on your resume."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "gene-cable-automotive-scholarship",
@@ -646,7 +676,8 @@
       "Resume: Attach a resume detailing school-related activities, community involvement, work history, and/or family responsibilities;",
       "FAFSA Student Aid Report showing Student Aid Index amount;",
       "Personal Essay: Attach an essay of approximately 500 words that details your passion for the automotive career field. Please note that this essay WILL NOT be judged on technical writing capability and is only intended for the purpose of learning about you and your hopes and dreams."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "george-and-ellen-jane-petrie-scholarship",
@@ -668,7 +699,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A typed essay of approximately 500 words elaborating on your personal qualities, goals for the future and why you are pursuing a career in education.",
       "A reference letter from a current faculty member, advisor or activity sponsor."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "glenda-k-dowler-memorial-scholarship",
@@ -690,7 +722,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from a teacher or supervisor."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "grain-valley-school-district-foundation-scholarships",
@@ -703,7 +736,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "greater-kansas-city-association-of-family-and-consumer-science-scholarship",
@@ -722,7 +756,8 @@
       "details": "Not a renewable scholarship."
     },
     "deadline": "Applications must be submitted by April 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "gregory-a-knapp-train-your-brain-scholarship",
@@ -741,7 +776,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from a supervisor of an activity included in the resume submitted as part of application."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "harold-h-norma-j-and-james-allan-jimmy-schmidt-scholarship",
@@ -765,7 +801,8 @@
       "Personal reference from a supervisor of an activity in which you participated",
       "Personal reference from a pastor who can substantiate your involvement in a Baptist Church.",
       "A third personal reference, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "harry-and-connie-katowitz-memorial-scholarship",
@@ -788,7 +825,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A typed essay of approximately 500 words that addresses your involvement in community service, what it has meant to you, and how you hope to make an impact in other people's lives in the future.",
       "At least two personal reference letters, one from a teacher and one from an employer. You may attach a third reference letter, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "heart-of-a-tiger-scholarship",
@@ -806,7 +844,8 @@
       "details": "Amount:Up to $500.Renewable:Not a renewable scholarship.Deadlines:"
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "independence-young-matrons-scholarship",
@@ -824,7 +863,8 @@
       "details": "Not a renewable scholarship."
     },
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "General Application"
   },
   {
     "slug": "jackson-county-columbian-homes-association-knights-of-columbus-council-3430-legacy-scholarship",
@@ -841,7 +881,8 @@
       "details": "Not a renewable scholarship."
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "jason-stone-creativity-scholarship",
@@ -864,7 +905,8 @@
       "Short statement about why you chose the piece you submitted and what it took to create it.",
       "Personal reference from a supervisor or teacher in your creative field.",
       "A second personal reference, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "jay-mcnamara-memorial-scholarship",
@@ -879,7 +921,8 @@
       "details": "Not a renewable scholarship. Previous recipients may apply again."
     },
     "deadline": "Applications must be submitted by April 1. Completed applications can be emailed to watkins@thcf.org.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "jim-scheerer-memorial-scholarship",
@@ -898,7 +941,8 @@
     "deadline": "",
     "requirements": [
       "Transcripts showing grades through Fall Semester 2025"
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "john-f-bowser-radiology-scholarship",
@@ -911,7 +955,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "john-s-barrett-memorial-scholarship",
@@ -928,7 +973,8 @@
       "details": "Up to $1,000.Renewable:Not a renewable scholarship.Deadline:Applications must be submitted by April 15.Apply:For application information, please see counselors at Lathrop High School."
     },
     "deadline": "Applications must be submitted by April 15.Apply:For application information, please see counselors at Lathrop High School.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "johnston-family-scholarship",
@@ -948,7 +994,8 @@
     "deadline": "",
     "requirements": [
       "Transcripts showing grades through Fall Semester 2025"
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "josh-borgmeyer-memorial-scholarship",
@@ -961,7 +1008,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "jovial-scholarship",
@@ -986,7 +1034,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Essay of approximately 500 words addressing how overcoming adversity has impacted your life. If you or your parent have had cancer, please address how that experience has impacted your life and your drive to overcome adversity.",
       "Letter of Recommendation from a teacher, coach, minister, mentor, or other influential adult in your life who can speak to your ability to overcome adversity."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "julie-elizabeth-marshall-memorial-scholarship",
@@ -999,7 +1048,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "kansas-city-hospice-palliative-care-pamela-puppe-patient-care-scholarship",
@@ -1017,7 +1067,8 @@
       "details": "Yes, this scholarship may be renewed. A complete application must be submitted each year."
     },
     "deadline": "May 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "kay-and-morris-dunning-nursing-scholarship",
@@ -1042,7 +1093,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of Recommendation",
       "Documentation of acceptance to a nursing program."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "lafayette-county-c-1-education-foundation-scholarships",
@@ -1055,7 +1107,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "laura-g-stark-memorial-scholarship",
@@ -1091,7 +1144,8 @@
       "Personal reference from a teacher or supervisor.",
       "Personal reference, if you choose, from a teacher, coach, or other influential adult in your life.",
       "List of other scholarships you have applied for including the amounts and whether you have been awarded the scholarship."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "lester-and-mary-homfeld-scholarship",
@@ -1111,7 +1165,8 @@
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "linda-landahl-edison-education-scholarship",
@@ -1133,7 +1188,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "General essay prompt: “Please upload a one-page essay about yourself and your educational and career goals.”",
       "Letter of Recommendation: “Please upload a letter of reference from a community leader/non-relative (teacher, pastor, employer, scout leader, etc.).”"
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "lutz-family-scholarship",
@@ -1156,7 +1212,8 @@
       "Essay sharing your short- and long-term goals (500 words maximum).",
       "Essay sharing what the Butler School District has meant to you and how has it influenced you (500 words maximum).",
       "Submit a letter of recommendation from someone in the community (NOT someone associated with the Butler School System)."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "mark-stanke-memorial-scholarship",
@@ -1184,7 +1241,8 @@
       "Perseverance to overcome adversity or challenges;",
       "Reflect on “Chief Tecumseh Death Song”: “Love your life, perfect your life, beautify all things in your life. Seek to make your life long and its purpose in the service of your people.”",
       "One personal reference letter from a school or community leader describing how you meet the scholarship requirements."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "mary-mimi-lynch-scholarship",
@@ -1201,7 +1259,8 @@
       "details": "Not a renewable scholarship."
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "mary-k-axtell-trust-scholarship",
@@ -1222,7 +1281,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from at least one supervisor of an activity included in the resume you previously submitted.",
       "Up to two more references may be submitted, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "mcmillin-family-foundation-scholarship",
@@ -1243,7 +1303,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "At least one personal reference letter from a supervisor of a school activity in which you participated or a teacher. You may attach a second reference, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "medical-alliance-of-the-metropolitan-medical-society-of-greater-kansas-city-scholarship",
@@ -1269,7 +1330,8 @@
       "Personal essay of 500 words stating what medicine means to you and how you hope to use your profession to help others.",
       "Personal recommendation from someone who can attest to your professional abilities.",
       "Acceptance letter from nursing or allied healthcare-related degree program."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "midwest-hemophilia-association-georgia-northway-scholarship",
@@ -1288,7 +1350,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of reference from a supervisor of an activity in the resume you submit in your application;",
       "Letter from doctor certifying that you either have hemophilia or a related bleeding disorder or are the family member/carrier for hemophilia or related bleeding disorder;"
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "norman-and-linda-humphrey-scholarship",
@@ -1311,7 +1374,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from a supervisor of an activity included in the resume submitted as part of the application."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "norman-and-mary-anne-davidson-scholarship",
@@ -1334,7 +1398,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of reference."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "oak-grove-school-district-education-foundation-scholarships",
@@ -1347,7 +1412,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "opal-barker-day-and-phyllis-day-combest-scholarship",
@@ -1367,7 +1433,8 @@
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "pat-barnhard-memorial-scholarship",
@@ -1389,7 +1456,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "One or two letters of reference from supervisors or teachers."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "phillip-zaroor-entrepreneurial-scholarship",
@@ -1408,7 +1476,8 @@
       "details": "Amount:$250 – $1,000 per academic year. (Year 1, $250 | Year 2, $500 | Year 3, $750 | Year 4, $1,000)Renewable:"
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "rachel-house-hudson-memorial-scholarship",
@@ -1434,7 +1503,8 @@
       "An essay (250-500 words) describing yourself and how you meet the following: a) Faithfulness to God and a desire to grow in that relationship; b) a life of high moral standards; c) trustworthy in relationships with others, treating them with kindness and respect; d) demonstrate a life filled with determination and perseverance.",
       "At least one personal reference letter from a pastor describing how you meet the scholarship requirements.",
       "Optional reference letter from a teacher or administrator, describing how you meet the scholarship requirements."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "raytown-educational-foundation-scholarships",
@@ -1447,7 +1517,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Education Foundation"
   },
   {
     "slug": "rolfe-bridge-scholarship",
@@ -1466,7 +1537,8 @@
       "details": "Renewable for up to four years of total funding. Renew by completing the Rolfe Bridge application in the portal."
     },
     "deadline": "Applications must be submitted by July 31.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "ron-bruch-nursing-scholarship",
@@ -1489,7 +1561,8 @@
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "rotary-club-of-eastern-independence-scholarship",
@@ -1502,7 +1575,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "sam-and-lindsey-porter-scholarship",
@@ -1525,7 +1599,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal recommendation from a teacher, coach, or other influential adult in your life."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "sara-garrett-memorial-scholarship",
@@ -1548,7 +1623,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A brief summary of your basketball history from when you began playing basketball to the present (e.g. recreation leagues, AAU, School teams, etc.) and describing what basketball means to you.",
       "A personal reference from someone unrelated to basketball activities."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "seger-family-nursing-scholarship",
@@ -1572,7 +1648,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Letter of recommendation"
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "senator-ronnie-depasco-police-academy-scholarship",
@@ -1585,7 +1662,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "senator-ronnie-depasco-scholarship",
@@ -1607,7 +1685,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "An essay of approximately 500 words that elaborates on your educational and career goals and describes and event or situation, whether positive or negative, that has impacted your life;",
       "A letter of reference from a teacher, pastor, or other influential adult in your life."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "sixth-bomb-group-memorial-scholarship",
@@ -1629,7 +1708,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Statement showing how you are related to a member of the Sixth Bomb group. Include name of Sixth Bomb group member, your relationship to him, etc."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "stella-moran-memorial-scholarship",
@@ -1650,7 +1730,8 @@
       "A short essay on how you believe becoming an educator will enable you to give back to your community.",
       "A short essay on how your involvement in the extracurricular, community service, and work activities in which you choose to participate has influenced your decision to be come an educator.",
       "A letter of reference is needed from a teacher, coach, pastor or mentor (influential adult)."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "steven-d-brown-scholarship",
@@ -1663,7 +1744,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "sugar-creek-business-and-civic-club-scholarship",
@@ -1676,7 +1758,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "sugar-creek-norman-and-mary-anne-davidson-scholarship",
@@ -1696,7 +1779,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A letter of reference from a community member (non-family)."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "therese-stegner-piper-memorial-scholarship",
@@ -1716,7 +1800,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A reference letter from a supervisor of an activity included in the resume submitted as part of the application."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "thomas-c-locke-scholarship",
@@ -1739,7 +1824,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A typed essay with a maximum of 500 words on how your personal qualities, goals for the future, and life mirror those of Thomas C. Locke and his achievements.",
       "At least one personal reference letter from a teacher, coach, or other influential adult in your life. You may include up to two more personal reference letters from one of the same sources."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "tile-contractors-association-of-america-inc-architectural-scholarship",
@@ -1752,7 +1838,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "tile-contractors-association-of-america-inc-family-scholarship",
@@ -1765,7 +1852,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "timothy-lutheran-church-betty-wilson-scholarship",
@@ -1782,7 +1870,8 @@
       "details": "Yes, this scholarship can be renewed for additional years of funding if the applicant continues to meet the above eligibility criteria. An application must be submitted annually."
     },
     "deadline": "Applications must be submitted by June 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "timothy-lutheran-church-brenda-rapp-west-scholarship",
@@ -1800,7 +1889,8 @@
       "details": "Yes, this scholarship can be renewed for additional years of funding if the applicant continues to meet the above eligibility criteria. A full application must be submitted annually."
     },
     "deadline": "Applications must be submitted by June 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "timothy-lutheran-church-rose-mary-thompson-scholarship",
@@ -1818,7 +1908,8 @@
       "details": "Yes, this scholarship can be renewed for additional years of funding if the applicant continues to meet the above eligibility criteria. A full application must be submitted annually."
     },
     "deadline": "Applications must be submitted by June 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "timothy-lutheran-church-theodore-v-schubkegel-scholarship",
@@ -1836,7 +1927,8 @@
       "details": "Yes, this scholarship can be renewed for additional years of funding if the applicant continues to meet the above eligibility criteria. An application must be submitted annually."
     },
     "deadline": "Applications must be submitted by June 1.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "timothy-lutheran-church-william-p-gerike-scholarship",
@@ -1858,7 +1950,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal essay of approximately 500 words about yourself and why you desire to go into full-time church work.",
       "Personal reference from your pastor."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "toni-thornton-aauw-re-entry-scholarship",
@@ -1871,7 +1964,8 @@
       "details": ""
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "venable-scholarship",
@@ -1894,7 +1988,8 @@
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Provide an essay of 500 words or less about yourself, your home church, your faith and participation in church and mission/ministry work, your educational and career goals, and your knowledge/understanding of Business as Mission and its use in completing the Great Commission. For more information, read Matthew 28:18-20 and Revelations 7:9, check these websites: https://businessasmission.com/start/, https://lausanne.org/networks/issues/business-as-mission and https://aggrandizeglobal.com/our-work, and ask mission leaders at your church."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "vern-and-ruthel-sinclair-memorial-music-scholarship",
@@ -1917,7 +2012,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "A brief statement about your involvement with the RLDS Restoration Church (Involvement is not required to received this scholarship; however, preference may be given to members)",
       "A reference letter from a supervisor of an activity that is included in the resume submitted as part of the application."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "vita-m-totta-memorial-scholarship",
@@ -1933,7 +2029,8 @@
       "details": "Not a renewable scholarship. Previous recipients may apply again."
     },
     "deadline": "",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "walters-magee-scholarship",
@@ -1960,7 +2057,8 @@
       "Personal reference from your pastor.",
       "Personal reference from a coach, family friend, or someone you believe can speak to your character best.",
       "Another personal reference, if you choose."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "watkins-family-harbinger-scholarship",
@@ -1984,7 +2082,8 @@
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered.",
       "Personal essay - Harbinger: \"A person, object or event heralding the future.\" \"A forerunner\" \"Something that comes before and shows what will be the future.\" As the first person from your family to attend an institution of higher learning, you represent the hopes and dreams of what will come later. In 350-500 words describe what it means to be the first from your family to go to college.",
       "Two personal references from a teacher, coach, family friend, whomever you believe can speak to your character best."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "wendall-j-and-myrna-j-olson-student-assistance-scholarship",
@@ -2001,7 +2100,8 @@
       "details": "Yes, this scholarship can be renewed for three additional years of funding. A renewal application must be submitted with proof of continuing college enrollment and a minimum college cumulative GPA of 2.5."
     },
     "deadline": "Applications must be submitted by March 15.",
-    "requirements": []
+    "requirements": [],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "william-chrisman-class-of-1953-scholarship",
@@ -2024,7 +2124,8 @@
     "deadline": "The General Application for the 2026-2027 cycle will be available December 1, 2025 and due February 16, 2026 (including any requirements listed below).",
     "requirements": [
       "Transcripts showing grades from Fall Semester 2025. Any applications submitted with transcripts omitting Fall Semester 2025 will not be considered."
-    ]
+    ],
+    "applicationType": "General Application"
   },
   {
     "slug": "william-g-lueckenhoff-memorial-scholarship",
@@ -2044,7 +2145,8 @@
     "requirements": [
       "A typed essay of approximately 500 words elaborating on your personal qualities and goals for the future.",
       "A reference letter from a current faculty member, advisor or activity sponsor."
-    ]
+    ],
+    "applicationType": "Stand Alone"
   },
   {
     "slug": "william-r-gann-music-scholarship",
@@ -2066,6 +2168,7 @@
       "Essay: Please submit an essay of approximately 500 words detailing your goals and aspirations for utilizing your music degree. If you are a music education major, please include details about your interest in education.",
       "Letter of Recommendation: Please submit a letter of recommendation from a music teacher (either from school or private lessons) who can attest to your musical abilities and leadership capabilities.",
       "ACT or SAT Score documentation"
-    ]
+    ],
+    "applicationType": "General Application"
   }
 ]
