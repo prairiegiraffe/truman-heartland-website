@@ -63,6 +63,16 @@
 .section--green p { color: rgba(255, 255, 255, 0.9); }
 .section--green .section__eyebrow { color: rgba(255, 255, 255, 0.7); }
 .section--green .section__title { color: var(--color-white); }
+.section--green .btn-primary {
+  background: var(--color-white);
+  color: var(--color-green-dark);
+  border-color: var(--color-white);
+}
+.section--green .btn-primary:hover {
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-color: var(--color-navy);
+}
 
 /* -- Section header pattern -- */
 .section__header {
