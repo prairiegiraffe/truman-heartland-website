@@ -25,7 +25,7 @@ const { eyebrow, title, bg = 'navy', items } = Astro.props;
     {title && (
       <SectionHeader eyebrow={eyebrow} title={title} center={true} accent={true} />
     )}
-    <div class="home-stats__grid reveal-stagger">
+    <div class={`home-stats__grid home-stats__grid--cols-${items.length} reveal-stagger`}>
       {items.map((it) => (
         <StatCounter
           target={it.target}

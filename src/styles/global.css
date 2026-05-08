@@ -1611,6 +1611,8 @@ blockquote {
 }
 @media (min-width: 768px) {
   .home-stats__grid { grid-template-columns: repeat(4, 1fr); }
+  .home-stats__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .home-stats__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
 .home-stats__number {
