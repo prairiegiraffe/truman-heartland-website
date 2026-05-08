@@ -9,13 +9,17 @@ interface Props {
 const { icon, title, body, tone = 'info' } = Astro.props;
 ---
 
-<div class={`highlight-box highlight-box--${tone}`}>
-  {icon && <div class="highlight-box__icon" set:html={icon} />}
-  <div class="highlight-box__content">
-    <h3 class="highlight-box__title">{title}</h3>
-    <div class="highlight-box__body" set:html={body} />
+<section class="section section--highlight-box">
+  <div class="container">
+    <div class={`highlight-box highlight-box--${tone}`}>
+      {icon && <div class="highlight-box__icon" set:html={icon} />}
+      <div class="highlight-box__content">
+        <h3 class="highlight-box__title">{title}</h3>
+        <div class="highlight-box__body" set:html={body} />
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <style>
   .highlight-box {
